@@ -1,0 +1,3 @@
+- dataset:
+    rektnet_images: 'path\to\RektNet_Dataset\'
+    rektnet_labels: 'path\to\rektnet-training_rektnet_label.csv'
