@@ -5,3 +5,19 @@ jobs:
       before_script: cd SomePythonProject
       script:
       - python -m unittest discover test
+    
+    - language: cpp
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+
+      before_install:
+        - pip install --user cpp-coveralls
+      before_script: cd SomeC++Project
+      script:
+        - mkdir build
+        - cd build
+        - cmake ..
+        - cmake --build .
+        - ctest
