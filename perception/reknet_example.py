@@ -24,8 +24,8 @@ with open("config.yaml", "r") as yamlfile:
 
     rand = np.random.randint(0, rektnetlabels.shape[0])
 
-    random_label = rektnetlabels[rand][0]
-    random_img = os.path.join(config[0]['dataset']['rektnet_images'], random_label)
+    random_img_name = rektnetlabels[rand][0]
+    random_img = os.path.join(config[0]['dataset']['rektnet_images'], random_img_name)
     while os.path.isfile(random_img):
         img = cv.imread(random_img)
         img = add_landmarks(img, rektnetlabels[rand])
@@ -34,6 +34,6 @@ with open("config.yaml", "r") as yamlfile:
         cv.destroyAllWindows()
 
         rand = np.random.randint(0, rektnetlabels.shape[0])
-        random_label = rektnetlabels[rand][0]
-        random_img = os.path.join(config[0]['dataset']['rektnet_images'], random_label)
+        random_img_name = rektnetlabels[rand][0]
+        random_img = os.path.join(config[0]['dataset']['rektnet_images'], random_img_name)
 

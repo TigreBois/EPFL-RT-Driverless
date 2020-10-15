@@ -3,18 +3,18 @@ import cv2 as cv
 import csv
 
 
-def get_rektnet_annotations(csv_file):
+def get_rektnet_annotations(csv_filepath):
     """Retrieve a numpy array with the RektNet annotations
 
-    :param csv_file: the path to the csv file with the RektNet annotations.
-    :type csv_file: string
+    :param csv_filepath: the path to the csv file with the RektNet annotations.
+    :type csv_filepath: string
 
     Returns:
         A numpy string array of: Image Name, top, mid_L_top, mid_R_top,
                                  mid_L_bot, mid_R_bot, bot_L, bot_R
 
     """
-    with open(csv_file, 'r') as labels_file:
+    with open(csv_filepath, 'r') as labels_file:
         rektnet_labels = list(csv.reader(labels_file, delimiter=","))
         rektnet_labels = np.array(rektnet_labels[1:])
         rektnet_labels = np.delete(rektnet_labels, [1, 9], axis=1)  # We remove 'URL' and empty last column
