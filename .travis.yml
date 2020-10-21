@@ -2,9 +2,6 @@ jobs:
   include:
     - language: python
       python: 3.7
-      env:
-  	global:
-    	  - CC_TEST_REPORTER_ID=c6dc19682dda791842789203edb931a84eb5631783ca425c00cda1639b7c8eac
       before_install:
         - pip install coverage
       before_script: 
