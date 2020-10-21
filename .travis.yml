@@ -8,11 +8,12 @@ jobs:
       install:
         - pip install coverage
       before_script:
-        - cd SomePythonProject
         - ./cc-test-reporter before-build
+        - cd SomePythonProject
       script:
         - coverage run -m unittest discover test
       after_script:
+        - cd ..
         - ./cc-test-reporter after-build --debug --exit-code $TRAVIS_TEST_RESULT
     
     - language: cpp
