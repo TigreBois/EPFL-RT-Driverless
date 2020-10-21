@@ -5,12 +5,12 @@ jobs:
       install:
         - pip install coverage
       before_script:
-        - cd SomePythonProject
+        - cd SomePythonProject/test
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         - chmod +x ./cc-test-reporter
         - ./cc-test-reporter before-build
       script:
-        - coverage run -m unittest discover test
+        - coverage run -m unittest discover
       after_script:
         - ./cc-test-reporter after-build --debug --exit-code $TRAVIS_TEST_RESULT
     
