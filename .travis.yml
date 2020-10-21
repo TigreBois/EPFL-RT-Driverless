@@ -2,9 +2,21 @@ jobs:
   include:
     - language: python
       python: 3.7
-      before_script: cd SomePythonProject
+      env:
+  	global:
+    	  - CC_TEST_REPORTER_ID=c6dc19682dda791842789203edb931a84eb5631783ca425c00cda1639b7c8eac
+      before_install:
+        - pip install coverage
+      before_script: 
+	-cd SomePythonProject
+	- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  	- chmod +x ./cc-test-reporter
+  	- ./cc-test-reporter before-build
       script:
-      - python -m unittest discover test
+      	- coverage run -m unittest discover test
+      after_script:
+  - coverage xml
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
     
     - language: cpp
       addons:
