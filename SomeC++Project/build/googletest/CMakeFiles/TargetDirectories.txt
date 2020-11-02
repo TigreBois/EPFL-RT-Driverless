@@ -1,3 +1,0 @@
-/home/masouye/DriverlessRT/EPFL-RT-Driverless/SomeC++Project/build/googletest/CMakeFiles/rebuild_cache.dir
-/home/masouye/DriverlessRT/EPFL-RT-Driverless/SomeC++Project/build/googletest/CMakeFiles/googletest.dir
-/home/masouye/DriverlessRT/EPFL-RT-Driverless/SomeC++Project/build/googletest/CMakeFiles/edit_cache.dir
