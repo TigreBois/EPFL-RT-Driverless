@@ -22,11 +22,12 @@ jobs:
           - ubuntu-toolchain-r-test
 
       before_install:
+        - sudo apt-get install -y lcov
         - pip install --user cpp-coveralls
       before_script: cd SomeC++Project
       script:
         - mkdir build
         - cd build
-        - cmake ..
-        - cmake --build .
-        - ctest
+        - cmake .. -DCMAKE_BUILD_TYPE=Debug ..  -Dtest=ON
+        - make
+        - make coverage_testFoo
