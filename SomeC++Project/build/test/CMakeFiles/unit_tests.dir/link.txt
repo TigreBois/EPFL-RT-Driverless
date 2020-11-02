@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -O0 --coverage -fprofile-arcs -ftest-coverage -g   CMakeFiles/unit_tests.dir/example_add.cpp.o CMakeFiles/unit_tests.dir/example_subtract.cpp.o  -o ../bin/unit_tests ../lib/libgtest_main.a ../lib/libexample.a ../lib/libgtest.a -lpthread 

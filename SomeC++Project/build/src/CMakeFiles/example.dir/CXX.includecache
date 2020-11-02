@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/masouye/DriverlessRT/EPFL-RT-Driverless/SomeC++Project/src/example.cpp
+example.h
+/home/masouye/DriverlessRT/EPFL-RT-Driverless/SomeC++Project/src/example.h
+
+/home/masouye/DriverlessRT/EPFL-RT-Driverless/SomeC++Project/src/example.h
+
