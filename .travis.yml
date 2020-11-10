@@ -24,10 +24,18 @@ jobs:
       before_install:
         - sudo apt-get install -y lcov
         - pip install --user cpp-coveralls
-      before_script: cd SomeC++Project
+        - pip install gcovr
+      before_script: 
+        - cd SomeC++Project
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
       script:
         - mkdir build
         - cd build
         - cmake .. -DCMAKE_BUILD_TYPE=Debug ..  -Dtest=ON
         - make
         - make coverage_testFoo
+      after_script:
+        - coverage xml
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
