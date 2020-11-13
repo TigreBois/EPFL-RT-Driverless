@@ -18,10 +18,18 @@ target_link_libraries(${BIN_NAME}
 #    ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/unit_tests
 #  )
 
-SETUP_TARGET_FOR_COVERAGE_COBERTURA(
+#SETUP_TARGET_FOR_COVERAGE(
+    #coverage_${BIN_NAME}  # Name for custom target.
+    #${BIN_NAME}         # Name of the test driver executable that runs the tests.
+    # NOTE! This should always have a ZERO as exit code
+    # otherwise the coverage generation will not complete.
+    #coverage_${BIN_NAME}_dir            # Name of output directory.
+    #)
+
+SETUP_TARGET_FOR_COVERAGE_GCOV(
     coverage_${BIN_NAME}  # Name for custom target.
     ${BIN_NAME}         # Name of the test driver executable that runs the tests.
     # NOTE! This should always have a ZERO as exit code
     # otherwise the coverage generation will not complete.
-    coverage_${BIN_NAME}            # Name of output directory.
+    coverage_${BIN_NAME}_dir            # Name of output directory.
     )

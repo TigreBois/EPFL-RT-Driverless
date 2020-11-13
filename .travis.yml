@@ -38,5 +38,4 @@ jobs:
         - make coverage_testFoo
       after_script:
         - coverage xml
-        - ./cc-test-reporter format-coverage /SomeC++Project/build/test/testfoo/coverage_testFoo.xml
-        - ./cc-test-reporter upload-coverage
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

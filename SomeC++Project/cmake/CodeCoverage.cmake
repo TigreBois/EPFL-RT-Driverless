@@ -161,3 +161,38 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE_COBERTURA _targetname _testrunner _outputname
 	)
 
 ENDFUNCTION() # SETUP_TARGET_FOR_COVERAGE_COBERTURA
+
+FUNCTION(SETUP_TARGET_FOR_COVERAGE_GCOV _targetname _testrunner _outputname)
+
+	IF(NOT GCOV_PATH)
+		MESSAGE(FATAL_ERROR "gcov not found! Aborting...")
+	ENDIF() # NOT LCOV_PATH
+
+	#IF(NOT GENHTML_PATH)
+		#MESSAGE(FATAL_ERROR "genhtml not found! Aborting...")
+	#ENDIF() # NOT GENHTML_PATH
+
+	# Setup target
+	ADD_CUSTOM_TARGET(${_targetname}
+		
+		# Run tests
+		COMMAND ${_testrunner} ${ARGV3}
+                COMMAND ${GCOV_PATH} ${CMAKE_BINARY_DIR}/src/CMakeFiles/example.dir/example.cpp.cpp
+		# Capturing lcov counters and generating report
+        #COMMAND ${LCOV_PATH} --directory . --capture --output-file ${_outputname}.info
+		#COMMAND ${LCOV_PATH} --directory . --capture --output-file ${_outputname}.info --rc lcov_branch_coverage=1
+		#COMMAND ${LCOV_PATH} --remove ${_outputname}.info 'build/*' 'tests/*' '/usr/*' --output-file ${_outputname}.info.cleaned
+		#COMMAND ${GENHTML_PATH} -o ${_outputname} ${_outputname}.info.cleaned
+		#COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
+		
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
+	)
+	
+	# Show info where to find the report
+	ADD_CUSTOM_COMMAND(TARGET ${_targetname} POST_BUILD
+		COMMAND ;
+		COMMENT "Open ./${_outputname} in your browser to view the coverage report."
+	)
+
+ENDFUNCTION()
