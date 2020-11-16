@@ -62,7 +62,6 @@ jobs:
         - sudo apt-get install -y lcov
         - pip install --user cpp-coveralls
         - pip install gcovr
-        - gem install coveralls-lcov
       before_script: 
         - cd SomeC++ProjectCoveralls
       script:
@@ -72,6 +71,6 @@ jobs:
         - make
         - make coverage_testFoo
       after_success:
-        - lcov --list coverage_out.info.cleaned
-        - coveralls-lcov coverage_out.info.cleaned
+        - gem install coveralls-lcov
+        - coveralls-lcov coverage_testFoo.info.cleaned
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

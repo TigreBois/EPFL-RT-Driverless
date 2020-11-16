@@ -7,7 +7,6 @@ add_executable(${BIN_NAME}
     )
 target_link_libraries( ${BIN_NAME} ${GTEST_LIBRARIES} )
 target_link_libraries(${BIN_NAME} 
-    gtest_main
     example
     )
 
@@ -23,7 +22,7 @@ SETUP_TARGET_FOR_COVERAGE(
     ${BIN_NAME}         # Name of the test driver executable that runs the tests.
     # NOTE! This should always have a ZERO as exit code
     # otherwise the coverage generation will not complete.
-    coverage_${BIN_NAME}_dir            # Name of output directory.
+    coverage_${BIN_NAME}            # Name of output directory.
     )
 
 
