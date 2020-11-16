@@ -51,3 +51,27 @@ jobs:
       after_script:
         - coverage xml
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+    - language: cpp
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+
+      before_install:
+        - sudo apt-get install -y lcov
+        - pip install --user cpp-coveralls
+        - pip install gcovr
+        - gem install coveralls-lcov
+      before_script: 
+        - cd SomeC++ProjectCoveralls
+      script:
+        - mkdir build
+        - cd build
+        - cmake .. -DCMAKE_BUILD_TYPE=Debug ..  -Dtest=ON
+        - make
+        - make coverage_testFoo
+      after_success:
+        - lcov --list coverage_out.info.cleaned
+        - coveralls-lcov coverage_out.info.cleaned
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
