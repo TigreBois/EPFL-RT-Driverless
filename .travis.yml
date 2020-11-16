@@ -14,6 +14,18 @@ jobs:
       after_script:
         - coverage xml
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+    - language: python
+      python: 3.7
+      install:
+        - pip install coverage
+        - pip install coveralls
+      before_script:
+        - cd SomePythonProjectCoveralls
+      script:
+        - coverage run -m unittest discover test
+      after_success:
+        - coveralls
     
     - language: cpp
       addons:
