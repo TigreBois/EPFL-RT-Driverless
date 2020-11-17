@@ -23,7 +23,7 @@ jobs:
       before_script:
         - cd SomePythonProjectCoveralls
       script:
-        - coverage run -m unittest discover test
+        - coverage --omit=*/test/* run -m unittest discover test
       after_success:
         - coveralls
     
