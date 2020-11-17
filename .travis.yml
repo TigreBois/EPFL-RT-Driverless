@@ -25,7 +25,6 @@ jobs:
       script:
         - coverage run -m unittest discover test
       after_success:
-        - coverage report --omit=*/test/*
         - coveralls
     
     - language: cpp
