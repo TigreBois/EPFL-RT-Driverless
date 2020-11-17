@@ -1,3 +1,4 @@
 [run]
-omit = 
-*/test/*
+omit =
+    # omit anything in a .local directory anywhere
+    */test/*
