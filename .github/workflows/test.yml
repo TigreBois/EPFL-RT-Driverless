@@ -28,7 +28,7 @@ jobs:
       with:
         file: ./SomePythonProjectCoveralls/coverage.xml
 
-  test-c++:
+  test-cpp:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
@@ -49,6 +49,6 @@ jobs:
     - name: Upload coverage to codecov
       uses: codecov/codecov-action@v1
       with:
-        file:
+        file: ./SomeC++ProjectCoveralls/build/coverage_testFoo.info.cleaned
 
     
