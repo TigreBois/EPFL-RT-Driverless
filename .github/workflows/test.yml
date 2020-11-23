@@ -3,10 +3,10 @@ on: ["push"]
 name: Test Coveralls Parallel
 
 jobs:
-  test:
+  test-python:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Use Python 3.x
       uses: actions/setup-python@master
       with:
@@ -27,4 +27,28 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         file: ./SomePythonProjectCoveralls/coverage.xml
+
+  test-c++:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: installation
+      run: |
+        sudo apt-get install -y lcov
+        pip install --user cpp-coveralls
+        pip install gcovr
+    - name: build and run tests
+      run: |
+        cd SomeC++ProjectCoveralls
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Debug ..  -Dtest=ON
+        make
+        make coverage_testFoo
+    - name: Upload coverage to codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file:
+
     
