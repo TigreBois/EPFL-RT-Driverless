@@ -15,7 +15,7 @@ jobs:
     - name: Use Python 3.x
       uses: actions/setup-python@master
       with:
-        version: 3.x
+        version: '3.x'
 
     - name: coverage and coveralls install
       run: |
@@ -32,6 +32,7 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.github_token }}
+        path-to-lcov: .coverage
         flag-name: run-${{ matrix.test_number }}
         parallel: true
 
