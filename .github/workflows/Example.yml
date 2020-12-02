@@ -21,7 +21,7 @@ jobs:
       run: |
         cd PythonProjectExample
         coverage run -m unittest discover test
-        coverage xml
+        coverage xml --omit="*/test*"
 
     - name: Upload coverage to codecov
       uses: codecov/codecov-action@v1
@@ -45,10 +45,10 @@ jobs:
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Debug ..  -Dtest=ON
         make
-        make coverage_testFoo
+        make coverage_tests
     - name: Upload coverage to codecov
       uses: codecov/codecov-action@v1
       with:
-        file: ./C++ProjectExample/build/coverage_testFoo.info.cleaned
+        file: ./C++ProjectExample/build/tests_coverage_report.info.cleaned
 
     

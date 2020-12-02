@@ -6,6 +6,10 @@
 # - Added support for Clang.
 # - Some additional usage instructions.
 #
+#2020-12-02, Matthieu Masouyé
+# - Adapted file for own project
+# - removed gcovr functonality
+#
 # USAGE:
 
 # 0. (Mac only) If you use Xcode 5.1 make sure to patch geninfo as described here:
@@ -42,7 +46,7 @@
 FIND_PROGRAM(GCOV_PATH gcov)
 FIND_PROGRAM(LCOV_PATH lcov)
 FIND_PROGRAM(GENHTML_PATH genhtml)
-FIND_PROGRAM( GCOVR_PATH gcovr PATHS ${CMAKE_SOURCE_DIR}/tests)
+
 
 IF(NOT GCOV_PATH)
 	MESSAGE(FATAL_ERROR "gcov not found! Aborting...")
@@ -111,12 +115,9 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
 		# Run tests
 		COMMAND ${_testrunner} ${ARGV3}
 		# Capturing lcov counters and generating report
-        #COMMAND ${LCOV_PATH} --directory . --capture --output-file ${_outputname}.info
 		COMMAND ${LCOV_PATH} --directory . --capture --output-file ${_outputname}.info --rc lcov_branch_coverage=1
-		#COMMAND ${LCOV_PATH} --remove ${_outputname}.info '*/include/*' '*gtest*' '*/gtest/*' 'build/*' 'app/*' 'cmake/*' 'external/*' 'test/*' '/usr/*' --output-file ${_outputname}.info.cleaned
-                COMMAND ${LCOV_PATH} --remove ${_outputname}.info '*/include/*' '*gtest*' '*/test/*' --output-file ${_outputname}.info.cleaned
+                COMMAND ${LCOV_PATH} --remove ${_outputname}.info '*/include/*' '*gtest*' '*/tests/*' --output-file ${_outputname}.info.cleaned
 		COMMAND ${GENHTML_PATH} -o ${_outputname} ${_outputname}.info.cleaned
-		#COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
 		
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
@@ -129,38 +130,5 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
 	)
 
 ENDFUNCTION() # SETUP_TARGET_FOR_COVERAGE
-
-# Param _targetname     The name of new the custom make target
-# Param _testrunner     The name of the target which runs the tests
-# Param _outputname     cobertura output is generated as _outputname.xml
-# Optional fourth parameter is passed as arguments to _testrunner
-#   Pass them in list form, e.g.: "-j;2" for -j 2
-FUNCTION(SETUP_TARGET_FOR_COVERAGE_COBERTURA _targetname _testrunner _outputname)
-
-	IF(NOT PYTHON_EXECUTABLE)
-		MESSAGE(FATAL_ERROR "Python not found! Aborting...")
-	ENDIF() # NOT PYTHON_EXECUTABLE
-
-	IF(NOT GCOVR_PATH)
-		MESSAGE(FATAL_ERROR "gcovr not found! Aborting...")
-	ENDIF() # NOT GCOVR_PATH
-
-	ADD_CUSTOM_TARGET(${_targetname}
-
-		# Run tests
-		${_testrunner} ${ARGV3}
-
-		# Running gcovr
-		COMMAND ${GCOVR_PATH} -x ${_outputname}.xml -r ${CMAKE_SOURCE_DIR} 
-		COMMENT "Running gcovr to produce Cobertura code coverage report."
-	)
-
-	# Show info where to find the report
-	ADD_CUSTOM_COMMAND(TARGET ${_targetname} POST_BUILD
-		COMMAND ;
-		COMMENT "Cobertura code coverage report saved in ${_outputname}.xml."
-	)
-
-ENDFUNCTION() # SETUP_TARGET_FOR_COVERAGE_COBERTURA
 
 

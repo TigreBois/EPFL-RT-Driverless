@@ -31,4 +31,4 @@ SET(CMAKE_CXX_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
 SET(CMAKE_C_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
 
 
-add_subdirectory(test)
+add_subdirectory(tests)
