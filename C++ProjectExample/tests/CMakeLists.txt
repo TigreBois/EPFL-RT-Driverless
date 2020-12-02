@@ -10,13 +10,6 @@ target_link_libraries(${BIN_NAME}
     example
     )
 
-#add_test(
-#  NAME
-#    unit
-#  COMMAND
-#    ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/unit_tests
-#  )
-
 SETUP_TARGET_FOR_COVERAGE(
     coverage_${BIN_NAME}  # Name for custom target.
     ${BIN_NAME}         # Name of the test driver executable that runs the tests.
