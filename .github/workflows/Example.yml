@@ -1,9 +1,9 @@
 on: ["push"]
 
-name: Test Coveralls Parallel
+name: Example Test Routine on Two Project
 
 jobs:
-  test-python:
+  test-python-project:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -12,35 +12,35 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: coverage and coveralls install
+    - name: Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install coverage
 
-    - name: python tests
+    - name: Scripts commands- testing python project
       run: |
-        cd SomePythonProjectCoveralls
+        cd PythonProjectExample
         coverage run -m unittest discover test
         coverage xml
 
     - name: Upload coverage to codecov
       uses: codecov/codecov-action@v1
       with:
-        file: ./SomePythonProjectCoveralls/coverage.xml
+        file: ./PythonProjectExample/coverage.xml
 
-  test-cpp:
+  test-cpp-project:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - name: installation
+    - name: Dependencies
       run: |
         sudo apt-get install -y lcov
         pip install --user cpp-coveralls
         pip install gcovr
-    - name: build and run tests
+    - name: Scripts commands- build and run tests
       run: |
-        cd SomeC++ProjectCoveralls
+        cd C++ProjectExample
         mkdir build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Debug ..  -Dtest=ON
@@ -49,6 +49,6 @@ jobs:
     - name: Upload coverage to codecov
       uses: codecov/codecov-action@v1
       with:
-        file: ./SomeC++ProjectCoveralls/build/coverage_testFoo.info.cleaned
+        file: ./C++ProjectExample/build/coverage_testFoo.info.cleaned
 
     
