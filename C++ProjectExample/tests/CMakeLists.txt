@@ -15,7 +15,7 @@ SETUP_TARGET_FOR_COVERAGE(
     ${BIN_NAME}         # Name of the test driver executable that runs the tests.
     # NOTE! This should always have a ZERO as exit code
     # otherwise the coverage generation will not complete.
-    ${BIN_NAME}_coverage_report            # Name of output directory.
+    ${BIN_NAME}_coverage_report            # Name of output directory and coverage report.
     )
 
 
