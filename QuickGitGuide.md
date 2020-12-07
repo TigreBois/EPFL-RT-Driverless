@@ -15,6 +15,17 @@ To create a branch:
 3) Finally, type `git push -u origin nameOfBranch` to push it to the online repository, so that it can be visible by everyone. Now you can work on this branch however you like; Then, use `git add files` / `git add * ` to stage your changes, `git commit` to commit them locally, and `git push` to push them online.
 4) It's good to also create a new pull request at this point and link it to your branch, so that the tools on github can work on it.
 
+Here's how the typical workflow happens using git: Once you've setup your branch, you work locally as you would without git. 
+
+Once you've made some progress, you open a terminal at the root of the repository, and add the changes you've made; you can add them one by one, or use `git add -A` to add everything.
+
+Then, you enter `git commit` to commit them locally; it will open a file in a text editor, where you write the commit message, a.k.a. a quick summary of the changes you've made. Note that you can do multiple commit before pushing in the next step. (I encourage you to look up how to write good commit messages, they are important to keep track of what was done)
+
+Finally, you can enter `git push` to push them to the online repository. It is good to also enter `git pull` before pushing to make sure you have the latest version of your branch.
+
+Repeat until you have finished your task; at which point you should follow the "To merge a branch back to master" steps.
+
+
 To merge a branch back to master:
 1) If it wasn't done before, create a pull request on the online repository, associated to your branch.
 2) Make sure you commit and push all the changes you made.
@@ -22,8 +33,3 @@ To merge a branch back to master:
 4) Once all conflicts have been resovled, assigne two people to review your changes on the pull request's page.
 5) If everything is in order, and they validate your pull request, you can merge it to master. Then, you can either delete the branch, or continue working on it; you will have to create another pull request to merge new changes to master regardless.
 6) Some other requierments to merge might be necessary depending on the tools we add to the repository; if you have any question or problem, don't hesitate to ask.
-
-Here's how the typical workflow happens using git: Once you've setup your branch, you work locally as you would without git. 
-Once you've made some progress, you open a terminal at the root of the repository, and add the changes you've made; you can add them one by one, or use `git add -A` to add everything.
-Then, you enter `git commit` to commit them locally; it will open a file in a text editor, where you write the commit message, a.k.a. a quick summary of the changes you've made. Note that you can do multiple commit before pushing in the next step. (I encourage you to look up how to write good commit messages, they are important to keep track of what was done)
-Finally, you can enter `git push` to push them to the online repository. It is good to also enter `git pull` before pushing to make sure you have the latest version of your branch.
