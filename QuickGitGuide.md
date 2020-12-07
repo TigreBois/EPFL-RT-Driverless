@@ -25,5 +25,5 @@ To merge a branch back to master:
 
 Here's how the typical workflow happens using git: Once you've setup your branch, you work locally as you would without git. 
 Once you've made some progress, you open a terminal at the root of the repository, and add the changes you've made; you can add them one by one, or use `git add -A` to add everything.
-Then, you enter `git commit` to commit them locally; it will open a file in a text editor, where you write the commit message, a.k.a. a quick summary of the changes you've made. (I encourage you to look up how to write good commit messages, they are important to keep track of what was done)
+Then, you enter `git commit` to commit them locally; it will open a file in a text editor, where you write the commit message, a.k.a. a quick summary of the changes you've made. Note that you can do multiple commit before pushing in the next step. (I encourage you to look up how to write good commit messages, they are important to keep track of what was done)
 Finally, you can enter `git push` to push them to the online repository. It is good to also enter `git pull` before pushing to make sure you have the latest version of your branch.
