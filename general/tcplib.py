@@ -1,11 +1,15 @@
 import socket
 import sys
 import pickle
+import time
+import datetime
 
 # Information on sockets: https://docs.python.org/3/library/socket.html
 # Inspiration for this lib: https://pythonprogramming.net/pickle-objects-sockets-tutorial-python-3/
 
 HEADERSIZE = 10
+
+format_string = '"%A, %d %B %Y, %H:%M:%S.%f"'
 
 #############################################
 # GENERIC DATA SENDING VIA SOCKET/CONNECTION
@@ -70,3 +74,62 @@ def receiveData(socket, verbose=False):
         print("INFO receiveData() full_msg unpickled:\t", pickle.loads(full_msg))
 
     return pickle.loads(full_msg)
+
+
+
+#############################################
+# GENERIC DATA RECEIVING VIA SOCKET/CONNECTION
+#############################################
+"""
+This is a simple forward function.
+It will listen to an input port and forward the 
+data to an output port.
+It works with all data types (the receiver must 
+know how to process it)
+
+Arguments:
+
+    sender_socket:
+            socket of the sender
+    receiver_socket:
+            socket of the receiver
+
+Returns:    
+            Nothing
+"""
+def forward(sender_socket, receiver_socket, verbose=False):
+    print('INFO: starting:\n\t', sender_socket, '\n\t', receiver_socket)
+    while True:
+        sender_socket.listen(1)
+        # Wait for a connection
+        sock_in, client_address_in = sender_socket.accept()
+        print('INFO: Input Connection from', client_address_in)
+
+        receiver_socket.listen(1)
+        # Wait for a connection
+        sock_out, client_address_out = receiver_socket.accept()
+        print('INFO: Output Connection from', client_address_out)
+
+        try:
+            # Receive the data in small chunks and retransmit it
+            while True:
+                
+                """
+                message = receiveData(sock_in, verbose)
+                sendData(sock_out, message, verbose)
+                print('SERVER forwarded: ', message)
+                """
+                full_msg = sock_in.recv(2**12)
+                sock_out.send(full_msg)
+                print("SERVER forwarded", full_msg)
+
+        finally:
+            # Clean up the connection
+            """
+            print('INFO: closing sockets: \'', client_address_in, '\' and \'', client_address_out, '\'')
+            a_datetime_datetime = datetime.datetime.now()
+            current_time_string = a_datetime_datetime.strftime(format_string)
+            print(current_time_string)
+            """
+            sock_in.close()
+            sock_out.close()
