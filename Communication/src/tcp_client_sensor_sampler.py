@@ -66,27 +66,29 @@ try:
 
             sensors_frame = parse_sensors(sensor_data[i])
 
-            cones_frame = [(sensors_frame['cones'][i][1], sensors_frame['cones'][i][2], 0.5, sensors_frame['cones'][i][0]) for i in range(len(sensors_frame['cones']))]
+            ci = 0.5
+
+            cones_frame = [(sensors_frame['cones'][i][1], sensors_frame['cones'][i][2], ci, sensors_frame['cones'][i][0]) for i in range(len(sensors_frame['cones']))]
 
 
             imu_frame = (sensors_frame['x'], sensors_frame['y'], \
                             sensors_frame['speed'], \
-                            # sensors_frame['acceleration'], \
+                            sensors_frame['acceleration'], \
                             sensors_frame['yaw'], sensors_frame['yaw-rate'])
 
 
             speed_frame = sensors_frame['speed']
 
+            """
             print('speed_frame', speed_frame)
             print('imu_frame', imu_frame)
             print('cones_frame', cones_frame)
             print("####################")
-
             """
             tcplib.sendData(sock_output_cones, cones_frame)
             tcplib.sendData(sock_output_imu, imu_frame)
             tcplib.sendData(sock_output_speed, speed_frame)
-            """
+            #"""
 
             time.sleep(1/200)
 
