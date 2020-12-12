@@ -38,6 +38,8 @@ Sometimes .yml files can be really sensitive to tabulation and spaces; if you en
 You can check on your pull request the status of the vm's during and after the execution. 
 In the example, it is set to run all jobs when a commit is pushed; you can change that at the top of the file if you want.
 
+In the end, it would be nice if you understand how that tools work enough so that you can independently add updates yourself; But realistically, don't hesitate to contact me and I can setup the workflow to run your tests, so that you don't have to spend too much time on that.
+
 Finally, be mindful that **there is a limit of minutes per months for these vm's**; Each time you push code on the github, it takes time to run all the tests; And as we have an open source repository, this limit is currently at 2000 minutes per month. This gives us plenty of margin, but if you push many times for small changes instead of grouping them into one push, it might drain the time limit. Note that it isn't dramatic if we run out; we just can't automatically test the code until the next month rolls in, and you can still run coverage locally.
 
 ## Python setup and coverage
