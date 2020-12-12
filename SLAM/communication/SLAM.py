@@ -407,7 +407,7 @@ def main(cones, motion):
     # while SLAMMING:
     built_map = []
     n_cones = len(frame)
-    particles = [Particle(n_cones, motion[0], motion[1], motion[3]) for _ in range(N_PARTICLES)]
+    particles = [Particle(n_cones, motion[0], motion[1], motion[2]) for _ in range(N_PARTICLES)]
     time += 0.033
     u = calc_input(time)
     state, built_map = do_fast_slam(xEst, xTrue, xDR, hxEst, hxTrue, hxDR, u, motion, frame, particles, built_map)
