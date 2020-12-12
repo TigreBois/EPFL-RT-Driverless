@@ -22,19 +22,19 @@ print('INFO:', MY_MODULE_NAME, 'starting.')
 sock_output_cones = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_output_cones = (IP_ADDR, IP_PORT_OUT_CONES)
 print('INFO: \'', MY_MODULE_NAME, '\' connecting to {} port {} for input.'.format(*server_output_cones))
-#sock_output_cones.connect(server_output_cones)
+sock_output_cones.connect(server_output_cones)
 
 # Create a TCP/IP socket for the output
 sock_output_imu = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_output_imu = (IP_ADDR, IP_PORT_OUT_IMU)
 print('INFO: \'', MY_MODULE_NAME, '\' connecting to {} port {} for output.'.format(*server_output_imu))
-#sock_output_imu.connect(server_output_imu)
+sock_output_imu.connect(server_output_imu)
 
 # Create a TCP/IP socket for the output
 sock_output_speed = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_output_speed = (IP_ADDR, IP_PORT_OUT_SPEED)
 print('INFO: \'', MY_MODULE_NAME, '\' connecting to {} port {} for output.'.format(*server_output_speed))
-#sock_output_speed.connect(server_output_speed)
+sock_output_speed.connect(server_output_speed)
 
 module_running = True
 
@@ -91,5 +91,6 @@ try:
             time.sleep(1/200)
 
 finally:
-    sock_input.close()
-    sock_output.close()
+    sock_output_cones.close()
+    sock_output_imu.close()
+    sock_output_speed.close()
