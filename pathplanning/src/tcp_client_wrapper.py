@@ -11,7 +11,6 @@ from numpy import arccos
 from numpy.linalg import norm
 from math import pi
 
-# -----------------------------
 # Beginning of my code
 
 max_iter = 10  # Number of middle points to be selected
