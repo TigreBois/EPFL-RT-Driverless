@@ -7,7 +7,6 @@ import tcplib
 IP_PORT_IN =  10000
 IP_PORT_OUT = 10001
 IP_ADDR = 'localhost'
-BUFF_SIZE = 2**5    # has to be a power of 2
 MY_MODULE_NAME = 'my module name' # Please enter here an arbitrary name for your code, which will help in logging
 
 print('INFO:', MY_MODULE_NAME, 'starting.')
@@ -31,7 +30,6 @@ sock_output.connect(server_address_out)
 module_running = True
 
 try:
-    iter = 0
     while module_running:
 
         ######################################################
