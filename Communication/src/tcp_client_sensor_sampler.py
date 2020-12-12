@@ -66,8 +66,6 @@ try:
 
             sensors_frame = parse_sensors(sensor_data[i])
 
-            #cones_frame = sensors_frame['cones']
-            cones_frame = (sensors_frame['cones'][])
             cones_frame = [(sensors_frame['cones'][i][1], sensors_frame['cones'][i][2], 0.5, sensors_frame['cones'][i][0]) for i in range(len(sensors_frame['cones']))]
 
 
