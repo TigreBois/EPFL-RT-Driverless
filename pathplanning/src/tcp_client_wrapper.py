@@ -81,8 +81,8 @@ def middle_path(points):
 
 # Beginning of Wrapper
 
-IP_PORT_IN = 10000
-IP_PORT_OUT = 10001
+IP_PORT_IN = 10040                  # input form SLAM
+IP_PORT_OUT = 10041                 # output to control
 IP_ADDR = 'localhost'
 BUFF_SIZE = 2 ** 5  # has to be a power of 2
 MY_MODULE_NAME = 'path_planning'  # Please enter here an arbitrary name for your code, which will help in logging
