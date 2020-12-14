@@ -7,7 +7,7 @@ import tcplib
 import numpy as np
 import math
 
-def kalman_update(x, data, P, Q, R, I, GPS, dt):
+def kalman_update(x, data, P, Q, R, I, dt):
     
     #x0 is x, x1 is y, x2 is heading, x3 is velocity, x4 is acceleration, x5 is yaw rate
     
@@ -68,10 +68,8 @@ def kalman_update(x, data, P, Q, R, I, GPS, dt):
                     [float(x[4])],
                     [float(x[5])]])
 
-    if GPS[filterstep]: # with 10Hz, every 5th step
-        JH = np.diag([1.0,1.0,1.0,1.0,1.0,1.0])
-    else: # every other step
-        JH = np.diag([0.0,0.0,1.0,1.0,1.0,1.0])      
+
+    JH = np.diag([1.0,1.0,1.0,1.0,1.0,1.0])      
     S = JH*P*JH.T + R
     K = (P*JH.T) * np.linalg.inv(S)
 
@@ -164,7 +162,7 @@ try:
         
         #i+=1
         #x, P = kalman_update(x, measurements[:,i], P, Q, R, I, GPS)
-        x, P = kalman_update(x, measurements, P, Q, R, I, GPS, dt)
+        x, P = kalman_update(x, measurements, P, Q, R, I, dt)
         
         to_send = x.A1
         
