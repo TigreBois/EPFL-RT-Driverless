@@ -3,7 +3,6 @@ import sys
 import pickle
 import time
 import tcplib
-import path_planning
 import numpy as np
 from scipy.spatial import Delaunay
 from scipy.interpolate import interp1d
