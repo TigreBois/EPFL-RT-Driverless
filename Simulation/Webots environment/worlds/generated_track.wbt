@@ -1,0 +1,5176 @@
+#VRML_SIM R2020b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.029278267973153974 0.9865351701450629 0.16090724375037946 3.4590949147245222
+  position -133 60.3 -223
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 315.5850500000001 280.841
+  appearance Asphalt {
+  }
+}
+Transform {
+  scale 0.5 0.5 0.5
+  children [
+    TrafficCone {
+      translation -33.54053718998997 0 -31.534036880794176
+      name "Blue cone(0)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -29.68162772628208 0 -27.12352028893119
+      name "Blue cone(1)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -26.237310710634016 0 -23.32623259557953
+      name "Blue cone(2)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -22.801583843737568 0 -19.54047289989482
+      name "Blue cone(3)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -19.38232589608973 0 -15.808284705977165
+      name "Blue cone(4)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -15.950597063554092 0 -12.099296092574962
+      name "Blue cone(5)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -12.5444608664891 0 -8.396110136015388
+      name "Blue cone(6)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -9.170939930446032 0 -4.686163307157799
+      name "Blue cone(7)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -5.797749478414085 0 -0.9778541391306237
+      name "Blue cone(8)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -1.7903474670325892 0 3.4894915570992717
+      name "Blue cone(9)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 2.229707125903927 0 7.9516723188916165
+      name "Blue cone(10)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 5.601543270400557 0 11.645679259029443
+      name "Blue cone(11)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 9.668365035160218 0 16.052841440778863
+      name "Blue cone(12)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 13.81622174281981 0 20.375614208571005
+      name "Blue cone(13)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 17.995851936519642 0 24.680187835152314
+      name "Blue cone(14)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 22.068335114229424 0 29.076893899623947
+      name "Blue cone(15)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 25.401168161968783 0 32.81005530593358
+      name "Blue cone(16)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 28.76566865539469 0 36.5652498337111
+      name "Blue cone(17)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 32.14883876778474 0 40.265437075140824
+      name "Blue cone(18)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 35.55171241178775 0 43.96222600528203
+      name "Blue cone(19)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 38.98369523320774 0 47.637935836657434
+      name "Blue cone(20)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 42.44733906111732 0 51.27462247279257
+      name "Blue cone(21)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 45.96037314192818 0 54.90838659308696
+      name "Blue cone(22)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 49.500997556772106 0 58.510036297167524
+      name "Blue cone(23)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 53.06394991484634 0 62.05052576385024
+      name "Blue cone(24)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 56.715763579685884 0 65.49858603232303
+      name "Blue cone(25)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 60.46775106224288 0 68.90291063997797
+      name "Blue cone(26)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 64.23506658930333 0 72.25282459399342
+      name "Blue cone(27)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 68.01516022277004 0 75.61735065931842
+      name "Blue cone(28)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 71.79377825607985 0 78.94561897784743
+      name "Blue cone(29)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 75.63114371447143 0 82.19693965692561
+      name "Blue cone(30)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 79.50069535356933 0 85.39508051763634
+      name "Blue cone(31)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 83.39038705403519 0 88.59623140289452
+      name "Blue cone(32)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 87.32206930356335 0 91.7820579729363
+      name "Blue cone(33)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 91.26680900455052 0 94.94010801050027
+      name "Blue cone(34)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 95.19524313074527 0 98.07883821118547
+      name "Blue cone(35)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 99.13646000000003 0 101.18872000000005
+      name "Blue cone(36)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 103.16090316428995 0 104.24478548631376
+      name "Blue cone(37)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 107.217899080864 0 107.21613231810379
+      name "Blue cone(38)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 112.15848984906695 0 110.70833039257033
+      name "Blue cone(39)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 117.07602402708203 0 114.1274917505134
+      name "Blue cone(40)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 121.22541626315684 0 117.00798125282121
+      name "Blue cone(41)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 125.3460701731142 0 119.91095773875519
+      name "Blue cone(42)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 129.5037118426443 0 122.82207395139338
+      name "Blue cone(43)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 133.74179283471625 0 125.54500205753038
+      name "Blue cone(44)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 138.12264141586968 0 128.04159576252073
+      name "Blue cone(45)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 142.58760629233902 0 130.42762468350682
+      name "Blue cone(46)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 147.00083532247567 0 132.87331653889234
+      name "Blue cone(47)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 152.25553087182948 0 135.8366798806292
+      name "Blue cone(48)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 157.4833446125112 0 138.7550514022762
+      name "Blue cone(49)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 162.74114639628073 0 141.6741452474961
+      name "Blue cone(50)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 167.14195917256163 0 144.12815818363703
+      name "Blue cone(51)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 172.36557341590006 0 147.01619468164893
+      name "Blue cone(52)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 176.75413556373542 0 149.43081776308748
+      name "Blue cone(53)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 181.13787468457036 0 151.8850708842159
+      name "Blue cone(54)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 186.37892638507586 0 154.85038496069416
+      name "Blue cone(55)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 191.60449404017518 0 157.76557330218216
+      name "Blue cone(56)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 196.8510641910405 0 160.67178990373876
+      name "Blue cone(57)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 201.23130462666694 0 163.1126915177775
+      name "Blue cone(58)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 206.43831124818954 0 166.03302961265655
+      name "Blue cone(59)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 211.61018680464 0 168.96718873461876
+      name "Blue cone(60)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 216.790007056465 0 171.88955772175092
+      name "Blue cone(61)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 221.94198044907435 0 174.83593492901198
+      name "Blue cone(62)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 227.02924109710224 0 177.92342818556145
+      name "Blue cone(63)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 231.98348613165996 0 181.219833562432
+      name "Blue cone(64)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 236.84935980135555 0 184.7061467299269
+      name "Blue cone(65)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 241.6086516774066 0 188.33509739070053
+      name "Blue cone(66)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 246.24964417361582 0 192.02378373957634
+      name "Blue cone(67)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 250.92056096238903 0 195.78035607360184
+      name "Blue cone(68)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 255.49845747310562 0 199.54872784570736
+      name "Blue cone(69)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 260.12005836202195 0 203.38800375989834
+      name "Blue cone(70)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 264.51344011506285 0 207.13364052194828
+      name "Blue cone(71)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 268.70258339513515 0 210.66707653814285
+      name "Blue cone(72)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 272.7120797080136 0 213.92958454325918
+      name "Blue cone(73)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 276.79121755751174 0 217.27502697879265
+      name "Blue cone(74)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 279.9015698205171 0 221.662390563444
+      name "Blue cone(75)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 279.26766691856045 0 226.8598803987673
+      name "Blue cone(76)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 275.1857129466666 0 230.56138715308674
+      name "Blue cone(77)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 270.0926999234433 0 233.39190682541116
+      name "Blue cone(78)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 265.59514322376066 0 235.8999333341146
+      name "Blue cone(79)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 260.83342433417175 0 238.61273830361824
+      name "Blue cone(80)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 255.67834655951688 0 241.1689045612636
+      name "Blue cone(81)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 250.30240417026633 0 243.14650889199174
+      name "Blue cone(82)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 244.67442596817355 0 244.6767909456412
+      name "Blue cone(83)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 238.94019481865197 0 245.9677829015503
+      name "Blue cone(84)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 233.19863828151605 0 247.0547126580052
+      name "Blue cone(85)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 227.36027842941212 0 247.9102357316767
+      name "Blue cone(86)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 221.51179632826057 0 248.64666695434647
+      name "Blue cone(87)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 215.66010939734394 0 249.33070337078215
+      name "Blue cone(88)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 209.81145141890917 0 249.92787741298787
+      name "Blue cone(89)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 203.98668699003625 0 250.3196747509024
+      name "Blue cone(90)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 198.0898851658159 0 250.50706570788438
+      name "Blue cone(91)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 192.1955 0 250.554
+      name "Blue cone(92)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 186.30113487493725 0 250.47825625313362
+      name "Blue cone(93)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 180.40774314681977 0 250.32198211620627
+      name "Blue cone(94)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 174.51908269464593 0 250.100885538342
+      name "Blue cone(95)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 168.67646196087895 0 249.78375599023548
+      name "Blue cone(96)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 162.8018401710667 0 249.26781662666673
+      name "Blue cone(97)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 156.94480361939193 0 248.59222628309183
+      name "Blue cone(98)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 151.10684482671428 0 247.7431241436849
+      name "Blue cone(99)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 145.29618777410877 0 246.72364178607125
+      name "Blue cone(100)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 139.49425016072738 0 245.657499170985
+      name "Blue cone(101)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 133.70757376381658 0 244.51032243552214
+      name "Blue cone(102)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 127.89204689440193 0 243.20629110675438
+      name "Blue cone(103)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 122.19899072972603 0 241.80445596866306
+      name "Blue cone(104)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 116.5702400000001 0 240.23232000000004
+      name "Blue cone(105)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 110.96351880998972 0 238.52420772869905
+      name "Blue cone(106)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 105.53975668034633 0 236.83052529737554
+      name "Blue cone(107)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 100.25092977801295 0 235.19375260268703
+      name "Blue cone(108)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 95.10211779227478 0 233.37360703579884
+      name "Blue cone(109)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 90.39785705342338 0 230.8206218868869
+      name "Blue cone(110)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 86.39641376649429 0 227.40428535554722
+      name "Blue cone(111)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 83.28993273113859 0 223.11847954303832
+      name "Blue cone(112)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 81.25118139811927 0 218.15710833877415
+      name "Blue cone(113)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 80.08362314463965 0 212.84553149253168
+      name "Blue cone(114)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 79.16631313489876 0 207.25729671627528
+      name "Blue cone(115)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 78.13262985650181 0 201.6514900281079
+      name "Blue cone(116)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 77.03670186948891 0 195.91161180018872
+      name "Blue cone(117)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 75.98858007946275 0 190.06738099725845
+      name "Blue cone(118)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 75.00465010199457 0 184.1544807915967
+      name "Blue cone(119)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 73.98518512224976 0 178.28338104208325
+      name "Blue cone(120)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 73.1377826716763 0 173.34662383762463
+      name "Blue cone(121)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 72.32068595233262 0 168.37229317942112
+      name "Blue cone(122)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 71.38422223816197 0 162.4877693578541
+      name "Blue cone(123)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 70.50378732277866 0 156.50313676362813
+      name "Blue cone(124)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 69.62135748763204 0 150.575370206101
+      name "Blue cone(125)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 68.71829848328788 0 144.6191154119606
+      name "Blue cone(126)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 67.94024799891915 0 139.63361771448425
+      name "Blue cone(127)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 67.07836156963275 0 134.6174512227562
+      name "Blue cone(128)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 66.14014082169948 0 129.59632227939105
+      name "Blue cone(129)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 65.16096195990531 0 124.38735748045463
+      name "Blue cone(130)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 63.84171301837599 0 119.31813866712172
+      name "Blue cone(131)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 61.912679658785045 0 114.33028802235758
+      name "Blue cone(132)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 59.39287738156753 0 109.67736352402714
+      name "Blue cone(133)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 56.41289212837796 0 105.34902639518998
+      name "Blue cone(134)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 53.18089177661941 0 101.1477735647432
+      name "Blue cone(135)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 49.94395726316588 0 97.1512262779963
+      name "Blue cone(136)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 46.62738840976912 0 93.21325333375003
+      name "Blue cone(137)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 43.218381634079854 0 89.4308924068888
+      name "Blue cone(138)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 39.74375936336472 0 85.73376166609725
+      name "Blue cone(139)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 36.24353420589474 0 82.107995534235
+      name "Blue cone(140)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 32.78746033244846 0 78.48159859443169
+      name "Blue cone(141)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 29.39138762781747 0 74.79931015490969
+      name "Blue cone(142)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 25.99770501884896 0 71.11411039340088
+      name "Blue cone(143)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 21.9680144341055 0 66.70837716321817
+      name "Blue cone(144)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 17.943261349723244 0 62.270976057011225
+      name "Blue cone(145)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 13.922836771246335 0 57.87042111704869
+      name "Blue cone(146)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 9.856664510666501 0 53.49039589939416
+      name "Blue cone(147)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 5.785881449408951 0 49.11423364349046
+      name "Blue cone(148)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 1.7664460517002643 0 44.67731684081298
+      name "Blue cone(149)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -2.2162152776849817 0 40.21246446014748
+      name "Blue cone(150)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -5.583461901364695 0 36.4816107095359
+      name "Blue cone(151)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -9.592405344917525 0 32.05770283142134
+      name "Blue cone(152)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -12.971098194214493 0 28.3713956328214
+      name "Blue cone(153)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -16.369422281550847 0 24.652154157295012
+      name "Blue cone(154)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -19.765313499378752 0 20.955974289040327
+      name "Blue cone(155)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -23.185583313727655 0 17.251893962342095
+      name "Blue cone(156)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -26.609491745016378 0 13.588103297752127
+      name "Blue cone(157)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -30.025974569038816 0 9.92825474263288
+      name "Blue cone(158)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -33.42309603387869 0 6.257092394747589
+      name "Blue cone(159)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -36.829927180527264 0 2.5876548826426005
+      name "Blue cone(160)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -40.24167152422734 0 -1.0898055684774657
+      name "Blue cone(161)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -43.64977627140617 0 -4.765836601556118
+      name "Blue cone(162)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -47.06272939281346 0 -8.445245468174996
+      name "Blue cone(163)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -50.45090272348888 0 -12.134159226545874
+      name "Blue cone(164)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -53.82727512770469 0 -15.822578587910916
+      name "Blue cone(165)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -57.91069216729316 0 -20.21598250634406
+      name "Blue cone(166)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -62.01305297814042 0 -24.58288966030944
+      name "Blue cone(167)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -66.11376838169569 0 -28.95625597871187
+      name "Blue cone(168)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -69.50827803143945 0 -32.630808103514994
+      name "Blue cone(169)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -72.88686209708264 0 -36.32586928950635
+      name "Blue cone(170)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -76.2778417172332 0 -40.020017024563806
+      name "Blue cone(171)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -79.73183003013928 0 -43.78073492431126
+      name "Blue cone(172)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -83.24218621155389 0 -47.50378915550434
+      name "Blue cone(173)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -86.83799226795995 0 -51.31202520549738
+      name "Blue cone(174)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -90.5824332121282 0 -55.32120501271227
+      name "Blue cone(175)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -94.73288827388875 0 -59.54746263419403
+      name "Blue cone(176)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -98.84854311335052 0 -62.53816319470138
+      name "Blue cone(177)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -103.95951242475671 0 -64.72969963593074
+      name "Blue cone(178)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -110.14124660436397 0 -65.74302599272929
+      name "Blue cone(179)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -115.29609972451664 0 -65.01681475508724
+      name "Blue cone(180)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -119.89040217125405 0 -62.42132572485726
+      name "Blue cone(181)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -123.10728110868133 0 -58.15836880953224
+      name "Blue cone(182)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -124.84076342779458 0 -53.44343659520532
+      name "Blue cone(183)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -125.27363637445845 0 -47.396325661992876
+      name "Blue cone(184)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -124.5583608975105 0 -42.05113894457138
+      name "Blue cone(185)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -122.42239105138003 0 -36.27001157821906
+      name "Blue cone(186)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -119.41290780348727 0 -31.30633184856831
+      name "Blue cone(187)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -116.19088664474675 0 -26.890424853480148
+      name "Blue cone(188)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -112.99398795747055 0 -22.724750752887843
+      name "Blue cone(189)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -109.8445068914562 0 -18.69635245670718
+      name "Blue cone(190)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -106.72774432992574 0 -14.69682718127197
+      name "Blue cone(191)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -103.64777426570194 0 -10.722591096564065
+      name "Blue cone(192)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -100.5491551768754 0 -6.7059845769577535
+      name "Blue cone(193)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -96.8512127536937 0 -1.9511845374329466
+      name "Blue cone(194)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -93.75603004256693 0 1.9997939592496818
+      name "Blue cone(195)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -90.67723058681668 0 5.942440503997385
+      name "Blue cone(196)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -87.00263024750541 0 10.685532646875044
+      name "Blue cone(197)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -83.35092742397877 0 15.444697379663
+      name "Blue cone(198)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -80.31178699361794 0 19.41643936650385
+      name "Blue cone(199)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -76.71469884049087 0 24.172142028922114
+      name "Blue cone(200)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -73.10052311278477 0 28.9564450805605
+      name "Blue cone(201)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -69.48634738507859 0 33.74174813219904
+      name "Blue cone(202)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -65.91730335435692 0 38.55725454554372
+      name "Blue cone(203)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -62.93712958562994 0 42.61579883828008
+      name "Blue cone(204)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -59.39275645780681 0 47.41569171230429
+      name "Blue cone(205)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -56.40655874709315 0 51.49305718233451
+      name "Blue cone(206)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -52.78144894405244 0 56.30463788587848
+      name "Blue cone(207)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -49.122772147891794 0 60.98995720772799
+      name "Blue cone(208)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -45.61166539282625 0 65.78172270729596
+      name "Blue cone(209)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -42.3352465147521 0 70.71868744953457
+      name "Blue cone(210)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -39.14593898956205 0 75.7487822075756
+      name "Blue cone(211)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -35.91003595336226 0 80.76651065327296
+      name "Blue cone(212)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -32.63803756330419 0 85.73186529916882
+      name "Blue cone(213)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -29.693803334288543 0 90.88926279747281
+      name "Blue cone(214)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -27.04075499249359 0 96.2420717199964
+      name "Blue cone(215)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -24.436774681226648 0 101.59283804617989
+      name "Blue cone(216)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -21.652203393050893 0 106.8427822927977
+      name "Blue cone(217)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -18.729700142464495 0 112.07390352687692
+      name "Blue cone(218)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -15.80727129780352 0 117.27878434425645
+      name "Blue cone(219)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -13.393576126866051 0 121.66131425101781
+      name "Blue cone(220)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -10.983216959105636 0 126.04566379587588
+      name "Blue cone(221)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -8.587510637881726 0 130.45255125702636
+      name "Blue cone(222)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -5.700303884652599 0 135.73316575526502
+      name "Blue cone(223)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -2.8450062316191786 0 140.99937414739003
+      name "Blue cone(224)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 0.00025383793418409795 0 146.25299516423703
+      name "Blue cone(225)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 2.8188894789851116 0 151.5100458872662
+      name "Blue cone(226)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 5.59340917640135 0 156.78476502316786
+      name "Blue cone(227)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 8.280101040487098 0 161.99851951443938
+      name "Blue cone(228)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 10.753677326727596 0 167.13286732135373
+      name "Blue cone(229)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 12.742639107129676 0 172.20076778571746
+      name "Blue cone(230)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 13.683861394615562 0 177.28257806122275
+      name "Blue cone(231)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 13.002249268693967 0 182.867430352415
+      name "Blue cone(232)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 10.55621937113714 0 187.68429852536838
+      name "Blue cone(233)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 6.953253913596507 0 191.466977992839
+      name "Blue cone(234)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 2.287727659155072 0 194.16162868786964
+      name "Blue cone(235)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -3.3136630366250865 0 195.49004356049866
+      name "Blue cone(236)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -8.515178521492293 0 195.23831188828103
+      name "Blue cone(237)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -13.82550104956403 0 194.15535509038529
+      name "Blue cone(238)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -19.247935999999996 0 192.730352
+      name "Blue cone(239)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -24.74755775443484 0 191.01840693687518
+      name "Blue cone(240)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -30.152471107763805 0 189.00035110300706
+      name "Blue cone(241)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -35.43920249333788 0 186.673672718459
+      name "Blue cone(242)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -40.63935878536713 0 184.13952283217674
+      name "Blue cone(243)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -45.69877361633675 0 181.3374025687249
+      name "Blue cone(244)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -50.574628268822664 0 178.25837538749585
+      name "Blue cone(245)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -55.32807465061852 0 174.88792321896713
+      name "Blue cone(246)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -59.98709999999992 0 171.28680000000008
+      name "Blue cone(247)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -64.54093006997492 0 167.58937976545235
+      name "Blue cone(248)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -69.03182294098806 0 163.82115416337624
+      name "Blue cone(249)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -73.4970185625742 0 160.00213680297026
+      name "Blue cone(250)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -77.98237053066889 0 156.10121651212373
+      name "Blue cone(251)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -82.38977542186636 0 152.19470307158574
+      name "Blue cone(252)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -86.77365952734932 0 148.1801271396545
+      name "Blue cone(253)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -91.1175971335239 0 144.12371146010491
+      name "Blue cone(254)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -95.45222546320622 0 140.03748512591505
+      name "Blue cone(255)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -99.77235834394152 0 135.90272380318612
+      name "Blue cone(256)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -104.03127151660189 0 131.73943968112468
+      name "Blue cone(257)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -108.2628845678539 0 127.52838456785388
+      name "Blue cone(258)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -112.49970258733862 0 123.27520258733847
+      name "Blue cone(259)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -116.691751743662 0 119.04149475078252
+      name "Blue cone(260)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -120.1879037413611 0 115.46340084788059
+      name "Blue cone(261)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -123.69490977462412 0 111.84164270068145
+      name "Blue cone(262)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -127.83189312362626 0 107.52587128342489
+      name "Blue cone(263)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -131.93413972609434 0 103.19688196353349
+      name "Blue cone(264)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -135.95240477305228 0 98.89752903828085
+      name "Blue cone(265)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -139.98357115772032 0 94.53078064280082
+      name "Blue cone(266)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -143.99058416341856 0 90.11933896155155
+      name "Blue cone(267)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -147.98244516419234 0 85.63564493159373
+      name "Blue cone(268)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -151.2713866609323 0 81.86064723052452
+      name "Blue cone(269)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -155.1644762684908 0 77.28165260781529
+      name "Blue cone(270)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -159.0149260116732 0 72.71759103371389
+      name "Blue cone(271)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -162.85988157411768 0 68.12622352428176
+      name "Blue cone(272)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -166.649500122614 0 63.57206763374357
+      name "Blue cone(273)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -170.41557321788935 0 58.970046547004586
+      name "Blue cone(274)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -174.14994133563982 0 54.34296721311037
+      name "Blue cone(275)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -177.8699271799435 0 49.66717007822736
+      name "Blue cone(276)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -181.52747435342957 0 44.95112396506783
+      name "Blue cone(277)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -185.0845664370606 0 40.21796342010613
+      name "Blue cone(278)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -188.57900801885864 0 35.458837634183254
+      name "Blue cone(279)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -192.04388703761933 0 30.647289417104734
+      name "Blue cone(280)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -195.48153166854877 0 25.770929443035836
+      name "Blue cone(281)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -198.86981860285258 0 20.83844759830621
+      name "Blue cone(282)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -202.1854259407017 0 15.864305823775874
+      name "Blue cone(283)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -205.4244838219478 0 10.858552313654505
+      name "Blue cone(284)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -208.61023687656478 0 5.849028969767126
+      name "Blue cone(285)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -211.74375071172707 0 0.8238265973166161
+      name "Blue cone(286)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -214.80155547494138 0 -4.215737102904043
+      name "Blue cone(287)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -217.80761179578946 0 -9.299195687733066
+      name "Blue cone(288)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -220.7509183612374 0 -14.447485872017365
+      name "Blue cone(289)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -223.613294098867 0 -19.653761533761553
+      name "Blue cone(290)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -226.38637348059527 0 -24.890914725048326
+      name "Blue cone(291)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -229.0491447131925 0 -30.14993499086198
+      name "Blue cone(292)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -231.65185576835182 0 -35.45630368306809
+      name "Blue cone(293)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -234.20956482572993 0 -40.81462810437615
+      name "Blue cone(294)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -236.7143237962657 0 -46.222078160431415
+      name "Blue cone(295)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -239.16786340025956 0 -51.65486909943597
+      name "Blue cone(296)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -241.55689305832138 0 -57.095159510430754
+      name "Blue cone(297)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -243.8863209896283 0 -62.54336097193283
+      name "Blue cone(298)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -246.17473950412293 0 -67.99701507869587
+      name "Blue cone(299)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -248.41868650558632 0 -73.46457995091974
+      name "Blue cone(300)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -250.5623558609751 0 -79.01876002027956
+      name "Blue cone(301)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -252.3503049707577 0 -83.69473368706129
+      name "Blue cone(302)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -254.13961241602988 0 -88.39565627516134
+      name "Blue cone(303)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -255.95409811960303 0 -93.07595818779897
+      name "Blue cone(304)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -258.14467238700485 0 -98.60374600051931
+      name "Blue cone(305)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -260.31487894743077 0 -104.10670044467187
+      name "Blue cone(306)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -262.4392372497735 0 -109.63341510585816
+      name "Blue cone(307)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -264.51881909395684 0 -115.18065487466686
+      name "Blue cone(308)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -266.52167834662407 0 -120.74324508158203
+      name "Blue cone(309)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -268.400001290588 0 -126.35068926947946
+      name "Blue cone(310)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -270.16958811220553 0 -132.0136283634294
+      name "Blue cone(311)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -271.8371352619358 0 -137.7159726308207
+      name "Blue cone(312)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -273.4097728574762 0 -143.45609846677664
+      name "Blue cone(313)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -274.87388655626233 0 -149.19573767611803
+      name "Blue cone(314)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -276.2243786314063 0 -154.92254611354826
+      name "Blue cone(315)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -277.4205338194187 0 -160.62297943353656
+      name "Blue cone(316)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.3239648473701 0 -166.37217791139778
+      name "Blue cone(317)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.7503278123336 0 -172.2015588737563
+      name "Blue cone(318)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.74725369210074 0 -178.11484057344524
+      name "Blue cone(319)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.7161740431 0 -184.11381081448116
+      name "Blue cone(320)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.92987069983394 0 -189.11633537841473
+      name "Blue cone(321)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -279.4848117369386 0 -195.06764287888626
+      name "Blue cone(322)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -279.96937305489024 0 -200.9383772669929
+      name "Blue cone(323)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -280.21478070217006 0 -206.72735778839296
+      name "Blue cone(324)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -280.1674840996732 0 -212.3963599204984
+      name "Blue cone(325)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -279.89259915997576 0 -217.90756084714988
+      name "Blue cone(326)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -279.30573082333336 0 -223.19440110801045
+      name "Blue cone(327)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.267289522333 0 -228.19802946562373
+      name "Blue cone(328)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -276.49502323251113 0 -233.62169539078172
+      name "Blue cone(329)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -273.95107819578783 0 -238.58636436015465
+      name "Blue cone(330)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -270.5478946284221 0 -242.94612197007496
+      name "Blue cone(331)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -266.28455476223616 0 -246.6027080699727
+      name "Blue cone(332)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -261.20192856078927 0 -249.20258726494086
+      name "Blue cone(333)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -255.64448243464255 0 -250.57560333949337
+      name "Blue cone(334)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -249.95103419859643 0 -251.04842450080224
+      name "Blue cone(335)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -244.4280940475471 0 -249.86729693249623
+      name "Blue cone(336)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -240.06347017087847 0 -246.20895790579402
+      name "Blue cone(337)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -236.54080364928967 0 -241.65042667957118
+      name "Blue cone(338)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -233.60612652401207 0 -236.76288978501486
+      name "Blue cone(339)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -231.46633615613553 0 -231.6382681980089
+      name "Blue cone(340)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -230.15842208607944 0 -226.2835417365277
+      name "Blue cone(341)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -230.559404175529 0 -220.7668192773419
+      name "Blue cone(342)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -232.77449243880955 0 -215.63060247702506
+      name "Blue cone(343)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -236.84603608247426 0 -211.48139381443298
+      name "Blue cone(344)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -241.11888954718967 0 -208.4176466356386
+      name "Blue cone(345)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -245.9191438827944 0 -205.62848019855377
+      name "Blue cone(346)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -251.11863684994103 0 -202.83290227539106
+      name "Blue cone(347)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -255.80065793036223 0 -200.50144822851038
+      name "Blue cone(348)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -260.7493629030363 0 -197.9198709675185
+      name "Blue cone(349)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -265.4211811299398 0 -194.21459362463935
+      name "Blue cone(350)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -268.53916856452855 0 -188.9408103032883
+      name "Blue cone(351)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -269.7026332648657 0 -183.03136914795382
+      name "Blue cone(352)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -269.26032954886585 0 -177.21942335689806
+      name "Blue cone(353)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -268.3041207548056 0 -171.53518545390895
+      name "Blue cone(354)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -266.3303139069487 0 -165.7191242143163
+      name "Blue cone(355)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -263.1831530189573 0 -161.69766512196819
+      name "Blue cone(356)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -258.45868960361 0 -159.55323203559803
+      name "Blue cone(357)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -252.54361691952033 0 -159.18453685609094
+      name "Blue cone(358)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -247.07120835774526 0 -159.68380177204787
+      name "Blue cone(359)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -241.86733174949146 0 -160.6472301279588
+      name "Blue cone(360)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -236.88959368995162 0 -161.7493711022911
+      name "Blue cone(361)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -231.9742451876678 0 -162.89527119520892
+      name "Blue cone(362)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -226.15550447094682 0 -164.32420555144748
+      name "Blue cone(363)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -220.34126157539484 0 -165.76296534096429
+      name "Blue cone(364)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -215.47281980835874 0 -166.9856437394981
+      name "Blue cone(365)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -209.7052645674286 0 -168.43881708862833
+      name "Blue cone(366)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -203.85143457581515 0 -169.9090266775563
+      name "Blue cone(367)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -198.05961271258508 0 -171.45005242312925
+      name "Blue cone(368)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -192.26064636369938 0 -172.97107930569882
+      name "Blue cone(369)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -186.47453307821763 0 -174.4162460533033
+      name "Blue cone(370)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -180.62119461036576 0 -175.87468675289466
+      name "Blue cone(371)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -174.85129202186528 0 -177.28686288800773
+      name "Blue cone(372)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -169.97004371077807 0 -178.45246342297577
+      name "Blue cone(373)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -164.1378100578232 0 -179.85780798527904
+      name "Blue cone(374)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -158.33394157889052 0 -181.30839207433084
+      name "Blue cone(375)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -152.53670877357348 0 -182.73990838223213
+      name "Blue cone(376)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -146.89600386142507 0 -184.1569696932676
+      name "Blue cone(377)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -141.5881618983119 0 -185.50973504245306
+      name "Blue cone(378)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -136.68055850193144 0 -186.47975783307933
+      name "Blue cone(379)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -131.5812712485058 0 -185.7720067989607
+      name "Blue cone(380)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -128.68546523919503 0 -181.12076553164624
+      name "Blue cone(381)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -129.35138628455016 0 -175.61982035867499
+      name "Blue cone(382)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -130.67825923109172 0 -170.42695256675518
+      name "Blue cone(383)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -132.04852329739893 0 -164.73288064149173
+      name "Blue cone(384)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -133.09606604955533 0 -159.53868328925398
+      name "Blue cone(385)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -133.57214615122658 0 -154.03893877882803
+      name "Blue cone(386)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -133.12358121627753 0 -148.291427571824
+      name "Blue cone(387)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -131.5967338972923 0 -142.74522553460798
+      name "Blue cone(388)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -129.256106553313 0 -137.63762407054017
+      name "Blue cone(389)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -126.22946008978798 0 -133.00359317924202
+      name "Blue cone(390)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -122.82560483848836 0 -128.8065914321347
+      name "Blue cone(391)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -119.37538620959093 0 -124.89799864189497
+      name "Blue cone(392)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -115.89946128365402 0 -121.11697318175365
+      name "Blue cone(393)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -112.4530123404457 0 -117.39612379526619
+      name "Blue cone(394)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -109.0268891533377 0 -113.72823860643582
+      name "Blue cone(395)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -104.99087545063777 0 -109.31035565288718
+      name "Blue cone(396)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -100.9841181258787 0 -104.92516373724213
+      name "Blue cone(397)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -96.94435331390699 0 -100.53712844643371
+      name "Blue cone(398)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -93.54019232077182 0 -96.85618261479605
+      name "Blue cone(399)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -89.48736813388541 0 -92.44163270238842
+      name "Blue cone(400)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -85.43050364543832 0 -88.0238175320243
+      name "Blue cone(401)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -82.012013245972 0 -84.36713955655694
+      name "Blue cone(402)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -77.93767102881394 0 -79.96356869973782
+      name "Blue cone(403)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -73.90787871469846 0 -75.56062637012478
+      name "Blue cone(404)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -70.53423935000711 0 -71.83332059729078
+      name "Blue cone(405)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -67.14900734247088 0 -68.13513126809168
+      name "Blue cone(406)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -63.751280692035756 0 -64.4462410411579
+      name "Blue cone(407)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -60.34898779849616 0 -60.75957570830746
+      name "Blue cone(408)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -56.961850975906195 0 -57.08016485921707
+      name "Blue cone(409)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -52.90820594578357 0 -52.71278942435467
+      name "Blue cone(410)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -48.88277936279927 0 -48.28541304461319
+      name "Blue cone(411)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -44.851015707611616 0 -43.8132692043393
+      name "Blue cone(412)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -41.493376644962076 0 -40.08362691215611
+      name "Blue cone(413)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -38.07601828618736 0 -36.291531712486254
+      name "Blue cone(414)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.47361637693275 0 -32.54597613946189
+      name "Blue cone(415)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -26.225238321115974 0 -38.1765168144523
+      name "Yellow cone(0)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -22.42613842818084 0 -33.732480837696656
+      name "Yellow cone(1)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -18.992192677485413 0 -29.947598745079564
+      name "Yellow cone(2)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -15.569003504965806 0 -26.185586659885097
+      name "Yellow cone(3)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -12.122781604369441 0 -22.425563685025228
+      name "Yellow cone(4)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -8.726328313419273 0 -18.71100908058537
+      name "Yellow cone(5)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -5.343737451535667 0 -15.00406144798352
+      name "Yellow cone(6)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -1.978639973211401 0 -11.295303808400206
+      name "Yellow cone(7)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 2.0955636607894768 0 -6.837239691626717
+      name "Yellow cone(8)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 6.119712183013647 0 -2.444391159361376
+      name "Yellow cone(9)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 10.189374324671494 0 1.9517421213923387
+      name "Yellow cone(10)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 13.624767638536444 0 5.6313142809000265
+      name "Yellow cone(11)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 17.67811219947566 0 9.986075995029353
+      name "Yellow cone(12)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 21.73298837928737 0 14.390065440006556
+      name "Yellow cone(13)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 25.125752222228847 0 18.065819220851793
+      name "Yellow cone(14)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 28.516788100468062 0 21.742883117934248
+      name "Yellow cone(15)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 31.921480712703293 0 25.417539558915674
+      name "Yellow cone(16)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 35.3213338132458 0 29.095675281240272
+      name "Yellow cone(17)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 38.71769131489022 0 32.775305048875815
+      name "Yellow cone(18)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 42.10894989902256 0 36.46596053023825
+      name "Yellow cone(19)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 46.14693370479572 0 40.8486026699052
+      name "Yellow cone(20)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 50.20168704585512 0 45.193507722470514
+      name "Yellow cone(21)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.31306869779273 0 49.52684840328905
+      name "Yellow cone(22)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 58.41359532561575 0 53.803409543768296
+      name "Yellow cone(23)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 62.555566933007235 0 58.07022098197785
+      name "Yellow cone(24)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 66.74170493234571 0 62.25990065986943
+      name "Yellow cone(25)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 70.99311266573939 0 66.33248750351169
+      name "Yellow cone(26)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 75.37050014356676 0 70.32431801867412
+      name "Yellow cone(27)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 79.8090188278378 0 74.23480875514349
+      name "Yellow cone(28)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 84.30922166044228 0 78.08427237728046
+      name "Yellow cone(29)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 88.8957477901112 0 81.88657300580212
+      name "Yellow cone(30)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 93.52715132053322 0 85.63509836505392
+      name "Yellow cone(31)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 98.16901684240779 0 89.26446179425854
+      name "Yellow cone(32)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 102.89437999999991 0 92.84815999999998
+      name "Yellow cone(33)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 107.70501999999993 0 96.42063999999996
+      name "Yellow cone(34)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 112.46393072466304 0 99.88977778107386
+      name "Yellow cone(35)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 117.29229016399384 0 103.32286327285091
+      name "Yellow cone(36)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 122.21781513687361 0 106.73052910133988
+      name "Yellow cone(37)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 127.11558300305336 0 110.06809126333168
+      name "Yellow cone(38)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 132.04783056262943 0 113.35971332252949
+      name "Yellow cone(39)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 136.9687311325331 0 116.59934629688105
+      name "Yellow cone(40)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 141.9642801835987 0 119.78970969635579
+      name "Yellow cone(41)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 147.0400642111244 0 122.91955838908417
+      name "Yellow cone(42)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 152.15539068885434 0 125.96418801517046
+      name "Yellow cone(43)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 157.32095021557134 0 128.9239037032829
+      name "Yellow cone(44)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 162.51559353227734 0 131.8090156971347
+      name "Yellow cone(45)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 167.80357069525786 0 134.69975203086906
+      name "Yellow cone(46)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 172.18740946901033 0 137.1051811468592
+      name "Yellow cone(47)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 177.44496681354192 0 140.0117630045276
+      name "Yellow cone(48)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 182.6716150768921 0 142.91636475986678
+      name "Yellow cone(49)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 187.0659863327026 0 145.36770793989572
+      name "Yellow cone(50)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 191.4491270473129 0 147.78213156905653
+      name "Yellow cone(51)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 196.6436788873945 0 150.64167203977638
+      name "Yellow cone(52)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 201.0633536980248 0 153.03701517233048
+      name "Yellow cone(53)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 206.3448503407825 0 155.8799275073319
+      name "Yellow cone(54)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 211.64923732552361 0 158.73438474856013
+      name "Yellow cone(55)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 216.91139160443674 0 161.589539396204
+      name "Yellow cone(56)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 221.32872539645138 0 163.99218781017456
+      name "Yellow cone(57)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 225.73917664039323 0 166.39447617852352
+      name "Yellow cone(58)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 230.14609511987916 0 168.83232979785063
+      name "Yellow cone(59)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 234.58254369874714 0 171.28714010781746
+      name "Yellow cone(60)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 239.02844513237397 0 173.75552092227537
+      name "Yellow cone(61)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 243.40959966036377 0 176.2050283123901
+      name "Yellow cone(62)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 247.8191444621242 0 178.67433083669607
+      name "Yellow cone(63)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 252.27595129916014 0 181.15568258490404
+      name "Yellow cone(64)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 256.65226344985945 0 183.60924788475742
+      name "Yellow cone(65)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 261.09190478397494 0 186.06068576660823
+      name "Yellow cone(66)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 265.5788602093927 0 188.55078004964543
+      name "Yellow cone(67)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 270.0092928992815 0 190.99724166944247
+      name "Yellow cone(68)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 274.5494661853342 0 193.52546957920828
+      name "Yellow cone(69)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 279.19242165897987 0 196.1133939714516
+      name "Yellow cone(70)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 284.06141854771073 0 198.90827786113283
+      name "Yellow cone(71)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 289.06966285432947 0 202.05908441437097
+      name "Yellow cone(72)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 293.08096175641117 0 205.4482263960305
+      name "Yellow cone(73)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 296.60126155556884 0 209.50926021344358
+      name "Yellow cone(74)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 299.5478690954492 0 214.3911030054216
+      name "Yellow cone(75)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 301.7188575227264 0 220.34210664269466
+      name "Yellow cone(76)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 302.71713216734634 0 226.81105746975982
+      name "Yellow cone(77)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 302.1415171479018 0 232.0352848014133
+      name "Yellow cone(78)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 299.46112191595273 0 238.20390904008872
+      name "Yellow cone(79)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 295.1605426486823 0 242.7862071934398
+      name "Yellow cone(80)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 290.187024712503 0 245.78401940899346
+      name "Yellow cone(81)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 285.2194664602724 0 247.63759773569492
+      name "Yellow cone(82)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 279.3206753221769 0 249.21988016051887
+      name "Yellow cone(83)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 273.8378442697897 0 250.58917473713907
+      name "Yellow cone(84)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 268.58753039492643 0 251.8276125508292
+      name "Yellow cone(85)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 263.38025854631906 0 252.9550687300111
+      name "Yellow cone(86)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 258.18725559946904 0 253.91878990573198
+      name "Yellow cone(87)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 253.0491974689075 0 254.73081106452418
+      name "Yellow cone(88)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 247.96803391155072 0 255.4618249205689
+      name "Yellow cone(89)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 242.83743764336273 0 256.155657038495
+      name "Yellow cone(90)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 237.77897361983696 0 256.8587759215007
+      name "Yellow cone(91)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 232.71766733345055 0 257.59818328654393
+      name "Yellow cone(92)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 227.7158092416274 0 258.2869703785473
+      name "Yellow cone(93)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 222.65347057428036 0 258.92173516852273
+      name "Yellow cone(94)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 217.58447904725645 0 259.46198941395875
+      name "Yellow cone(95)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 212.5630699583141 0 259.90462447892713
+      name "Yellow cone(96)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 207.42550434600278 0 260.23608605085434
+      name "Yellow cone(97)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 202.3905931901011 0 260.443556455
+      name "Yellow cone(98)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 197.30160478116565 0 260.5652390582719
+      name "Yellow cone(99)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 192.1955 0 260.6038
+      name "Yellow cone(100)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 187.1521996649502 0 260.6000335049869
+      name "Yellow cone(101)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 182.05440647578234 0 260.5197841405829
+      name "Yellow cone(102)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 176.9020936085272 0 260.3401065245461
+      name "Yellow cone(103)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 171.8673892393302 0 260.0515822952785
+      name "Yellow cone(104)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 166.77322998804317 0 259.67497013152683
+      name "Yellow cone(105)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 161.70839164334592 0 259.20825778776344
+      name "Yellow cone(106)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 156.68740775103726 0 258.62926105394234
+      name "Yellow cone(107)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 151.6307332763863 0 257.93799325983804
+      name "Yellow cone(108)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 146.59642135461738 0 257.14742411830605
+      name "Yellow cone(109)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 141.5594859368959 0 256.29829878801104
+      name "Yellow cone(110)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 136.59222566960625 0 255.3810991778206
+      name "Yellow cone(111)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 131.59057566291546 0 254.3896469063947
+      name "Yellow cone(112)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 126.5750012820299 0 253.320364158395
+      name "Yellow cone(113)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 121.63840129681657 0 252.2045239253659
+      name "Yellow cone(114)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 116.7241891780872 0 251.0346859890218
+      name "Yellow cone(115)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 111.6744484798299 0 249.8257105148633
+      name "Yellow cone(116)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 106.65139417340994 0 248.5947079903053
+      name "Yellow cone(117)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 101.5699638371487 0 247.26540934235166
+      name "Yellow cone(118)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 96.41185362336465 0 245.69498847611084
+      name "Yellow cone(119)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 91.23539266426559 0 243.65831060137444
+      name "Yellow cone(120)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 86.31141823405535 0 240.9706124281737
+      name "Yellow cone(121)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 81.76307800979103 0 237.5454237081941
+      name "Yellow cone(122)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 77.70788394796858 0 233.3989994948199
+      name "Yellow cone(123)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 74.48711673675311 0 228.62023953952954
+      name "Yellow cone(124)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 72.12237103420496 0 223.4602102022714
+      name "Yellow cone(125)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 70.51604271313707 0 218.12013882614957
+      name "Yellow cone(126)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 69.48910731066822 0 212.9339638575739
+      name "Yellow cone(127)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 68.63335191154985 0 207.7359089369363
+      name "Yellow cone(128)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 67.91861815009915 0 202.64495623864036
+      name "Yellow cone(129)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 67.25812390527202 0 197.59076155162006
+      name "Yellow cone(130)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 66.60128880593102 0 192.59864672556213
+      name "Yellow cone(131)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 65.82465001976509 0 186.6034621182173
+      name "Yellow cone(132)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 65.16766020189803 0 181.64633936334894
+      name "Yellow cone(133)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 64.49228027565226 0 176.68200298853745
+      name "Yellow cone(134)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 63.65930121343145 0 170.74033314948025
+      name "Yellow cone(135)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 62.747960885795635 0 164.80605190523525
+      name "Yellow cone(136)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 61.817535498931186 0 158.88211583349545
+      name "Yellow cone(137)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 60.882196435208364 0 152.96292478254435
+      name "Yellow cone(138)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 59.97685978327274 0 147.08936983130252
+      name "Yellow cone(139)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 59.02940902757355 0 141.27030242350693
+      name "Yellow cone(140)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 58.01036294052649 0 135.46676266519862
+      name "Yellow cone(141)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 56.90423359492285 0 129.84928063291503
+      name "Yellow cone(142)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 55.55236478121715 0 124.38516480646288
+      name "Yellow cone(143)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 53.65950910516369 0 119.11392938776233
+      name "Yellow cone(144)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 51.22365369409592 0 114.14193926020329
+      name "Yellow cone(145)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 48.23269719433085 0 109.43062623787972
+      name "Yellow cone(146)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 44.77032584523072 0 104.95696771248313
+      name "Yellow cone(147)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 41.01530448207141 0 100.56250017074572
+      name "Yellow cone(148)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 37.042616128457595 0 96.23933780695742
+      name "Yellow cone(149)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 32.998262945724626 0 91.93232594176662
+      name "Yellow cone(150)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 28.86435197033343 0 87.62174613577017
+      name "Yellow cone(151)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 24.634489650826357 0 83.29200951005153
+      name "Yellow cone(152)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 21.166246143934547 0 79.68553057043852
+      name "Yellow cone(153)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 17.74040104795609 0 76.03928011809448
+      name "Yellow cone(154)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 14.388542813531174 0 72.32423092810652
+      name "Yellow cone(155)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 10.392915586563323 0 67.84004322877072
+      name "Yellow cone(156)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 7.049089465427471 0 64.11928230415694
+      name "Yellow cone(157)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 3.0663824451265116 0 59.66337959533942
+      name "Yellow cone(158)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -0.9312678181465244 0 55.21245858829029
+      name "Yellow cone(159)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -4.954440574283012 0 50.77067819319305
+      name "Yellow cone(160)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -8.975996352225373 0 46.34108870905404
+      name "Yellow cone(161)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -13.009062353445811 0 41.91796577585987
+      name "Yellow cone(162)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -17.016230262726115 0 37.524837742736
+      name "Yellow cone(163)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -21.07156525408646 0 33.15964172386874
+      name "Yellow cone(164)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -24.535190792101567 0 29.541052651975555
+      name "Yellow cone(165)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -28.04692213532383 0 25.912594333360776
+      name "Yellow cone(166)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -32.19174567558286 0 21.569735697803225
+      name "Yellow cone(167)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -36.28851461332018 0 17.24588747691057
+      name "Yellow cone(168)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -39.73303052288308 0 13.619645687897524
+      name "Yellow cone(169)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -43.18604806611442 0 9.998018109517101
+      name "Yellow cone(170)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -46.66498846090733 0 6.3884856093893125
+      name "Yellow cone(171)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -50.16224681518342 0 2.80548664252966
+      name "Yellow cone(172)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -53.68983930131003 0 -0.7477567432266667
+      name "Yellow cone(173)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -57.9184437494844 0 -5.007460322068869
+      name "Yellow cone(174)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -62.10251134807743 0 -9.227221992157737
+      name "Yellow cone(175)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -65.66448449613026 0 -12.785264857875179
+      name "Yellow cone(176)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -69.19971711162754 0 -16.328595835148217
+      name "Yellow cone(177)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -72.72131213067173 0 -19.87873078924708
+      name "Yellow cone(178)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -76.23469107996466 0 -23.443560380116722
+      name "Yellow cone(179)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -80.41157940349353 0 -27.728923574926334
+      name "Yellow cone(180)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -84.56888229147738 0 -31.99417808484936
+      name "Yellow cone(181)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -88.6542905532511 0 -36.109513514528985
+      name "Yellow cone(182)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -92.65824623709516 0 -40.09264112579747
+      name "Yellow cone(183)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -96.45678043377329 0 -43.77527390979038
+      name "Yellow cone(184)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -100.56551082319709 0 -47.4535733587252
+      name "Yellow cone(185)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -104.94991645156956 0 -50.164934535742105
+      name "Yellow cone(186)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -109.9575621778678 0 -49.79688005074809
+      name "Yellow cone(187)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -111.29617780299526 0 -44.77936126633703
+      name "Yellow cone(188)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -107.97110740738084 0 -40.200155639493744
+      name "Yellow cone(189)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -104.68944685632712 0 -35.70758671688092
+      name "Yellow cone(190)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -101.66679670900099 0 -31.272412944854793
+      name "Yellow cone(191)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -98.55901587008799 0 -26.512549154373982
+      name "Yellow cone(192)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -95.36354686455162 0 -21.504674168975566
+      name "Yellow cone(193)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -92.13509176410624 0 -16.435785265708706
+      name "Yellow cone(194)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -88.90293506196059 0 -11.37568924145662
+      name "Yellow cone(195)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -85.62525621738286 0 -6.418833950178204
+      name "Yellow cone(196)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -82.13005984860966 0 -1.5520591678911866
+      name "Yellow cone(197)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -79.15771406526379 0 2.469903596160983
+      name "Yellow cone(198)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -76.22710483237047 0 6.528025805815025
+      name "Yellow cone(199)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -73.37665984124268 0 10.654425069547097
+      name "Yellow cone(200)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -70.61153657086422 0 14.836886178337268
+      name "Yellow cone(201)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -67.82753795298264 0 19.050455680702
+      name "Yellow cone(202)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -64.49317964071058 0 24.03846887037157
+      name "Yellow cone(203)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -61.09785616971312 0 28.980011781591244
+      name "Yellow cone(204)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -57.69924958411058 0 33.8697334005232
+      name "Yellow cone(205)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.81549367577958 0 38.01770556750874
+      name "Yellow cone(206)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -51.95958945965957 0 42.125830535708566
+      name "Yellow cone(207)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -48.50908724499396 0 47.07128908232706
+      name "Yellow cone(208)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -45.088135848957336 0 52.02221964667713
+      name "Yellow cone(209)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -42.25620361588123 0 56.18757185405194
+      name "Yellow cone(210)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -38.901124034023745 0 61.19891397445525
+      name "Yellow cone(211)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -36.11447734092633 0 65.40203317772234
+      name "Yellow cone(212)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -33.35406334526886 0 69.61854098811507
+      name "Yellow cone(213)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -30.642417124200424 0 73.88279440831559
+      name "Yellow cone(214)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -27.96287918480973 0 78.18216584464606
+      name "Yellow cone(215)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -25.29249519188888 0 82.56503166421078
+      name "Yellow cone(216)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -22.68543788986189 0 86.94202248969239
+      name "Yellow cone(217)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -20.152620725114822 0 91.32261130460812
+      name "Yellow cone(218)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -17.18714459753997 0 96.56823063732249
+      name "Yellow cone(219)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -14.35067642345058 0 101.7206490612141
+      name "Yellow cone(220)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -11.932531885880488 0 106.10836205329177
+      name "Yellow cone(221)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -9.092796224294307 0 111.31630136512796
+      name "Yellow cone(222)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -6.704647579177583 0 115.72917140682418
+      name "Yellow cone(223)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -4.320976436833754 0 120.12807805645488
+      name "Yellow cone(224)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -1.9196348474851908 0 124.55299407504828
+      name "Yellow cone(225)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 0.46666850842777396 0 128.96498777073566
+      name "Yellow cone(226)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 2.8527440852011274 0 133.40897190904016
+      name "Yellow cone(227)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 5.215422860058724 0 137.82288210883226
+      name "Yellow cone(228)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 7.564659965857875 0 142.25830878207503
+      name "Yellow cone(229)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 9.883315292891318 0 146.71659655144313
+      name "Yellow cone(230)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 12.171382034172236 0 151.22376751081188
+      name "Yellow cone(231)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 14.428035050290408 0 155.7171736830024
+      name "Yellow cone(232)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 16.738802671734994 0 160.36646036407262
+      name "Yellow cone(233)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 18.943334357470746 0 165.19012329251046
+      name "Yellow cone(234)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 20.82163473466736 0 170.32984248249795
+      name "Yellow cone(235)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 22.020257894874778 0 175.8365967866935
+      name "Yellow cone(236)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 22.215049043972414 0 181.68542568309329
+      name "Yellow cone(237)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 20.930562415057125 0 187.48542525611327
+      name "Yellow cone(238)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 18.265665489178385 0 192.857742630896
+      name "Yellow cone(239)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 14.461982715051256 0 197.5575372151375
+      name "Yellow cone(240)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 9.740691181749796 0 201.25745948674387
+      name "Yellow cone(241)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 4.313220506300946 0 203.50553019882457
+      name "Yellow cone(242)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -1.421705219095855 0 204.52140947144437
+      name "Yellow cone(243)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -6.999090425136234 0 204.84493083167257
+      name "Yellow cone(244)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -12.591114629666036 0 204.50797279125797
+      name "Yellow cone(245)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -17.97927054533311 0 203.57295531965156
+      name "Yellow cone(246)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -23.10220608940805 0 202.12041649978522
+      name "Yellow cone(247)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -28.039796886954452 0 200.3963002234458
+      name "Yellow cone(248)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -32.968352120145134 0 198.50442755719737
+      name "Yellow cone(249)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -37.73799472331175 0 196.49906133035822
+      name "Yellow cone(250)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -42.507226931927185 0 194.36233402139828
+      name "Yellow cone(251)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -47.21407872337761 0 192.04798643612176
+      name "Yellow cone(252)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -51.78903980588848 0 189.4903054519332
+      name "Yellow cone(253)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -56.180294682838664 0 186.717835612284
+      name "Yellow cone(254)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -60.405798201018314 0 183.76149056006022
+      name "Yellow cone(255)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -64.58089999999996 0 180.74520000000004
+      name "Yellow cone(256)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -68.68118214620011 0 177.74914573032476
+      name "Yellow cone(257)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -72.72187459416887 0 174.6915357797608
+      name "Yellow cone(258)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -76.74363166807026 0 171.5454604249738
+      name "Yellow cone(259)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -80.65043187538927 0 168.25607524083372
+      name "Yellow cone(260)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -84.50994476446806 0 164.900192724935
+      name "Yellow cone(261)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -88.92603646149117 0 160.79726026691685
+      name "Yellow cone(262)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -92.53852195071545 0 157.29622944709163
+      name "Yellow cone(263)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -96.93344903750662 0 153.18077217011566
+      name "Yellow cone(264)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -101.28364380896554 0 149.00301962674666
+      name "Yellow cone(265)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -104.91378430788123 0 145.50412100239217
+      name "Yellow cone(266)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -109.23277935023965 0 141.33504107053633
+      name "Yellow cone(267)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -112.83918676450541 0 137.832076718935
+      name "Yellow cone(268)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -116.40836542035764 0 134.27386542035765
+      name "Yellow cone(269)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -119.97417481787086 0 130.749674817871
+      name "Yellow cone(270)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -123.53142671160988 0 127.15919161839312
+      name "Yellow cone(271)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -127.01472543008248 0 123.52286118799798
+      name "Yellow cone(272)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -130.53720269603 0 119.80204368112472
+      name "Yellow cone(273)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -134.01502567209062 0 116.13200371745553
+      name "Yellow cone(274)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -137.4506545217114 0 112.4501165407722
+      name "Yellow cone(275)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -141.51259828090076 0 108.04469294274449
+      name "Yellow cone(276)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -145.53631643575457 0 103.63974933144611
+      name "Yellow cone(277)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -148.9113534158411 0 99.9207997143426
+      name "Yellow cone(278)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -152.32407067606349 0 96.18539476034454
+      name "Yellow cone(279)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -155.6252525684624 0 92.38169626709619
+      name "Yellow cone(280)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -158.9195524160134 0 88.57063798631583
+      name "Yellow cone(281)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -162.22739335000543 0 84.73969741789944
+      name "Yellow cone(282)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -165.5042918305441 0 80.93545140177021
+      name "Yellow cone(283)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -168.9061248742343 0 77.23829758980565
+      name "Yellow cone(284)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -172.30190750218802 0 73.47659536546621
+      name "Yellow cone(285)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -175.54456743330084 0 69.61789327291689
+      name "Yellow cone(286)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -178.6636630709301 0 65.67095266305829
+      name "Yellow cone(287)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -181.73574748401214 0 61.68699798720966
+      name "Yellow cone(288)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -184.87906851535894 0 57.75801477932975
+      name "Yellow cone(289)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -188.08196824467356 0 53.85117709742234
+      name "Yellow cone(290)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -191.2739350305407 0 49.89316284988411
+      name "Yellow cone(291)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -194.37036376045643 0 45.8612964803376
+      name "Yellow cone(292)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -197.3559484598021 0 41.738889846237825
+      name "Yellow cone(293)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -200.18194888547112 0 37.53027897864569
+      name "Yellow cone(294)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -202.89944800773603 0 33.27537333054713
+      name "Yellow cone(295)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -205.5943769418214 0 29.059546988162047
+      name "Yellow cone(296)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -209.0256161788769 0 24.156513113643804
+      name "Yellow cone(297)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -211.9871283981304 0 20.125473559018378
+      name "Yellow cone(298)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -214.97111714567376 0 16.043373508997043
+      name "Yellow cone(299)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -217.89616761581763 0 11.884883950281415
+      name "Yellow cone(300)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -220.69505316118776 0 7.631881601552184
+      name "Yellow cone(301)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -223.3729090522477 0 3.3184074114792605
+      name "Yellow cone(302)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -225.97346146784344 0 -1.0297777996913533
+      name "Yellow cone(303)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -228.52263028048748 0 -5.409370230722938
+      name "Yellow cone(304)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -231.0264447672987 0 -9.82237650345966
+      name "Yellow cone(305)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -233.51280375923048 0 -14.253003985567991
+      name "Yellow cone(306)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -235.93629661145235 0 -18.700321570967827
+      name "Yellow cone(307)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -238.29228186840305 0 -23.149257013763982
+      name "Yellow cone(308)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -240.6209671820527 0 -27.609566271124184
+      name "Yellow cone(309)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -242.9297542926627 0 -32.08994724416561
+      name "Yellow cone(310)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -245.2090764338993 0 -36.61256067308959
+      name "Yellow cone(311)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -247.47291934511756 0 -41.15858231504708
+      name "Yellow cone(312)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -249.6237659494241 0 -45.74370366810201
+      name "Yellow cone(313)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -251.67899675475692 0 -50.34105891972927
+      name "Yellow cone(314)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -253.87533477241345 0 -54.86981749128285
+      name "Yellow cone(315)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -256.0046825218324 0 -59.45063613165702
+      name "Yellow cone(316)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -258.03605352621764 0 -64.09924585134247
+      name "Yellow cone(317)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -259.97362538280754 0 -68.79155348473304
+      name "Yellow cone(318)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -261.839865964434 0 -73.51617110468337
+      name "Yellow cone(319)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -263.6608651705919 0 -78.2661499926566
+      name "Yellow cone(320)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -265.4226190247244 0 -83.03369414208056
+      name "Yellow cone(321)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -267.1501351182128 0 -87.78583970466467
+      name "Yellow cone(322)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -268.87137188211517 0 -92.48972995169048
+      name "Yellow cone(323)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -270.5644138750234 0 -97.19891143212668
+      name "Yellow cone(324)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -272.19567917716176 0 -101.95598293466513
+      name "Yellow cone(325)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -273.7500535828138 0 -106.76571984322308
+      name "Yellow cone(326)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -275.23173700339385 0 -111.60591141175047
+      name "Yellow cone(327)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -276.67291919996643 0 -116.46702898339646
+      name "Yellow cone(328)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -278.0620882562193 0 -121.34059081589926
+      name "Yellow cone(329)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -279.3624187186911 0 -126.2449402267833
+      name "Yellow cone(330)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -280.63694349038036 0 -131.1335111709215
+      name "Yellow cone(331)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -281.9179667476796 0 -136.02719026741272
+      name "Yellow cone(332)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -283.1728105877434 0 -140.9297866417284
+      name "Yellow cone(333)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -284.39761062319553 0 -145.8550770951572
+      name "Yellow cone(334)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -285.5926786515653 0 -150.78111599794232
+      name "Yellow cone(335)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -286.73176696814295 0 -155.7587022065029
+      name "Yellow cone(336)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -287.75324587980305 0 -160.8060335357913
+      name "Yellow cone(337)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -288.6594923201536 0 -165.89834047222078
+      name "Yellow cone(338)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -289.47908903188204 0 -170.98780002871624
+      name "Yellow cone(339)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -290.2407400961196 0 -176.04913867106077
+      name "Yellow cone(340)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -290.9279673347309 0 -181.05593527654798
+      name "Yellow cone(341)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -291.69519602398304 0 -186.98953813120173
+      name "Yellow cone(342)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -292.41992429787916 0 -192.93214006241095
+      name "Yellow cone(343)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -292.9841346817587 0 -197.9511533940818
+      name "Yellow cone(344)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -293.49844347634445 0 -203.0483144796928
+      name "Yellow cone(345)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -293.94650792711775 0 -208.2336067701136
+      name "Yellow cone(346)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -294.23817343323054 0 -213.54021510149877
+      name "Yellow cone(347)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -294.23805247700125 0 -218.9653568998191
+      name "Yellow cone(348)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -293.8221531700749 0 -224.50132721344008
+      name "Yellow cone(349)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -292.79321805313907 0 -230.07128843400736
+      name "Yellow cone(350)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -291.0756833378163 0 -235.58172121542975
+      name "Yellow cone(351)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -288.61538943814827 0 -240.9106836226528
+      name "Yellow cone(352)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -285.4387294366047 0 -245.8685026462721
+      name "Yellow cone(353)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -281.5407075495311 0 -250.30197215861773
+      name "Yellow cone(354)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -276.93234042731973 0 -254.07449394956095
+      name "Yellow cone(355)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -271.90003819980814 0 -257.0157675748615
+      name "Yellow cone(356)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -266.5121516373225 0 -259.30110716636864
+      name "Yellow cone(357)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -261.00249987702387 0 -260.86654675289316
+      name "Yellow cone(358)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -255.24202985685136 0 -261.7806777811976
+      name "Yellow cone(359)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -249.25657320242496 0 -261.8456718183694
+      name "Yellow cone(360)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -243.2230565220729 0 -260.8163627729703
+      name "Yellow cone(361)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -237.59951608230648 0 -258.5168319034306
+      name "Yellow cone(362)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -232.50666631660323 0 -255.1540197584595
+      name "Yellow cone(363)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -228.04077514165058 0 -251.19056926053926
+      name "Yellow cone(364)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -224.17999561215078 0 -246.6091576712896
+      name "Yellow cone(365)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -221.09102374287346 0 -241.3932648767182
+      name "Yellow cone(366)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -219.25083546127013 0 -235.56827902761174
+      name "Yellow cone(367)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -218.86323129939274 0 -229.43376814130536
+      name "Yellow cone(368)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -219.65639979157027 0 -223.39961518682315
+      name "Yellow cone(369)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -221.40611466591457 0 -217.67115619600017
+      name "Yellow cone(370)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -224.019215808073 0 -212.42934757174942
+      name "Yellow cone(371)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -227.46687190734966 0 -207.83312663300478
+      name "Yellow cone(372)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -231.62205301651971 0 -203.96385044296414
+      name "Yellow cone(373)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -236.11621074924264 0 -200.9772988961461
+      name "Yellow cone(374)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -240.85117635212802 0 -198.62641727921923
+      name "Yellow cone(375)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -245.52388187172502 0 -196.64274926772072
+      name "Yellow cone(376)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -250.89500270677883 0 -194.41504913114778
+      name "Yellow cone(377)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -255.83439471091526 0 -192.1185970358343
+      name "Yellow cone(378)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -259.8294115001746 0 -188.91258734811962
+      name "Yellow cone(379)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -261.7543565384313 0 -183.56221959852337
+      name "Yellow cone(380)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -261.5586311362346 0 -177.93099331893495
+      name "Yellow cone(381)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -260.6878543614727 0 -172.61416744247583
+      name "Yellow cone(382)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -258.22231896143046 0 -168.26347490398916
+      name "Yellow cone(383)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -253.55599135378995 0 -166.11254671040933
+      name "Yellow cone(384)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -248.54768778243144 0 -166.5134435777585
+      name "Yellow cone(385)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -243.18226670104886 0 -167.72084964791978
+      name "Yellow cone(386)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -237.54012996990772 0 -169.08975508124345
+      name "Yellow cone(387)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -231.8190671111049 0 -170.57745221108635
+      name "Yellow cone(388)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -226.015515295569 0 -172.0666491283965
+      name "Yellow cone(389)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -220.2213603324436 0 -173.5431259200334
+      name "Yellow cone(390)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -214.42499502567466 0 -175.02275704094725
+      name "Yellow cone(391)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -208.64888138589188 0 -176.49623425171683
+      name "Yellow cone(392)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -202.83938467550715 0 -177.9807854635636
+      name "Yellow cone(393)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -197.03298434218814 0 -179.46536337295242
+      name "Yellow cone(394)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -192.1556701154692 0 -180.71589588335442
+      name "Yellow cone(395)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -186.3426121810022 0 -182.19878579670873
+      name "Yellow cone(396)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -180.54436601977255 0 -183.68245600466668
+      name "Yellow cone(397)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -174.75565201665262 0 -185.162236867027
+      name "Yellow cone(398)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -168.94754039771416 0 -186.64599260908506
+      name "Yellow cone(399)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -164.08852958501504 0 -187.88710339918623
+      name "Yellow cone(400)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -159.22829093818962 0 -189.12708992857685
+      name "Yellow cone(401)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -154.32981939932066 0 -190.31774980930308
+      name "Yellow cone(402)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -149.39935673691915 0 -191.5835608903734
+      name "Yellow cone(403)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -144.36431624375496 0 -192.96171995388278
+      name "Yellow cone(404)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -138.98806855090876 0 -194.24169331640007
+      name "Yellow cone(405)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -132.84978831500965 0 -194.87613347192212
+      name "Yellow cone(406)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -127.57533757045842 0 -193.80860404923607
+      name "Yellow cone(407)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -123.04345936642422 0 -190.43735797117878
+      name "Yellow cone(408)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -120.41073798179104 0 -185.5016398540911
+      name "Yellow cone(409)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -119.61774157765579 0 -180.39183382199053
+      name "Yellow cone(410)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -119.88073332250069 0 -174.6015881942187
+      name "Yellow cone(411)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -120.69544869556228 0 -169.3064330168488
+      name "Yellow cone(412)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -121.70146757699682 0 -164.30956679671385
+      name "Yellow cone(413)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -122.7094288623479 0 -158.79678063302484
+      name "Yellow cone(414)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -123.00123921912396 0 -153.52989241943564
+      name "Yellow cone(415)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -122.2471874234028 0 -148.504477411544
+      name "Yellow cone(416)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -120.64162990938917 0 -143.74583217351926
+      name "Yellow cone(417)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -118.26888754266236 0 -139.13769731890469
+      name "Yellow cone(418)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -115.02441093777185 0 -134.84558671060805
+      name "Yellow cone(419)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -111.17961977058452 0 -130.62923809396605
+      name "Yellow cone(420)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -107.15461900946919 0 -126.27505949416076
+      name "Yellow cone(421)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -103.14052667816219 0 -121.88607714904964
+      name "Yellow cone(422)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -99.08520309190361 0 -117.43958437115079
+      name "Yellow cone(423)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -95.09326508007071 0 -113.06681547824276
+      name "Yellow cone(424)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -91.67690584000832 0 -109.39314882291183
+      name "Yellow cone(425)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -87.6638162232749 0 -105.01180948050768
+      name "Yellow cone(426)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -83.60837238783951 0 -100.59159616340918
+      name "Yellow cone(427)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -79.54213898857674 0 -96.17636294134039
+      name "Yellow cone(428)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -76.12935237072234 0 -92.45704329934314
+      name "Yellow cone(429)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -72.7609635907432 0 -88.75356828482656
+      name "Yellow cone(430)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -68.73554466693955 0 -84.30525213164036
+      name "Yellow cone(431)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -65.38237951862672 0 -80.59311329163755
+      name "Yellow cone(432)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -61.35413095971191 0 -76.18469046945398
+      name "Yellow cone(433)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -57.96156134135251 0 -72.49394220281505
+      name "Yellow cone(434)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.58260846276931 0 -68.79566699907423
+      name "Yellow cone(435)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -50.50149057591513 0 -64.35042433985979
+      name "Yellow cone(436)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -46.44624023047703 0 -59.94120386627779
+      name "Yellow cone(437)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -42.40509106487863 0 -55.51250675681743
+      name "Yellow cone(438)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -38.35195694454449 0 -51.06755537953799
+      name "Yellow cone(439)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.96999591231201 0 -47.37154971218477
+      name "Yellow cone(440)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -31.517159107411 0 -43.63632745693207
+      name "Yellow cone(441)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -28.019088172320586 0 -39.84521551597963
+      name "Yellow cone(442)"
+      physics Physics {
+      }
+    }
+  ]
+}
