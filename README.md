@@ -15,6 +15,7 @@ C++:
 - For tests: the latest version of [googletest](https://github.com/google/googletest), which should install itself if you have configured the cmake files correctly (cf C++ExampleProject)
 - For test coverage statistics: the latest version of [lcov](https://wiki.documentfoundation.org/Development/Lcov)
 
+The virtual machine at Github Actions uses the latest version of ubuntu with all the mentionned add-ons.
 
 [Here is a quick guide on using git](QuickGitGuide.md)
 
