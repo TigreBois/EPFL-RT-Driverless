@@ -1,0 +1,112 @@
+PROTO suspension_and_wheel2 [
+    field SFVec3f    translation        0 0 0
+    field SFFloat    halfSprungMass     7.5
+    field SFFloat    springSusp         82300
+    field SFFloat    dampingSusp        1555
+    field SFFloat    springTire         250000
+    field SFFloat    tireRadius         0.4604
+    field SFRotation wheelRotation      1 0 0 1.5708
+    field SFString   halfSprungName     "half_sprung_mass"
+    field SFString   wheelMotorName     "wheel_motor"
+    field SFString   directionMotorName "direction_motor"
+    field SFString   firstSolidName     "solid1"
+    field SFString   secondSolidName    "solid2"
+    field SFString   posSensorDirName   "position_sensor_dir"
+]
+{
+    Transform {
+        translation IS translation
+        children [
+            DEF SUSP1 SliderJoint {
+                jointParameters JointParameters {
+                    axis 0 1 0
+                    springConstant IS springSusp
+                    dampingConstant IS dampingSusp
+                }
+                endPoint DEF HALF_SPRUNG Solid {
+                    translation 0 -0.1 0
+                    children [
+                        SliderJoint {
+                            jointParameters JointParameters {
+                                axis 0 1 0
+                                springConstant IS springTire
+                            }
+                            endPoint Solid {
+                                children [
+                                    HingeJoint {
+                                        jointParameters HingeJointParameters {
+                                            axis 0 1 0
+                                        }
+                                        device [
+                                            RotationalMotor {
+                                                name IS directionMotorName
+                                                maxVelocity 10000
+                                                maxTorque 10000
+                                            }
+                                            PositionSensor {
+                                                name IS posSensorDirName
+                                                noise 0
+                                                resolution -1
+                                            }
+                                        ]
+                                        endPoint Solid {
+                                            rotation IS wheelRotation
+                                            children [
+                                                HingeJoint {
+                                                    jointParameters HingeJointParameters {
+                                                        axis 0 1 0
+                                                    }
+                                                    device [
+                                                        RotationalMotor {
+                                                            name IS wheelMotorName
+                                                            maxVelocity 10000
+                                                            maxTorque 10000
+                                                        }
+                                                    ]
+                                                    endPoint Slot {
+                                                        endPoint VehicleWheel {
+                                                            name "vehicle wheel"
+                                                            tireRadius IS tireRadius
+                                                            physics Physics {
+                                                                density -1
+                                                                mass 2
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                            name IS secondSolidName
+                                            boundingObject Box {
+                                            size 0.1 0.1 0.1
+                                            }
+                                            physics Physics {
+                                                density -1
+                                                mass 0.05
+                                            }
+                                        }
+                                    }
+                                ]
+                                name IS firstSolidName
+                                boundingObject Box {
+                                size 0.1 0.1 0.1
+                                }
+                                physics Physics {
+                                    density -1
+                                    mass 0.05
+                                }
+                            }
+                        }
+                    ]
+                    name IS halfSprungName
+                    boundingObject Box {
+                    size 0.1 0.1 0.1
+                    }
+                    physics Physics {
+                        density -1
+                        mass IS halfSprungMass
+                    }
+                }
+            }
+        ]
+    }
+}
