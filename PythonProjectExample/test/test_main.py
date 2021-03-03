@@ -10,6 +10,9 @@ class ExampleTest(unittest.TestCase):
     #should pass
     def testMain_right(self):
         self.assertEqual(ex.main(),"Hello World!")
+    
+    def test_add(self):
+        self.assertEqual(ex.add(1,2),3)
 
     
 
