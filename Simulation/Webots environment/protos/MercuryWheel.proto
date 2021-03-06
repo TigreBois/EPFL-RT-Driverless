@@ -1,0 +1,24 @@
+PROTO MercuryWheel [
+  field       SFString name        "Mercury wheel"
+  hiddenField SFFloat  tireRadius  0.4604            # We need to make this value 'visible' to the car PROTO so that the tire radius can be sent to the controller.
+]
+{
+  VehicleWheel {
+    name IS name
+    thickness          0.35
+    tireRadius         IS tireRadius
+    subdivision        32
+    edgeSubdivision    2
+    rimRadius          0.3
+    rimBeamNumber      6
+    rimBeamWidth       0.08
+    centralInnerRadius 0.07
+    centralOuterRadius 0.12
+    rimBeamThickness   0.12
+    rimBeamOffset      0.1
+    contactMaterial    "default"
+    physics            Physics {}
+    boundingObject     TRUE
+    logoSlot           []
+  }
+}

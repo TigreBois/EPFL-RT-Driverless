@@ -1,0 +1,620 @@
+#VRML_SIM R2020b utf8
+WorldInfo {
+  basicTimeStep 4
+  physicsDisableTime 0
+  defaultDamping Damping {
+  }
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+      coulombFriction [
+        0.05
+      ]
+      forceDependentSlip [
+        1
+      ]
+      softERP 1e-05
+      softCFM 1e-17
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.5358477977555205 0.8050467793704043 0.2544932625157267 5.155191598658128
+  position -28.365027644509944 56.68885891880853 50.37728713329443
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 500 500
+  tileSize 10 10
+  appearance PBRAppearance {
+    baseColor 0.278431 0.278431 0.278431
+    roughness 1
+    metalness 0
+  }
+}
+Mercury {
+  sensors [
+    GPS {
+      name "GPS"
+    }
+  ]
+}
+Solid {
+  translation 0 0.5 10
+  children [
+    DEF CUBE Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 1 1 1
+      }
+    }
+  ]
+  boundingObject USE CUBE
+}
+Solid {
+  translation 0 0.5 10
+  children [
+    USE CUBE
+  ]
+  name "solid(0)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 1.594 0.5 11.567
+  children [
+    USE CUBE
+  ]
+  name "solid(1)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 3.188 0.5 12.977
+  children [
+    USE CUBE
+  ]
+  name "solid(2)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 4.783 0.5 14.086
+  children [
+    USE CUBE
+  ]
+  name "solid(3)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 6.377 0.5 14.783000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(4)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 7.971 0.5 14.998999999999999
+  children [
+    USE CUBE
+  ]
+  name "solid(5)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 9.565 0.5 14.71
+  children [
+    USE CUBE
+  ]
+  name "solid(6)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 11.159 0.5 13.947
+  children [
+    USE CUBE
+  ]
+  name "solid(7)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 12.754 0.5 12.785
+  children [
+    USE CUBE
+  ]
+  name "solid(8)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 14.348 0.5 11.343
+  children [
+    USE CUBE
+  ]
+  name "solid(9)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 15.942 0.5 9.766
+  children [
+    USE CUBE
+  ]
+  name "solid(10)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 17.536 0.5 8.212
+  children [
+    USE CUBE
+  ]
+  name "solid(11)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 19.13 0.5 6.839
+  children [
+    USE CUBE
+  ]
+  name "solid(12)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 20.725 0.5 5.784
+  children [
+    USE CUBE
+  ]
+  name "solid(13)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 22.319 0.5 5.154
+  children [
+    USE CUBE
+  ]
+  name "solid(14)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 23.913 0.5 5.012
+  children [
+    USE CUBE
+  ]
+  name "solid(15)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 25.507 0.5 5.374
+  children [
+    USE CUBE
+  ]
+  name "solid(16)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 27.101 0.5 6.2010000000000005
+  children [
+    USE CUBE
+  ]
+  name "solid(17)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 28.696 0.5 7.412
+  children [
+    USE CUBE
+  ]
+  name "solid(18)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 30.29 0.5 8.883
+  children [
+    USE CUBE
+  ]
+  name "solid(19)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 31.884 0.5 10.467
+  children [
+    USE CUBE
+  ]
+  name "solid(20)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 33.478 0.5 12.004
+  children [
+    USE CUBE
+  ]
+  name "solid(21)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 35.072 0.5 13.339
+  children [
+    USE CUBE
+  ]
+  name "solid(22)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 36.667 0.5 14.337
+  children [
+    USE CUBE
+  ]
+  name "solid(23)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 38.261 0.5 14.899000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(24)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 39.855 0.5 14.966000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(25)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 41.449 0.5 14.533000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(26)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 43.043 0.5 13.642
+  children [
+    USE CUBE
+  ]
+  name "solid(27)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 44.638 0.5 12.385
+  children [
+    USE CUBE
+  ]
+  name "solid(28)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 46.232 0.5 10.887
+  children [
+    USE CUBE
+  ]
+  name "solid(29)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 47.826 0.5 9.3
+  children [
+    USE CUBE
+  ]
+  name "solid(30)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 49.42 0.5 7.7829999999999995
+  children [
+    USE CUBE
+  ]
+  name "solid(31)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 51.014 0.5 6.49
+  children [
+    USE CUBE
+  ]
+  name "solid(32)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 52.609 0.5 5.551
+  children [
+    USE CUBE
+  ]
+  name "solid(33)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 54.203 0.5 5.06
+  children [
+    USE CUBE
+  ]
+  name "solid(34)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 55.797 0.5 5.067
+  children [
+    USE CUBE
+  ]
+  name "solid(35)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 57.391 0.5 5.571
+  children [
+    USE CUBE
+  ]
+  name "solid(36)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 58.986 0.5 6.522
+  children [
+    USE CUBE
+  ]
+  name "solid(37)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 60.58 0.5 7.823
+  children [
+    USE CUBE
+  ]
+  name "solid(38)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 62.174 0.5 9.344
+  children [
+    USE CUBE
+  ]
+  name "solid(39)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 63.768 0.5 10.931000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(40)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 65.362 0.5 12.424
+  children [
+    USE CUBE
+  ]
+  name "solid(41)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 66.957 0.5 13.673
+  children [
+    USE CUBE
+  ]
+  name "solid(42)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 68.551 0.5 14.551
+  children [
+    USE CUBE
+  ]
+  name "solid(43)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 70.145 0.5 14.971
+  children [
+    USE CUBE
+  ]
+  name "solid(44)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 71.739 0.5 14.889
+  children [
+    USE CUBE
+  ]
+  name "solid(45)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 73.333 0.5 14.315000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(46)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 74.928 0.5 13.306000000000001
+  children [
+    USE CUBE
+  ]
+  name "solid(47)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 76.522 0.5 11.964
+  children [
+    USE CUBE
+  ]
+  name "solid(48)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 78.116 0.5 10.423
+  children [
+    USE CUBE
+  ]
+  name "solid(49)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 79.71 0.5 8.84
+  children [
+    USE CUBE
+  ]
+  name "solid(50)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 81.304 0.5 7.3740000000000006
+  children [
+    USE CUBE
+  ]
+  name "solid(51)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 82.899 0.5 6.173
+  children [
+    USE CUBE
+  ]
+  name "solid(52)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 84.493 0.5 5.357
+  children [
+    USE CUBE
+  ]
+  name "solid(53)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 86.087 0.5 5.009
+  children [
+    USE CUBE
+  ]
+  name "solid(54)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 87.681 0.5 5.165
+  children [
+    USE CUBE
+  ]
+  name "solid(55)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 89.275 0.5 5.808
+  children [
+    USE CUBE
+  ]
+  name "solid(56)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 90.87 0.5 6.873
+  children [
+    USE CUBE
+  ]
+  name "solid(57)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 92.464 0.5 8.254
+  children [
+    USE CUBE
+  ]
+  name "solid(58)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 94.058 0.5 9.81
+  children [
+    USE CUBE
+  ]
+  name "solid(59)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 95.652 0.5 11.386
+  children [
+    USE CUBE
+  ]
+  name "solid(60)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 97.246 0.5 12.822
+  children [
+    USE CUBE
+  ]
+  name "solid(61)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 98.841 0.5 13.974
+  children [
+    USE CUBE
+  ]
+  name "solid(62)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 100.435 0.5 14.725
+  children [
+    USE CUBE
+  ]
+  name "solid(63)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 102.029 0.5 14.998999999999999
+  children [
+    USE CUBE
+  ]
+  name "solid(64)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 103.623 0.5 14.77
+  children [
+    USE CUBE
+  ]
+  name "solid(65)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 105.217 0.5 14.059999999999999
+  children [
+    USE CUBE
+  ]
+  name "solid(66)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 106.812 0.5 12.940999999999999
+  children [
+    USE CUBE
+  ]
+  name "solid(67)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 108.406 0.5 11.525
+  children [
+    USE CUBE
+  ]
+  name "solid(68)"
+  boundingObject USE CUBE
+}
+Solid {
+  translation 110 0.5 9.956
+  children [
+    USE CUBE
+  ]
+  name "solid(69)"
+  boundingObject USE CUBE
+}
