@@ -1,10 +1,10 @@
-#VRML_SIM R2020b utf8
+#VRML_SIM R2021a utf8
 WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.029278267973153974 0.9865351701450629 0.16090724375037946 3.4590949147245222
-  position -133 60.3 -223
+  orientation 0.0019426335628329543 0.9874718105712996 0.15778355269761069 3.12730912272055
+  position 20.056948069830476 23.71565243887492 -105.17913669044962
 }
 TexturedBackground {
 }
@@ -15,11 +15,12 @@ Floor {
   appearance Asphalt {
   }
 }
-Robot {
-  translation 21.89143 0.916 -51.6674
-  rotation 0 1 0 -1.5708
-  children [
-  Accelerometer {
+Mercury {
+  translation 21.8914 0.916 -51.6674
+  rotation 0 1 0 0
+  controller "car_controller"
+  sensors [
+    Accelerometer {
       translation 0 0.06 0
       children [
         Shape {
@@ -36,7 +37,7 @@ Robot {
     }
     InertialUnit {
       translation 0 0.03 0
-      rotation 0 1 0 0
+      rotation 0 1 0 -1.5708
       children [
         Shape {
           appearance PBRAppearance {
@@ -82,7 +83,7 @@ Robot {
     }
     Lidar {
       translation 0 0.03 0.09
-      rotation 0 1 0 -1.5708
+      rotation 0 1 0 3.14159
       children [
         Shape {
           appearance PBRAppearance {
@@ -99,66 +100,7 @@ Robot {
       numberOfLayers 10
       maxRange 30
     }
-    DEF BODY Shape {
-      appearance PBRAppearance {
-        roughness 1
-        metalness 0
-      }
-      geometry Box {
-        size 2.078 0.512 0.8
-      }
-    }
-    suspension_and_wheel2 {
-      translation 0.785 -0.356 0.6
-      halfSprungName "half_sprung_mass_fr"
-      wheelMotorName "wheel_motor_fr"
-      directionMotorName "direction_motor_fr"
-      firstSolidName "solid1_fr"
-      secondSolidName "solid2_fr"
-      posSensorDirName "position_sensor_dir_fr"
-    }
-    suspension_and_wheel2 {
-      translation 0.785 -0.356 -0.6
-      wheelRotation -1 0 0 1.5708
-      halfSprungName "half_sprung_mass_fl"
-      wheelMotorName "wheel_motor_fl"
-      directionMotorName "direction_motor_fl"
-      firstSolidName "solid1_fl"
-      secondSolidName "solid2_fl"
-      posSensorDirName "position_sensor_dir_fl"
-    }
-    suspension_and_wheel2 {
-      translation -0.785 -0.356 0.6
-      halfSprungMass 8.5
-      springSusp 69800
-      dampingSusp 1114
-      halfSprungName "half_sprung_mass_rr"
-      wheelMotorName "wheel_motor_rr"
-      directionMotorName "direction_motor_rr"
-      firstSolidName "solid1_rr"
-      secondSolidName "solid2_rr"
-      posSensorDirName "position_sensor_dir_rr"
-    }
-    suspension_and_wheel2 {
-      translation -0.785 -0.356 -0.6
-      halfSprungMass 8.5
-      springSusp 69800
-      dampingSusp 1114
-      wheelRotation -1 0 0 1.5708
-      halfSprungName "half_sprung_mass_rl"
-      wheelMotorName "wheel_motor_rl"
-      directionMotorName "direction_motor_rl"
-      firstSolidName "solid1_rl"
-      secondSolidName "solid2_rl"
-      posSensorDirName "position_sensor_dir_rl"
-    }
   ]
-  boundingObject USE BODY
-  physics Physics {
-    density -1
-    mass 223
-  }
-  controller "car_controller"
 }
 Transform {
   scale 0.5 0.5 0.5
