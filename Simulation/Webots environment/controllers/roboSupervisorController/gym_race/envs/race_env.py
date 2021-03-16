@@ -12,6 +12,8 @@ import random
 import numpy as np
 from gym.spaces import Box, Discrete
 from math import inf
+from math import cos
+from math import pi
 from vehicle import Driver
 
 """
@@ -75,7 +77,8 @@ class RaceEnv(gym.Env):
         sensors = {"lidar": lidar, "gps": gps, "gyro": gyro, "imu": imu, "accelerometer": accelerometer}
         return sensors
 
-    def step(self):
+    def step(self, action):
+        self.apply_action(action)
         return self.get_observations(), self.get_reward, self.is_done, self.get_info
 
     def get_sensor_data(self, sensors):
@@ -115,7 +118,7 @@ class RaceEnv(gym.Env):
         endpointVelocity = normalizeToRange(self.poleEndpoint.getVelocity()[3], -1.5, 1.5, -1.0, 1.0, clip=True)
         return [cartPosition, cartVelocity, poleAngle, endpointVelocity]
         """
-        sensor_data = get_sensor_data(self.sensors)
+        sensor_data = self.get_sensor_data(self.sensors)
         return [sensor_data["robot_coord"], sensor_data["robot_speed"], sensor_data["yaw"], sensor_data["acceleration"], sensor_data["yaw_rate"], sensor_data["lidar"]]
         
     def reset(self):
@@ -143,8 +146,8 @@ class RaceEnv(gym.Env):
         return [0.0 for _ in range(self.observation_space.shape[0])]
 
     def apply_action(self, action):
-        self.setCruisingSpeed(action[0])
-        self.setSteeringAngle(-action[1]) # TODO Don't think we need the negative
+        self.robot.setCruisingSpeed(action[0])
+        self.robot.setSteeringAngle(-action[1]) # TODO Don't think we need the negative
 
 
     def render(self, mode='human'):
