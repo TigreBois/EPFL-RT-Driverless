@@ -1,0 +1,11 @@
+Webots Proto Cache File version 1.5
+protoFileHash: 0a5f613b19b142dbf62a862b28f469ba
+needsRobotAncestor: 1
+baseType: Transform
+slotType: 
+parameters: translation,halfSprungMass,springSusp,dampingSusp,springTire,tireRadius,wheelRotation,halfSprungName,wheelMotorName,directionMotorName,firstSolidName,secondSolidName,posSensorDirName
+tags: 
+license: 
+licenseUrl: 
+documentationUrl: 
+info: 

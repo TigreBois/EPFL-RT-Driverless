@@ -1,0 +1,924 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.004021224164161406 0.9999204453797894 -0.011955445106939064 2.9819378379507473
+  position 23.606750552714686 17.27949462494867 -96.09702782164625
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 70.4924 158.49460000000002
+  appearance Asphalt {
+  }
+}
+Robot {
+  translation 21.891430004516753 0.8525473160123465 -51.66862965243448
+  rotation 0.0006783143373735123 0.9999995398912441 -0.0006783118457967075 -1.5708004601088754
+  children [
+    Accelerometer {
+      translation 0 0.06 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 1 1
+            metalness 0
+          }
+          geometry DEF ACCELEROMETER Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      boundingObject USE ACCELEROMETER
+    }
+    InertialUnit {
+      translation 0 0.03 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            metalness 0
+          }
+          geometry DEF IMU Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "imu"
+    }
+    Gyro {
+      translation 0 0.05 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 1 0
+            metalness 0
+          }
+          geometry DEF GYRO Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      boundingObject USE GYRO
+    }
+    GPS {
+      translation 0 0.04 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 0 1
+            metalness 0
+          }
+          geometry DEF GPS Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      boundingObject USE GPS
+    }
+    Lidar {
+      translation 0 0.03 0.09
+      rotation 0 1 0 -1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry DEF LIDAR Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      tiltAngle -0.12
+      fieldOfView 1.57
+      numberOfLayers 10
+      maxRange 30
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 2.078 0.512 0.8
+      }
+    }
+    suspension_and_wheel2 {
+      translation 0.785 -0.356 0.6
+      wheelRotation 1 4.667784441278346e-10 -4.6306683370293846e-10 1.570799994325696
+      halfSprungName "half_sprung_mass_fr"
+      wheelMotorName "wheel_motor_fr"
+      directionMotorName "direction_motor_fr"
+      firstSolidName "solid1_fr"
+      secondSolidName "solid2_fr"
+      posSensorDirName "position_sensor_dir_fr"
+    }
+    suspension_and_wheel2 {
+      translation 0.785 -0.356 -0.6
+      wheelRotation -1 -4.668609114732143e-10 -4.631962875889387e-10 1.5707999943249638
+      halfSprungName "half_sprung_mass_fl"
+      wheelMotorName "wheel_motor_fl"
+      directionMotorName "direction_motor_fl"
+      firstSolidName "solid1_fl"
+      secondSolidName "solid2_fl"
+      posSensorDirName "position_sensor_dir_fl"
+    }
+    suspension_and_wheel2 {
+      translation -0.785 -0.356 0.6
+      halfSprungMass 8.5
+      springSusp 69800
+      dampingSusp 1114
+      wheelRotation 0.9999999999999999 6.073372143118816e-10 -6.160431742077065e-10 1.570799992281236
+      halfSprungName "half_sprung_mass_rr"
+      wheelMotorName "wheel_motor_rr"
+      directionMotorName "direction_motor_rr"
+      firstSolidName "solid1_rr"
+      secondSolidName "solid2_rr"
+      posSensorDirName "position_sensor_dir_rr"
+    }
+    suspension_and_wheel2 {
+      translation -0.785 -0.356 -0.6
+      halfSprungMass 8.5
+      springSusp 69800
+      dampingSusp 1114
+      wheelRotation -1 -6.075971670218995e-10 -6.162878726694747e-10 1.570799992279446
+      halfSprungName "half_sprung_mass_rl"
+      wheelMotorName "wheel_motor_rl"
+      directionMotorName "direction_motor_rl"
+      firstSolidName "solid1_rl"
+      secondSolidName "solid2_rl"
+      posSensorDirName "position_sensor_dir_rl"
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 223
+  }
+  controller "roboSupervisorController"
+}
+Transform {
+  scale 0.5 0.5 0.5
+  children [
+    TrafficCone {
+      translation 33.85573176015864 -0.008411127726452833 -102.12976336674267
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Blue cone(0)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.08400055188232 -0.00841112772645286 -88.85400027594116
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(1)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.08400055188232 -0.00841112772645286 -76.85400027594116
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(2)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.08400055188232 -0.00841112772645286 -64.85400027594116
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(3)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.08400055188232 -0.00841112772645286 -52.85400027594117
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Blue cone(4)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 -40.85400027594117
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Blue cone(5)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 -28.85400027594116
+      rotation 0.44721359549999706 1.112321308805257e-11 0.8944271909998962 9.743829224055284e-05
+      name "Blue cone(6)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 -16.85400027594116
+      rotation 0.44721359549999706 1.112321308805257e-11 0.8944271909998962 9.743829224055284e-05
+      name "Blue cone(7)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 -4.854000275941142
+      rotation 0.4472135955002297 8.3670481837238e-12 0.8944271909997801 9.743829224055859e-05
+      name "Blue cone(8)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 7.145999724058858
+      rotation 0.4472135955002297 8.3670481837238e-12 0.8944271909997801 9.743829224055859e-05
+      name "Blue cone(9)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 19.14599972405884
+      rotation 0.44721359549999706 1.112321308805257e-11 0.8944271909998962 9.743829224055284e-05
+      name "Blue cone(10)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 31.14599972405884
+      rotation 0.44721359549999706 1.112321308805257e-11 0.8944271909998962 9.743829224055284e-05
+      name "Blue cone(11)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 43.14599972405883
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Blue cone(12)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 55.14599972405883
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Blue cone(13)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.084000551882326 -0.00841112772645286 67.14599972405884
+      rotation 0.4472135955010313 2.486411073478045e-12 0.8944271909993794 9.743829224057104e-05
+      name "Blue cone(14)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.08400055188233 -0.00841112772645286 79.14599972405884
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(15)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 34.08400055188233 -0.00841112772645286 91.14599972405884
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(16)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 33.89683636870804 -0.00841112772645286 101.63078540050277
+      rotation 0.4472135954999674 4.440967884206529e-13 0.8944271909999112 9.743829224055696e-05
+      name "Blue cone(17)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 28.79029392346612 -0.008411127726452833 110.60408286589526
+      rotation -0.44721359550162904 7.230271657447962e-13 -0.8944271909990803 -9.743829224064497e-05
+      name "Blue cone(18)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 16.852000551882288 -0.008411127726452833 114.08599972405884
+      rotation -0.44721359550162904 7.230271657447962e-13 -0.8944271909990803 -9.743829224064497e-05
+      name "Blue cone(19)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 4.852000551882284 -0.00841112772645286 114.08599972405884
+      rotation 0.4472135955007903 9.49159956104588e-12 0.8944271909994996 9.743829224067869e-05
+      name "Blue cone(20)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -7.147999448117716 -0.00841112772645286 114.08599972405884
+      rotation 0.4472135955007903 9.49159956104588e-12 0.8944271909994996 9.743829224067869e-05
+      name "Blue cone(21)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -18.667784878728327 -0.00841112772645286 114.09753668076003
+      rotation 0.4472135955001875 9.313931386251962e-12 0.8944271909998012 9.743829224057444e-05
+      name "Blue cone(22)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -28.443958949963655 -0.008411127726452833 110.88320323545548
+      rotation -0.44721359550162904 7.230271657447962e-13 -0.8944271909990803 -9.743829224064497e-05
+      name "Blue cone(23)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -33.856372100287416 -0.00841112772645286 102.12507706101482
+      rotation 0.4472135955010313 2.486411073478045e-12 0.8944271909993794 9.743829224057104e-05
+      name "Blue cone(24)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 88.85199972405883
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(25)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 76.85199972405883
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(26)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 64.85199972405883
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Blue cone(27)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 52.85199972405882
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Blue cone(28)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 40.85199972405882
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Blue cone(29)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 28.851999724058828
+      rotation 0.44721359550020107 1.1486154808531184e-11 0.8944271909997943 9.743829224054299e-05
+      name "Blue cone(30)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 16.851999724058842
+      rotation 0.44721359550020107 1.1486154808531184e-11 0.8944271909997943 9.743829224054299e-05
+      name "Blue cone(31)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 4.851999724058861
+      rotation 0.44721359550010914 7.326551173597248e-12 0.8944271909998402 9.743829224057303e-05
+      name "Blue cone(32)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 -7.148000275941139
+      rotation 0.44721359550010914 7.326551173597248e-12 0.8944271909998402 9.743829224057303e-05
+      name "Blue cone(33)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 -19.148000275941158
+      rotation 0.44721359550020107 1.1486154808531184e-11 0.8944271909997943 9.743829224054299e-05
+      name "Blue cone(34)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 -31.148000275941158
+      rotation 0.44721359550020107 1.1486154808531184e-11 0.8944271909997943 9.743829224054299e-05
+      name "Blue cone(35)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 -43.148000275941165
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Blue cone(36)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.00841112772645286 -55.148000275941165
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Blue cone(37)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.008411127726452833 -67.14800027594116
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Blue cone(38)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.008411127726452833 -79.14800027594116
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Blue cone(39)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -34.08399944811769 -0.008411127726452833 -91.14820027594116
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Blue cone(40)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -33.89665092894477 -0.008411127726452833 -101.64183928765071
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Blue cone(41)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -28.811650130416947 -0.008411127726452833 -110.59547119489869
+      rotation -0.44721359550162904 7.230271657447962e-13 -0.8944271909990803 -9.743829224064497e-05
+      name "Blue cone(42)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -16.853999448117715 -0.008411127726452833 -114.08600027594116
+      rotation -0.44721359550162904 7.230271657447962e-13 -0.8944271909990803 -9.743829224064497e-05
+      name "Blue cone(43)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -4.853999448117719 -0.00841112772645286 -114.08600027594116
+      rotation 0.4472135955007903 9.49159956104588e-12 0.8944271909994996 9.743829224067869e-05
+      name "Blue cone(44)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 7.146000551882281 -0.00841112772645286 -114.08600027594116
+      rotation 0.4472135955007903 9.49159956104588e-12 0.8944271909994996 9.743829224067869e-05
+      name "Blue cone(45)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 18.641834835626366 -0.008411127726452833 -114.09871751582305
+      rotation 0.4472135954998017 5.261705299260226e-12 0.8944271909999939 9.743829224061911e-05
+      name "Blue cone(46)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 28.43586421553047 -0.008411127726452833 -110.88947751871858
+      rotation 0.4472135954998017 5.261705299260226e-12 0.8944271909999939 9.743829224061911e-05
+      name "Blue cone(47)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 53.709989343606004 -0.008411127726452833 -104.53983718513966
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Yellow cone(0)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188232 -0.00841112772645286 -92.85400027594116
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(1)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188232 -0.00841112772645286 -80.85400027594116
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(2)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188232 -0.00841112772645286 -68.85400027594116
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(3)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188232 -0.00841112772645286 -56.85400027594117
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(4)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188232 -0.00841112772645286 -44.85400027594118
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(5)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 -32.85400027594117
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Yellow cone(6)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 -20.85400027594116
+      rotation 0.44721359549999706 1.112321308805257e-11 0.8944271909998962 9.743829224055284e-05
+      name "Yellow cone(7)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.008411127726452833 -8.854000275941145
+      rotation 0.44721359549971335 6.133024960320747e-12 0.8944271910000382 9.743829224060754e-05
+      name "Yellow cone(8)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 3.145999724058857
+      rotation -0.44721359550016604 7.671344280503786e-14 -0.8944271909998119 -9.743829224054254e-05
+      name "Yellow cone(9)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.008411127726452833 15.145999724058855
+      rotation 0.44721359549971335 6.133024960320747e-12 0.8944271910000382 9.743829224060754e-05
+      name "Yellow cone(10)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 27.14599972405884
+      rotation 0.44721359549999706 1.112321308805257e-11 0.8944271909998962 9.743829224055284e-05
+      name "Yellow cone(11)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 39.14599972405883
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Yellow cone(12)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 51.14599972405883
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Yellow cone(13)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.084000551882326 -0.00841112772645286 63.14599972405883
+      rotation 0.44721359550028494 9.939782357891459e-12 0.8944271909997523 9.743829224056433e-05
+      name "Yellow cone(14)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188233 -0.00841112772645286 75.14599972405884
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(15)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.08400055188233 -0.00841112772645286 87.14599972405884
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(16)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 54.071544654347804 -0.00841112772645286 99.64496144734751
+      rotation 0.4472135954999674 4.440967884206529e-13 0.8944271909999112 9.743829224055696e-05
+      name "Yellow cone(17)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 52.36699336825618 -0.00841112772645286 109.93892088776678
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(18)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 47.66430423617341 -0.00841112772645286 119.33614979078708
+      rotation 0.4472135954999674 4.440967884206529e-13 0.8944271909999112 9.743829224055696e-05
+      name "Yellow cone(19)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 40.458107180298484 -0.00841112772645286 126.84791658222244
+      rotation 0.4472135955010313 2.486411073478045e-12 0.8944271909993794 9.743829224057104e-05
+      name "Yellow cone(20)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 31.26728085860744 -0.00841112772645286 131.94541405153234
+      rotation 0.44721359549715256 1.127202883713233e-11 0.8944271910013185 9.743829224035717e-05
+      name "Yellow cone(21)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 20.852000551882288 -0.00841112772645286 134.0859997240588
+      rotation 0.44721359549715256 1.127202883713233e-11 0.8944271910013185 9.743829224035717e-05
+      name "Yellow cone(22)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 8.852000551882282 -0.00841112772645286 134.0859997240588
+      rotation 0.44721359549740813 2.1513887137425186e-11 0.8944271910011908 9.743829224038419e-05
+      name "Yellow cone(23)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -3.147999448117713 -0.00841112772645286 134.0859997240588
+      rotation 0.4472135954968009 1.1326047016128657e-11 0.8944271910014944 9.743829224047562e-05
+      name "Yellow cone(24)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -15.147999448117718 -0.00841112772645286 134.0859997240588
+      rotation 0.44721359549740813 2.1513887137425186e-11 0.8944271910011908 9.743829224038419e-05
+      name "Yellow cone(25)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -26.59390342809452 -0.00841112772645286 133.27362462648432
+      rotation 0.44721359549728495 1.0188556794478944e-11 0.8944271910012523 9.743829224036155e-05
+      name "Yellow cone(26)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -36.343635768239515 -0.00841112772645286 129.56178846395082
+      rotation 0.4472135954981732 2.2828411238878856e-11 0.8944271910008083 9.743829224047032e-05
+      name "Yellow cone(27)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -44.601816568389154 -0.00841112772645286 123.09783941246694
+      rotation 0.4472135954999674 4.440967884206529e-13 0.8944271909999112 9.743829224055696e-05
+      name "Yellow cone(28)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -50.55618196706689 -0.00841112772645286 114.50966032464136
+      rotation 0.4472135954999674 4.440967884206529e-13 0.8944271909999112 9.743829224055696e-05
+      name "Yellow cone(29)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -53.711626795947936 -0.00841112772645286 104.52692238710287
+      rotation 0.4472135955010313 2.486411073478045e-12 0.8944271909993794 9.743829224057104e-05
+      name "Yellow cone(30)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 92.85199972405883
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(31)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 80.85199972405883
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(32)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 68.85199972405883
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(33)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 56.85199972405882
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(34)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 44.85199972405882
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(35)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 32.85199972405882
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(36)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 20.851999724058842
+      rotation 0.44721359550020107 1.1486154808531184e-11 0.8944271909997943 9.743829224054299e-05
+      name "Yellow cone(37)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 8.851999724058858
+      rotation 0.4472135954995651 7.245435644111492e-12 0.8944271910001123 9.74382922405624e-05
+      name "Yellow cone(38)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 -3.14800027594114
+      rotation 0.4472135955000115 3.4654114599918654e-13 0.8944271909998892 9.743829224058325e-05
+      name "Yellow cone(39)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 -15.148000275941142
+      rotation 0.4472135954995651 7.245435644111492e-12 0.8944271910001123 9.74382922405624e-05
+      name "Yellow cone(40)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 -27.148000275941158
+      rotation 0.44721359550020107 1.1486154808531184e-11 0.8944271909997943 9.743829224054299e-05
+      name "Yellow cone(41)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 -39.148000275941165
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(42)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 -51.148000275941165
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(43)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.00841112772645286 -63.148000275941165
+      rotation 0.44721359550078027 1.107128070047002e-11 0.8944271909995047 9.743829224057658e-05
+      name "Yellow cone(44)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.008411127726452833 -75.14800027594116
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Yellow cone(45)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.08399944811769 -0.008411127726452833 -87.14820027594116
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Yellow cone(46)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -54.07168040990267 -0.00841112772645286 -99.64441495286815
+      rotation 0.4472135955010313 2.486411073478045e-12 0.8944271909993794 9.743829224057104e-05
+      name "Yellow cone(47)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -52.362844919812595 -0.008411127726452833 -109.9621130832049
+      rotation -0.4472135954998254 4.581499268690107e-12 -0.8944271909999821 -9.743829224059105e-05
+      name "Yellow cone(48)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -47.67951342425454 -0.00841112772645286 -119.31517500798043
+      rotation 0.4472135955010313 2.486411073478045e-12 0.8944271909993794 9.743829224057104e-05
+      name "Yellow cone(49)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -40.440348765818435 -0.00841112772645286 -126.86732935698365
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(50)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -31.29667343575279 -0.008411127726452833 -131.94002908136056
+      rotation 0.44721359549906187 1.393612416553526e-11 0.894427191000364 9.74382922404635e-05
+      name "Yellow cone(51)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -20.853999448117715 -0.00841112772645286 -134.08600027594122
+      rotation 0.44721359549715256 1.127202883713233e-11 0.8944271910013185 9.743829224035717e-05
+      name "Yellow cone(52)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation -8.85399944811772 -0.00841112772645286 -134.08600027594122
+      rotation 0.44721359549740813 2.1513887137425186e-11 0.8944271910011908 9.743829224038419e-05
+      name "Yellow cone(53)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 3.146000551882284 -0.00841112772645286 -134.08600027594122
+      rotation 0.4472135954968009 1.1326047016128657e-11 0.8944271910014944 9.743829224047562e-05
+      name "Yellow cone(54)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 15.146000551882283 -0.00841112772645286 -134.08600027594122
+      rotation 0.44721359549740813 2.1513887137425186e-11 0.8944271910011908 9.743829224038419e-05
+      name "Yellow cone(55)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 26.594073512804353 -0.00841112772645286 -133.27542829688412
+      rotation 0.44721359549715256 1.127202883713233e-11 0.8944271910013185 9.743829224035717e-05
+      name "Yellow cone(56)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 36.36151718345227 -0.00841112772645286 -129.5497463753265
+      rotation 0.4472135954966516 2.047455666502805e-11 0.894427191001569 9.743829224038213e-05
+      name "Yellow cone(57)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 44.593512131708195 -0.00841112772645286 -123.10290932965846
+      rotation 0.4472135954999674 4.440967884206529e-13 0.8944271909999112 9.743829224055696e-05
+      name "Yellow cone(58)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation 50.55432343574174 -0.00841112772645286 -114.51053503560607
+      rotation 0.4472135955009667 2.765284889603982e-12 0.8944271909994117 9.743829224059353e-05
+      name "Yellow cone(59)"
+      physics Physics {
+      }
+    }
+  ]
+}

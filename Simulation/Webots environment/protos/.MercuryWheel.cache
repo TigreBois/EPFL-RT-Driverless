@@ -1,0 +1,11 @@
+Webots Proto Cache File version 1.5
+protoFileHash: 2bddfd23cff64e4e6daad6b2b36ae8e3
+needsRobotAncestor: 0
+baseType: Slot
+slotType: vehicle\swheel
+parameters: name,tireRadius
+tags: 
+license: 
+licenseUrl: 
+documentationUrl: 
+info: 
