@@ -1,15 +1,5 @@
 **/__pycache__
 **/build
+**/.DS_Store
+**/.idea
 .coverage
-
-Communication/.DS_Store
-
-Perception/.DS_Store
-
-Perception/EfficientDet/.DS_Store
-
-Perception/EfficientDet/yolo_cones/.DS_Store
-
-SLAM/.DS_Store
-
-SLAM/communication/.DS_Store

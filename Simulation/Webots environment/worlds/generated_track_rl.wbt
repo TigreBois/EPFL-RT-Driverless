@@ -1,0 +1,767 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.0019426335628329543 0.9874718105712996 0.15778355269761069 3.12730912272055
+  position 20.056948069830476 23.71565243887492 -105.17913669044962
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 70.4924 158.49460000000002
+  appearance Asphalt {
+  }
+}
+Mercury {
+  hidden position_0_0 3.141592653589793
+  hidden position_0_1 -3.141592653589793
+  hidden translation_1 nan nan nan
+  hidden rotation_1 nan nan nan nan
+  hidden translation_2 nan nan nan
+  hidden rotation_2 nan nan nan nan
+  hidden translation_3 nan nan nan
+  hidden rotation_3 nan nan nan nan
+  hidden translation_4 nan nan nan
+  hidden rotation_4 nan nan nan nan
+  translation nan nan nan
+  rotation 0 1 0 0
+  controller "roboSupervisorController"
+  sensors [
+    Accelerometer {
+      translation 0 0.06 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 1 1
+            metalness 0
+          }
+          geometry DEF ACCELEROMETER Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      boundingObject USE ACCELEROMETER
+    }
+    InertialUnit {
+      translation 0 0.03 0
+      rotation 0 1 0 -1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            metalness 0
+          }
+          geometry DEF IMU Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "imu"
+    }
+    Gyro {
+      translation 0 0.05 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 1 0
+            metalness 0
+          }
+          geometry DEF GYRO Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      boundingObject USE GYRO
+    }
+    GPS {
+      translation 0 0.04 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 0 1
+            metalness 0
+          }
+          geometry DEF GPS Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      boundingObject USE GPS
+    }
+    Lidar {
+      translation 0 0.03 0.09
+      rotation 0 1 0 3.14159
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry DEF LIDAR Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      tiltAngle -0.12
+      fieldOfView 1.57
+      numberOfLayers 10
+      maxRange 30
+    }
+  ]
+}
+Transform {
+  scale 0.5 0.5 0.5
+  children [
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(0)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(1)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(2)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(3)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(4)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(5)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(6)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(7)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(8)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(9)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(10)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(11)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(12)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(13)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(14)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(15)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(16)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(17)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(18)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(19)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(20)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(21)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(22)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(23)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(24)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(25)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(26)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(27)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(28)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(29)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(30)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(31)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(32)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(33)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(34)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(35)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(36)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(37)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(38)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(39)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(40)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(41)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(42)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(43)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(44)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(45)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(46)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Blue cone(47)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(0)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(1)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(2)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(3)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(4)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(5)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(6)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(7)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(8)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(9)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(10)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(11)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(12)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(13)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(14)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(15)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(16)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(17)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(18)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(19)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(20)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(21)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(22)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(23)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(24)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(25)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(26)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(27)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(28)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(29)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(30)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(31)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(32)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(33)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(34)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(35)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(36)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(37)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(38)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(39)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(40)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(41)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(42)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(43)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(44)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(45)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(46)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(47)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(48)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(49)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(50)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(51)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(52)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(53)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(54)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(55)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(56)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(57)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(58)"
+      physics Physics {
+      }
+    }
+    TrafficCone {
+      translation nan nan nan
+      name "Yellow cone(59)"
+      physics Physics {
+      }
+    }
+  ]
+}
