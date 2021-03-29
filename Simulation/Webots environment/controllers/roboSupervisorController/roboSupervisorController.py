@@ -7,9 +7,9 @@ import numpy as np
 from math import inf
 
 import gym
-import gym_race
 
-env = gym.make("race-v0")
+
+env = gym.make("gym_race:race-v0")
 print(env)
 print(env.observation_space.shape)
 print(env.action_space)

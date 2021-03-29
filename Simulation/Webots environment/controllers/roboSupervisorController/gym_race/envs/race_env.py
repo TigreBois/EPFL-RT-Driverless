@@ -50,22 +50,25 @@ class RaceEnv(gym.Env):
 
     def init_sensors(self):
         lidar = self.driver.getDevice("lidar")
-        lidar.enable(self.timestep) # Are you sure?
-        lidar.enablePointCloud()
+        #lidar.enable(self.timestep) # Are you sure?
+        #lidar.enablePointCloud()
         
-        gps = self.driver.getDevice("gps")
+        gps = self.driver.getDevice("GPS")
         gps.enable(self.timestep)
         
         gyro = self.driver.getDevice("gyro")
-        gyro.enable(self.timestep)
+        #gyro.enable(self.timestep)
         # gyro.xAxis, gyro.zAxis = False, False # We need only yaw rate
         
         imu = self.driver.getDevice("imu")
-        imu.enable(self.timestep)
+        #imu.enable(self.timestep)
         # imu.xAxis, imu.zAxis = False, False # We need only yaw angle
         
         accelerometer = self.driver.getDevice("accelerometer")
-        accelerometer.enable(self.timestep)
+        #accelerometer.enable(self.timestep)
+        
+        front_sensor = self.driver.getDevice("ds_front")
+        #front_sensor.enable(self.timestep)
 
         sensors = {"lidar": lidar, "gps": gps, "gyro": gyro, "imu": imu, "accelerometer": accelerometer}
         return sensors
@@ -76,26 +79,31 @@ class RaceEnv(gym.Env):
 
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
-        print("Robot coordinates:", gps_values)
+        #print("Robot coordinates:", gps_values)
         
         speed = sensors["gps"].getSpeed()
-        print("Robot speed", speed)
+        #print("Robot speed", speed)
         
-        roll_np.pitch_yaw = sensors["imu"].getRollnp.pitchYaw() # Need [2] - index of yaw
-        yaw = roll_np.pitch_yaw[2]
-        print("Yaw angle is", roll_np.pitch_yaw, "=>", yaw)
+        # roll_np.pitch_yaw = sensors["imu"].getRollnp.pitchYaw() # Need [2] - index of yaw
+        # yaw = roll_np.pitch_yaw[2]
+        yaw = 0
+        #print("Yaw angle is", roll_np.pitch_yaw, "=>", yaw)
         
-        acceleration_values = sensors["accelerometer"].getValues()
+        acceleration = 0
+        #acceleration_values = sensors["accelerometer"].getValues()
         # Need to check calculations:
-        acceleration = acceleration_values[0] * np.cos(yaw) + acceleration_values[2] * np.cos(yaw + np.pi/2)
-        print("Acceleration is", acceleration_values, "=>", acceleration)
-        
-        angle_velocity = sensors["gyro"].getValues() # Need [1] - index of yaw
-        yaw_rate = angle_velocity[1]
-        print("Yaw rate is", angle_velocity, "=>", yaw_rate)
+        #acceleration = acceleration_values[0] * np.cos(yaw) + acceleration_values[2] * np.cos(yaw + np.pi/2)
+        #print("Acceleration is", acceleration_values, "=>", acceleration)
+        angle_velocity = 0
+        #angle_velocity = sensors["gyro"].getValues() # Need [1] - index of yaw
+        yaw_rate = 0
+        #yaw_rate = angle_velocity[1]
+        #print("Yaw rate is", angle_velocity, "=>", yaw_rate)
 
-        lidar_values = sensors["lidar"].getValues()
-        print("Lidar values", lidar_values)
+        #lidar_values = sensors["lidar"].getValues()
+        lidar_values = 0
+        #lidar_values = 0
+        print("Lidar values", gps_values)
         
         sensor_data = {"robot_coord": gps_values, "robot_speed": speed, "yaw": yaw,
                         "acceleration": acceleration, "yaw_rate": yaw_rate, "lidar":lidar_values}
@@ -120,7 +128,7 @@ class RaceEnv(gym.Env):
 
     def apply_action(self, action):
         self.driver.setCruisingSpeed(float(action[0]))
-        # self.driver.setSteeringAngle(float(action[1]))
+        self.driver.setSteeringAngle(float(action[1]))
 
     def render(self, mode='human', close=False):
         print("render() is not used")
