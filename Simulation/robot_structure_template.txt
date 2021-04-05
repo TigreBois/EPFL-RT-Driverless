@@ -1,145 +1,89 @@
-Robot {
+Mercury {
   translation {} 0.916 {}
-  rotation 0 1 0 -1.5708
-  children [
-  Accelerometer {
-      translation 0 0.06 0
-      children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.333333 1 1
-            metalness 0
-          }
-          geometry DEF ACCELEROMETER Box {
-            size 0.01 0.01 0.01
-          }
-        }
-      ]
-      boundingObject USE ACCELEROMETER
-    }
-    InertialUnit {
-      translation 0 0.03 0
-      rotation 0 1 0 0
-      children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 1 1 0
-            metalness 0
-          }
-          geometry DEF IMU Box {
-            size 0.01 0.01 0.01
-          }
-        }
-      ]
-      name "imu"
-    }
-    Gyro {
-      translation 0 0.05 0
-      children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.333333 1 0
-            metalness 0
-          }
-          geometry DEF GYRO Box {
-            size 0.01 0.01 0.01
-          }
-        }
-      ]
-      boundingObject USE GYRO
-    }
-    GPS {
-      translation 0 0.04 0
-      children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.333333 0 1
-            metalness 0
-          }
-          geometry DEF GPS Box {
-            size 0.01 0.01 0.01
-          }
-        }
-      ]
-      boundingObject USE GPS
-    }
-    Lidar {
-      translation 0 0.03 0.09
-      rotation 0 1 0 -1.5708
-      children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0 0 1
-            metalness 0
-          }
-          geometry DEF LIDAR Box {
-            size 0.01 0.01 0.01
-          }
-        }
-      ]
-      tiltAngle -0.12
-      fieldOfView 1.57
-      numberOfLayers 10
-      maxRange 30
-    }
-    DEF BODY Shape {
-      appearance PBRAppearance {
-        roughness 1
-        metalness 0
-      }
-      geometry Box {
-        size 2.078 0.512 0.8
-      }
-    }
-    suspension_and_wheel2 {
-      translation 0.785 -0.356 0.6
-      halfSprungName "half_sprung_mass_fr"
-      wheelMotorName "wheel_motor_fr"
-      directionMotorName "direction_motor_fr"
-      firstSolidName "solid1_fr"
-      secondSolidName "solid2_fr"
-      posSensorDirName "position_sensor_dir_fr"
-    }
-    suspension_and_wheel2 {
-      translation 0.785 -0.356 -0.6
-      wheelRotation -1 0 0 1.5708
-      halfSprungName "half_sprung_mass_fl"
-      wheelMotorName "wheel_motor_fl"
-      directionMotorName "direction_motor_fl"
-      firstSolidName "solid1_fl"
-      secondSolidName "solid2_fl"
-      posSensorDirName "position_sensor_dir_fl"
-    }
-    suspension_and_wheel2 {
-      translation -0.785 -0.356 0.6
-      halfSprungMass 8.5
-      springSusp 69800
-      dampingSusp 1114
-      halfSprungName "half_sprung_mass_rr"
-      wheelMotorName "wheel_motor_rr"
-      directionMotorName "direction_motor_rr"
-      firstSolidName "solid1_rr"
-      secondSolidName "solid2_rr"
-      posSensorDirName "position_sensor_dir_rr"
-    }
-    suspension_and_wheel2 {
-      translation -0.785 -0.356 -0.6
-      halfSprungMass 8.5
-      springSusp 69800
-      dampingSusp 1114
-      wheelRotation -1 0 0 1.5708
-      halfSprungName "half_sprung_mass_rl"
-      wheelMotorName "wheel_motor_rl"
-      directionMotorName "direction_motor_rl"
-      firstSolidName "solid1_rl"
-      secondSolidName "solid2_rl"
-      posSensorDirName "position_sensor_dir_rl"
-    }
-  ]
-  boundingObject USE BODY
-  physics Physics {
-    density -1
-    mass 223
-  }
+  rotation 0 1 0 0
   controller "car_controller"
+  sensors [
+    Accelerometer {
+          translation 0 0.06 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.333333 1 1
+                metalness 0
+              }
+              geometry DEF ACCELEROMETER Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          boundingObject USE ACCELEROMETER
+        }
+        InertialUnit {
+          translation 0 0.03 0
+          rotation 0 1 0 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 1 0
+                metalness 0
+              }
+              geometry DEF IMU Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          name "imu"
+        }
+        Gyro {
+          translation 0 0.05 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.333333 1 0
+                metalness 0
+              }
+              geometry DEF GYRO Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          boundingObject USE GYRO
+        }
+        GPS {
+          translation 0 0.04 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.333333 0 1
+                metalness 0
+              }
+              geometry DEF GPS Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          boundingObject USE GPS
+        }
+        Lidar {
+          translation 0 0.03 0.09
+          rotation 0 1 0 -3.1415
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 1
+                metalness 0
+              }
+              geometry DEF LIDAR Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          tiltAngle 0
+          verticalFieldOfView 0.7535
+          numberOfLayers 32
+          horizontalResolution 512
+          maxRange 120
+          resolution 0.05
+        }
+      ]
 }

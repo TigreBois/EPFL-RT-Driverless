@@ -10,6 +10,9 @@ import pickle
 import pandas as pd
 import time
 from math import cos, pi
+import shutil
+import os
+
 from cones import Cones
 from coordstransformslocal import webots2ISO, world2car
 
@@ -18,10 +21,11 @@ def convert_radius_to_steering_angle(radius, wheelbase):
     
 # SENSORS_DATA_SAVING_TIME_INTERVAL = 0.1 # in seconds
 SENSORS_DATA_FILENAME = "sensors_data"
+LIDAR_DATA_FOLDER = "../../../lidar_data"
 
 CONE_SCALING = 0.5 # How cones were scaled when created (Will be used to ease search of cones in Webots window)
 CONE_PERCEPTION_DISTANCE = 20 # in meters
-DO_PERCEPTION = False
+DO_PERCEPTION = True
 BASE_SPEED = 2.0
 
 def init_sensors(robot, timestep):
@@ -72,7 +76,12 @@ def get_sensor_data(sensors):
 
 # We will store sensors data here
 sensors_data = []
-
+if DO_PERCEPTION:
+    # Delete previous lidar data
+    if os.path.isdir(LIDAR_DATA_FOLDER):
+        shutil.rmtree(LIDAR_DATA_FOLDER)
+    os.mkdir(LIDAR_DATA_FOLDER)
+    
 # Get cone coordinates
 cones = Cones("../../../cone_coordinates.csv")
 
@@ -107,11 +116,10 @@ step = 0
 while driver.step() != -1:
     print("############################################################################")
    
-    """
+
     if DO_PERCEPTION:
-        raise NotImplementedError
         # Read the sensors:
-        range_image = sensors["lidar"].getRangeImageArray()
+        # range_image = sensors["lidar"].getRangeImageArray()
         point_cloud = sensors["lidar"].getPointCloud()
     
         point_cloud_to_save = []
@@ -119,11 +127,11 @@ while driver.step() != -1:
             point_cloud_to_save.append([point.x, point.y, point.z,
                                         point.layer_id, point.time])
         # Process sensor data here.
-        with open(f"lidar_range_image_{step}.pickle", "wb") as f:
-            pickle.dump(range_image, f)
-        with open(f"lidar_point_cloud_{step}.pickle", "wb") as f:
+        # with open(f"{LIDAR_DATA_FOLDER}/lidar_range_image_{step}.pickle", "wb") as f:
+            # pickle.dump(range_image, f)
+        with open(f"{LIDAR_DATA_FOLDER}/lidar_point_cloud_{step}.pickle", "wb") as f:
             pickle.dump(point_cloud_to_save, f)
-       """
+
     # Work with sensors 
     sensor_data = get_sensor_data(sensors)
 
@@ -165,7 +173,7 @@ while driver.step() != -1:
 
     # Control
     driver.setCruisingSpeed(speed)
-    driver.setSteeringAngle(-angle)
+    driver.setSteeringAngle(0)
         
     step += 1
     

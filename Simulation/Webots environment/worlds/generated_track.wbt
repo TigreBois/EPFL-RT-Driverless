@@ -1,10 +1,13 @@
 #VRML_SIM R2021a utf8
 WorldInfo {
+  CFM 1e-17
+  ERP 1e-05
+  basicTimeStep 4
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.0019426335628329543 0.9874718105712996 0.15778355269761069 3.12730912272055
-  position 20.056948069830476 23.71565243887492 -105.17913669044962
+  orientation 0.029278267973153974 0.9865351701450629 0.16090724375037946 3.4590949147245222
+  position -133 60.3 -223
 }
 TexturedBackground {
 }
@@ -16,7 +19,7 @@ Floor {
   }
 }
 Mercury {
-  translation 21.8914 0.916 -51.6674
+  translation 21.89143 0.916 -51.6674
   rotation 0 1 0 0
   controller "car_controller"
   sensors [
@@ -37,7 +40,6 @@ Mercury {
     }
     InertialUnit {
       translation 0 0.03 0
-      rotation 0 1 0 -1.5708
       children [
         Shape {
           appearance PBRAppearance {
@@ -83,7 +85,7 @@ Mercury {
     }
     Lidar {
       translation 0 0.03 0.09
-      rotation 0 1 0 3.14159
+      rotation 0 1 0 -3.1415
       children [
         Shape {
           appearance PBRAppearance {
@@ -95,10 +97,10 @@ Mercury {
           }
         }
       ]
-      tiltAngle -0.12
-      fieldOfView 1.57
-      numberOfLayers 10
-      maxRange 30
+      verticalFieldOfView 0.7535
+      numberOfLayers 32
+      maxRange 120
+      resolution 0.05
     }
   ]
 }
