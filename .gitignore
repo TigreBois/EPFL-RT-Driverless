@@ -13,3 +13,9 @@ Perception/EfficientDet/yolo_cones/.DS_Store
 SLAM/.DS_Store
 
 SLAM/communication/.DS_Store
+
+Simulation/lidar_data/
+
+Perception/Lidar/.ipynb_checkpoints/
+
+Simulation/Webots environment/controllers/car_controller/sensors_data.pickle

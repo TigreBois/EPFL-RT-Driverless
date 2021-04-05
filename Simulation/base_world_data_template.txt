@@ -1,5 +1,8 @@
 #VRML_SIM R2020b utf8
 WorldInfo {
+  CFM 1e-17
+  ERP 1e-05
+  basicTimeStep 4
   coordinateSystem "NUE"
 }
 Viewpoint {
