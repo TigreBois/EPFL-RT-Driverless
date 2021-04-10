@@ -60,23 +60,23 @@ class RaceEnv(gym.Env):
         self.cones = Cones("../../../cone_coordinates.csv")
 
     def init_sensors(self):
-        lidar = robot.getDevice("lidar")
-        lidar.enable(timestep) # Are you sure?
+        lidar = self.driver.getDevice("lidar")
+        lidar.enable(self.timestep) # Are you sure?
         lidar.enablePointCloud()
         
-        gps = robot.getDevice("gps")
-        gps.enable(timestep)
+        gps = self.driver.getDevice("gps")
+        gps.enable(self.timestep)
         
-        gyro = robot.getDevice("gyro")
-        gyro.enable(timestep)
+        gyro = self.driver.getDevice("gyro")
+        gyro.enable(self.timestep)
         # gyro.xAxis, gyro.zAxis = False, False # We need only yaw rate
         
-        imu = robot.getDevice("imu")
-        imu.enable(timestep)
+        imu = self.driver.getDevice("imu")
+        imu.enable(self.timestep)
         # imu.xAxis, imu.zAxis = False, False # We need only yaw angle
         
-        accelerometer = robot.getDevice("accelerometer")
-        accelerometer.enable(timestep)
+        accelerometer = self.driver.getDevice("accelerometer")
+        accelerometer.enable(self.timestep)
         
         sensors = {"lidar": lidar, "gps": gps, "gyro": gyro, "imu": imu, "accelerometer": accelerometer}
         return sensors
@@ -84,7 +84,7 @@ class RaceEnv(gym.Env):
     def step(self, action):
         self.apply_action(action)
         driver_done = self.driver.step()
-        return self.get_observations(), self.get_reward, driver_done == -1 || self.is_done, self.get_info
+        return self.get_observations(), self.get_reward, driver_done == -1 or self.is_done, self.get_info
 
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
@@ -112,7 +112,7 @@ class RaceEnv(gym.Env):
         
 
     def get_observations(self):
-        sensor_data = get_sensor_data(sensors)
+        sensor_data = self.get_sensor_data(self.sensors)
 
     
         # Manipulate sensor data
@@ -128,7 +128,7 @@ class RaceEnv(gym.Env):
         yaw_ISO = yaw + pi/2
         print("yaw ISO:", yaw_ISO)
         robot_orientation_ISO = (0, 0, yaw_ISO)
-        cones_car_ISO = cones.get_cones_car_ISO_coords(robot_coord_ISO, robot_orientation_ISO)
+        cones_car_ISO = self.cones.get_cones_car_ISO_coords(robot_coord_ISO, robot_orientation_ISO)
         cones_car_ISO = [(cone[0], cone[1], cone[2], cone[3],
                         cone[4] / CONE_SCALING, cone[5] / CONE_SCALING) for cone in cones_car_ISO]
         # print("Cones in car ISO coordinates:")
