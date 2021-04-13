@@ -34,6 +34,7 @@ CONE_SCALING = 0.5 # How cones were scaled when created (Will be used to ease se
 CONE_PERCEPTION_DISTANCE = 20 # in meters
 DO_PERCEPTION = False
 BASE_SPEED = 2.0
+START_THRESHOLD = 20
 
 class RaceEnv(gym.Env):
     def __init__(self):
@@ -66,6 +67,7 @@ class RaceEnv(gym.Env):
         self.stepsPerEpisode = 200
         self.robot_coord_ISO = []
         self.cones_within_dist = []
+        self.is_finished = False
         
         self.cones = Cones("../../../cone_coordinates.csv")
 
@@ -95,7 +97,7 @@ class RaceEnv(gym.Env):
         self.apply_action(action)
         driver_done = self.driver.step()
         observations = self.get_observations()
-        return observations, self.get_reward(observations), driver_done == -1 or self.is_done, self.get_info()
+        return observations, self.get_reward(observations), driver_done == -1 or self.is_done(), self.get_info()
 
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
@@ -164,12 +166,14 @@ class RaceEnv(gym.Env):
                             yaw_ISO,
                             yellow_cones_dist[0],yellow_cones_dist[1], yellow_cones_dist[2],
                             blue_cones_dist[0], blue_cones_dist[1], blue_cones_dist[2]]
-        return sensors_data_new
 
-    def get_cones_dist(self, cones_within_dist, robot_coord_ISO):
-        blue_cones_dist = [self.distance(cone[1], cone[2], robot_coord_ISO[0], robot_coord_ISO[1]) for cone in cones_within_dist if cone[0]=="blue"]
+        print(f"Observation: {sensors_data_new}")
+        return sensors_data_new
     
-        yellow_cones_dist = [self.distance(cone[1], cone[2], robot_coord_ISO[0], robot_coord_ISO[1]) for cone in cones_within_dist if cone[0]=="yellow"]
+    def get_cones_dist(self, cones_within_dist, robot_coord_ISO):
+        blue_cones_dist = [self.norm(cone[1], cone[2]) for cone in cones_within_dist if cone[0]=="blue"]
+    
+        yellow_cones_dist = [self.norm(cone[1], cone[2]) for cone in cones_within_dist if cone[0]=="yellow"]
 
         blue_cones_dist.sort()
         yellow_cones_dist.sort()
@@ -181,6 +185,8 @@ class RaceEnv(gym.Env):
         
         return blue_cones_dist, yellow_cones_dist
 
+    def norm(self, x, y):
+        return self.distance(x,y, 0, 0)
     def distance(self, x, y, car_x, car_y):
         return sqrt((x-car_x)**2+(y-car_y)**2)
 
@@ -204,13 +210,14 @@ class RaceEnv(gym.Env):
                 return -1
         """
         for cone_dist in observations[2:]:
-            if cone_dist < 0.1:
-                self.is_done = True
+            if cone_dist < 2:
+                self.is_finished = True
+                print("IS DONE")
                 return -100
         return 1
 
     def is_done(self):
-        return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_done
+        return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
 
     def convert_radius_to_steering_angle(self, radius, wheelbase):
         return wheelbase / np.sqrt(radius ** 2 - wheelbase ** 2 / 4)
