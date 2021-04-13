@@ -31,7 +31,7 @@ episodeScore = 0
 nb_actions = env.action_space.shape[0]
 
 nb_actions = env.action_space.shape[0]
-"""
+
 #NN for actor
 actor = Sequential()
 actor.add(Flatten(input_shape=(1,)+env.observation_space.shape))
@@ -46,7 +46,7 @@ actor.add(Activation('linear'))
 print(actor.summary())
 
 # NN for critic
-action_input = Input(shape=(nb_actions,),name='action_input')
+action_input = Input(shape=env.action_space.shape,name='action_input')
 observation_input = Input(shape=(1,)+env.observation_space.shape, name = 'observation_input')
 flattened_observation = Flatten()(observation_input)
 x = Concatenate()([action_input, flattened_observation])
@@ -63,17 +63,17 @@ print(critic.summary())
 
 memory = SequentialMemory(limit=100000, window_length=1)
 
-random_process =OrnsteinUhlenbeckProcess(size=nb_actions, theta=1, mu=[2,0,0], sigma=.1)
+random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=1, mu=[0,0], sigma=.1)
 
 agent = DDPGAgent(nb_actions = nb_actions, actor = actor, critic=critic, critic_action_input = action_input,
                  memory = memory, nb_steps_warmup_critic=100, nb_steps_warmup_actor=100,
                  random_process=random_process, gamma=.99, target_model_update=1e-3)
 agent.compile(Adam(lr=.001, clipnorm=1.), metrics=['mae'])
 
-agent.fit(env, nb_steps=40000, visualize=True, verbose=1, nb_max_episode_steps=1000)
+agent.fit(env, nb_steps=40000, visualize=False, verbose=0, nb_max_episode_steps=1000)
 
 
-"""
+
 for _ in range(1000):
     env.step(env.action_space.sample())
 

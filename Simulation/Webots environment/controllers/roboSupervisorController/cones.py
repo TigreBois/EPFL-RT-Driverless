@@ -37,7 +37,7 @@ class Cones:
         cones_car_ISO = self.get_cones_car_ISO_coords(robot_coord, robot_dir)
          
         cones_in_front_within_within_dist = [cone for cone in cones_car_ISO 
-                 if 0 < cone[0] < distance and -distance/2 < cone[1] < distance/2]
+                 if 0 < cone[1] < distance and -distance/2 < cone[2] < distance/2]
         
         return cones_in_front_within_within_dist                       
                                              

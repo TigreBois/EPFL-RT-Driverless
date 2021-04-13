@@ -5,7 +5,7 @@ from gym.utils import seeding
 
 import numpy as np
 
-from math import inf, cos, pi
+from math import inf, cos, pi, sqrt
 import time, random
 
 from vehicle import Driver
@@ -39,15 +39,17 @@ class RaceEnv(gym.Env):
     def __init__(self):
         super().__init__()
         
+        """
         spaces = {
-            "robot_coord": Box(low=-inf, high=inf,shape=(2,)),
             "robot_speed": Box(low=-inf, high=inf,shape=(1,)),
             "yaw": Box(low=-inf, high=inf,shape=(1,)),
             "yaw_rate": Box(low=-inf, high=inf,shape=(1,)),
             "accelearation" :Box(low=-inf, high=inf,shape=(1,)),
             # "lidar": Box(low=-inf, high=inf,shape=(1,))
         }
-        self.observation_space = Dict(spaces)
+        """
+        
+        self.observation_space = Box(low=-inf, high=inf, shape=(8,))
         self.action_space = Box(low=-inf, high=inf,shape=(2,)) # Cruising speed, Steering Angle
                 
         self.driver = Driver()
@@ -84,7 +86,7 @@ class RaceEnv(gym.Env):
     def step(self, action):
         self.apply_action(action)
         driver_done = self.driver.step()
-        return self.get_observations(), self.get_reward, driver_done == -1 or self.is_done, self.get_info
+        return self.get_observations(), self.get_reward(), driver_done == -1 or self.is_done, self.get_info()
 
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
@@ -129,6 +131,7 @@ class RaceEnv(gym.Env):
         print("yaw ISO:", yaw_ISO)
         robot_orientation_ISO = (0, 0, yaw_ISO)
         cones_car_ISO = self.cones.get_cones_car_ISO_coords(robot_coord_ISO, robot_orientation_ISO)
+        
         cones_car_ISO = [(cone[0], cone[1], cone[2], cone[3],
                         cone[4] / CONE_SCALING, cone[5] / CONE_SCALING) for cone in cones_car_ISO]
         # print("Cones in car ISO coordinates:")
@@ -137,24 +140,46 @@ class RaceEnv(gym.Env):
             
         cones_within_dist = [cone for cone in cones_car_ISO
             if 0 < cone[1] < CONE_PERCEPTION_DISTANCE and -CONE_PERCEPTION_DISTANCE < cone[2] < CONE_PERCEPTION_DISTANCE]
+        
         # print("Visible cones in car ISO coordinates")
-        # for cone in cones_within_dist:
-            # print(cone)
-            
-        sensors_data_new = [robot_coord_ISO[0], 
-                            robot_coord_ISO[1], 
-                            robot_speed,
-                            acceleration,
-                            yaw_ISO, yaw_rate, 
-                            [(cone[0], cone[1], cone[2]) for cone in cones_within_dist]]
+
+        #for cone in cones_within_dist:
+            #print(cone)
+        
+        blue_cones_dist, yellow_cones_dist = self.get_cones_dist(cones_within_dist, robot_coord_ISO)
+        
+        sensors_data_new = [robot_speed,
+                            yaw_ISO,
+                            yellow_cones_dist[0],yellow_cones_dist[1], yellow_cones_dist[2],
+                            blue_cones_dist[0], blue_cones_dist[1], blue_cones_dist[2]]
         return sensors_data_new
+
+    def get_cones_dist(self, cones_within_dist, robot_coord_ISO):
+        blue_cones_dist = [self.distance(cone[1], cone[2], robot_coord_ISO[0], robot_coord_ISO[1]) for cone in cones_within_dist if cone[0]=="blue"]
+    
+        yellow_cones_dist = [self.distance(cone[1], cone[2], robot_coord_ISO[0], robot_coord_ISO[1]) for cone in cones_within_dist if cone[0]=="yellow"]
+
+        blue_cones_dist.sort()
+        yellow_cones_dist.sort()
+
+        while len(blue_cones_dist)<3:
+            blue_cones_dist.append(inf)
+        while len(yellow_cones_dist)<3:
+            yellow_cones_dist.append(inf)
+        
+        return blue_cones_dist, yellow_cones_dist
+
+    def distance(self, x, y, car_x, car_y):
+        return sqrt((x-car_x)**2+(y-car_y)**2)
 
     def reset(self):
         self.sensors = self.init_sensors()
         self.stopped = True
+        self.driver.step()
+        return self.get_observations()
 
     def get_reward(self, action=None):
-        return not self.stopped
+        return 1
 
     def is_done(self):
         return self.stopped and self.driver.getTime() > START_THRESHOLD
@@ -167,4 +192,4 @@ class RaceEnv(gym.Env):
         print("render() is not used")
 
     def get_info(self):
-        return None
+        return {}
