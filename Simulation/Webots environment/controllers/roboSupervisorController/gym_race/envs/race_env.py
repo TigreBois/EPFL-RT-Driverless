@@ -48,9 +48,15 @@ class RaceEnv(gym.Env):
             # "lidar": Box(low=-inf, high=inf,shape=(1,))
         }
         """
+
+        wheelbase = 1.57 # [m]
+        tire_radius = 0.4604 # [m]
+        circle_radius = 5 # [m]
+        speed = 5 # [m/s]
+        angle = self.convert_radius_to_steering_angle(circle_radius, wheelbase)
         
         self.observation_space = Box(low=-inf, high=inf, shape=(8,))
-        self.action_space = Box(low=-inf, high=inf,shape=(2,)) # Cruising speed, Steering Angle
+        self.action_space = Box(low=np.array([0, -angle]), high=np.array([speed, angle]),shape=(2,)) # Cruising speed, Steering Angle
                 
         self.driver = Driver()
  
@@ -58,6 +64,8 @@ class RaceEnv(gym.Env):
         self.sensors = self.init_sensors()
         self.stopped = True
         self.stepsPerEpisode = 200
+        self.robot_coord_ISO = []
+        self.cones_within_dist = []
         
         self.cones = Cones("../../../cone_coordinates.csv")
 
@@ -86,7 +94,8 @@ class RaceEnv(gym.Env):
     def step(self, action):
         self.apply_action(action)
         driver_done = self.driver.step()
-        return self.get_observations(), self.get_reward(), driver_done == -1 or self.is_done, self.get_info()
+        observations = self.get_observations()
+        return observations, self.get_reward(observations), driver_done == -1 or self.is_done, self.get_info()
 
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
@@ -148,6 +157,9 @@ class RaceEnv(gym.Env):
         
         blue_cones_dist, yellow_cones_dist = self.get_cones_dist(cones_within_dist, robot_coord_ISO)
         
+        self.robot_coord_ISO = robot_coord_ISO
+        self.cones_within_dist = cones_within_dist
+
         sensors_data_new = [robot_speed,
                             yaw_ISO,
                             yellow_cones_dist[0],yellow_cones_dist[1], yellow_cones_dist[2],
@@ -178,15 +190,44 @@ class RaceEnv(gym.Env):
         self.driver.step()
         return self.get_observations()
 
-    def get_reward(self, action=None):
+    def get_reward(self, observations):
+        robot_speed = observations[0]
+        if robot_speed < 0.1:
+            return -1/10000
+        if len(self.cones_within_dist)==0 or len(self.robot_coord_ISO)== 0:
+            return 1/10000
+
+        """
+        for cone in self.cones_within_dist:
+            if abs(cone[1]-self.robot_coord_ISO[0]) < 0.1 or abs(cone[2]-self.robot_coord_ISO[1])<0.1:
+                self.is_done = True
+                return -1
+        """
+        for cone_dist in observations[2:]:
+            if cone_dist < 0.1:
+                self.is_done = True
+                return -100
         return 1
 
     def is_done(self):
-        return self.stopped and self.driver.getTime() > START_THRESHOLD
+        return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_done
+
+    def convert_radius_to_steering_angle(self, radius, wheelbase):
+        return wheelbase / np.sqrt(radius ** 2 - wheelbase ** 2 / 4)
 
     def apply_action(self, action):
-        self.driver.setCruisingSpeed(float(action[0]))
-        self.driver.setSteeringAngle(float(action[1]))
+        wheelbase = 1.57 # [m]
+        tire_radius = 0.4604 # [m]
+        circle_radius = 5 # [m]
+        speed = 5 # [m/s]
+        angle = self.convert_radius_to_steering_angle(circle_radius, wheelbase)
+        print(angle)
+        launch_speed = min(abs(float(action[0])),speed)
+        print(launch_speed)
+        self.driver.setCruisingSpeed(launch_speed)
+        launch_angle = max(min(float(action[1]), angle), -angle)
+        print(launch_angle, action)
+        self.driver.setSteeringAngle(launch_angle)
 
     def render(self, mode='human', close=False):
         print("render() is not used")
