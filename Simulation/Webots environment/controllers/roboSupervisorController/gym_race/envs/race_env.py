@@ -31,6 +31,7 @@ from utilities import normalizeToRange, plotData
 
 sensors = ["robot_coord", "robot_speed", "yaw", "yaw_rate", "acceleration"]
 CONE_SCALING = 0.5 # How cones were scaled when created (Will be used to ease search of cones in Webots window)
+CONE_DISTANCE = 2
 CONE_PERCEPTION_DISTANCE = 20 # in meters
 DO_PERCEPTION = False
 BASE_SPEED = 2.0
@@ -179,9 +180,9 @@ class RaceEnv(gym.Env):
         yellow_cones_dist.sort()
 
         while len(blue_cones_dist)<3:
-            blue_cones_dist.append(inf)
+            blue_cones_dist.append(CONE_PERCEPTION_DISTANCE)
         while len(yellow_cones_dist)<3:
-            yellow_cones_dist.append(inf)
+            yellow_cones_dist.append(CONE_PERCEPTION_DISTANCE)
         
         return blue_cones_dist, yellow_cones_dist
 
@@ -191,6 +192,8 @@ class RaceEnv(gym.Env):
         return sqrt((x-car_x)**2+(y-car_y)**2)
 
     def reset(self):
+        print("************ Resetting ****************")
+        #self.driver.simulationReset()
         self.sensors = self.init_sensors()
         self.stopped = True
         self.driver.step()
@@ -209,15 +212,15 @@ class RaceEnv(gym.Env):
                 self.is_done = True
                 return -1
         """
-        for cone_dist in observations[2:]:
-            if cone_dist < 2:
-                self.is_finished = True
-                print("IS DONE")
-                return -100
+        if observations[2]+observations[3] <= CONE_DISTANCE or observations[5]+observations[6] <= CONE_DISTANCE:
+            self.is_finished = True
+            print("IS DONE")
+            return -100
         return 1
 
     def is_done(self):
-        return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
+        #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
+        return False
 
     def convert_radius_to_steering_angle(self, radius, wheelbase):
         return wheelbase / np.sqrt(radius ** 2 - wheelbase ** 2 / 4)
@@ -241,3 +244,5 @@ class RaceEnv(gym.Env):
 
     def get_info(self):
         return {}
+
+##todo never be done
