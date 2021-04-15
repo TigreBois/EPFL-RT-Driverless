@@ -4,7 +4,6 @@
 from controller import Robot, Motor, Lidar, LidarPoint 
 from controller import GPS, Gyro, InertialUnit, Accelerometer # Motion estimation
 from controller import PositionSensor
-from controller import Supervisor
 from vehicle import Driver
 import numpy as np
 import pickle
@@ -80,7 +79,7 @@ cones = Cones("../../../cone_coordinates.csv")
 # create the Robot instance.
 # robot = Robot()
 # driver = Driver()
-driver = Supervisor()
+driver = Driver()
 #driver = Driver()
 
 # get the time step of the current world.
@@ -96,7 +95,7 @@ wheelbase = 1.57 # [m]
 tire_radius = 0.4604 # [m]
 circle_radius = 5 # [m]
 speed = 5 # [m/s]
-"""
+
 angle = convert_radius_to_steering_angle(circle_radius, wheelbase)
 print(angle)
 
@@ -104,10 +103,9 @@ print(angle)
 driver.setSteeringAngle(-angle)
 driver.setCruisingSpeed(0)
 
-"""
 step = 0
 # while robot.step(timestep) != -1:
-while driver.step(20) != -1:
+while driver.step() != -1:
     print("############################################################################")
    
     """
@@ -128,7 +126,7 @@ while driver.step(20) != -1:
             pickle.dump(point_cloud_to_save, f)
        """
     # Work with sensors 
-    """
+    
     sensor_data = get_sensor_data(sensors)
 
     
@@ -170,11 +168,21 @@ while driver.step(20) != -1:
     # Control
     driver.setCruisingSpeed(speed)
     driver.setSteeringAngle(-angle)
-    """
+    
     step += 1
     
-    if(step == 300):
+    if(step % 300 == 0):
         driver.simulationReset()
+        driver.simulationResetPhysics()
+        driver.step()
+        driver.setSteeringAngle(angle)
+        driver.setCruisingSpeed(speed)
+        #driver.simulationReset()
+        #trans_field = driver.getTranslation()
+        #INITIAL = [21.8982, 0.225869, -51.6669]
+        #trans_field.setSFVec3f(INITIAL)
+        #robot_node.resetPhysics()
+        #driver = Driver()
     
 # Enter here exit cleanup code.
 

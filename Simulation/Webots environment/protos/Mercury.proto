@@ -6,6 +6,7 @@ PROTO Mercury [
   field MFString   controllerArgs  []                      # Is `Robot.controllerArgs`.
   field SFBool     synchronization FALSE                   # Is `Robot.synchronization`.
   field SFColor    color           1 1 1                   # Is `Material.diffuseColor`.
+  field SFBool     supervisor      TRUE
   field MFNode     sensors         [] 
 ]
 {
@@ -77,5 +78,6 @@ PROTO Mercury [
     engineMaxRPM            20000
     gearRatio               [-30 30]
     maxVelocity             100
+    supervisor              TRUE
   }
 }

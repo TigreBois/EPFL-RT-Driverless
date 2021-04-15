@@ -193,7 +193,7 @@ class RaceEnv(gym.Env):
 
     def reset(self):
         print("************ Resetting ****************")
-        #self.driver.simulationReset()
+        self.driver.simulationReset()
         self.sensors = self.init_sensors()
         self.stopped = True
         self.driver.step()
@@ -219,8 +219,8 @@ class RaceEnv(gym.Env):
         return 1
 
     def is_done(self):
-        #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
-        return False
+        return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
+        #return False
 
     def convert_radius_to_steering_angle(self, radius, wheelbase):
         return wheelbase / np.sqrt(radius ** 2 - wheelbase ** 2 / 4)
@@ -233,7 +233,7 @@ class RaceEnv(gym.Env):
         angle = self.convert_radius_to_steering_angle(circle_radius, wheelbase)
         print(angle)
         launch_speed = min(abs(float(action[0])),speed)
-        print(launch_speed)
+        print("launching speed", launch_speed)
         self.driver.setCruisingSpeed(launch_speed)
         launch_angle = max(min(float(action[1]), angle), -angle)
         print(launch_angle, action)
