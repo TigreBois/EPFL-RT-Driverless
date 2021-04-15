@@ -175,6 +175,7 @@ while driver.step() != -1:
         driver.simulationReset()
         driver.simulationResetPhysics()
         driver.step()
+        driver.getSelf().restartController()
         driver.setSteeringAngle(angle)
         driver.setCruisingSpeed(speed)
         #driver.simulationReset()
