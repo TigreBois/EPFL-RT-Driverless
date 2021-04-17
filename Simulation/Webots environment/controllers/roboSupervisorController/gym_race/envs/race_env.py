@@ -31,7 +31,7 @@ from utilities import normalizeToRange, plotData
 
 sensors = ["robot_coord", "robot_speed", "yaw", "yaw_rate", "acceleration"]
 CONE_SCALING = 0.5 # How cones were scaled when created (Will be used to ease search of cones in Webots window)
-CONE_DISTANCE = 8
+CONE_DISTANCE = 11
 CONE_PERCEPTION_DISTANCE = 20 # in meters
 DO_PERCEPTION = False
 BASE_SPEED = 2.0
