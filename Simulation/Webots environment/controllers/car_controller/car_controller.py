@@ -172,15 +172,26 @@ while driver.step() != -1:
     step += 1
     
     if(step % 300 == 0):
-        driver.simulationReset()
+        print("*******************reset")
+        #driver.simulationReset()
+        robot_node = driver.getSelf()
+        trans_field = robot_node.getField("translation")
+        INITIAL = [21.8982, 0.225869, -51.6669]
+        trans_field.setSFVec3f(INITIAL)
+        rotation_field = robot_node.getField("rotation")
+        INITIAL_ROT = [0.0,1.0,0.0, 0.0]
+        rotation_field.setSFRotation(INITIAL_ROT)
+        driver.setSteeringAngle(0)
+        driver.setCruisingSpeed(0)
         driver.simulationResetPhysics()
-        driver.step()
-        driver.getSelf().restartController()
-        driver.setSteeringAngle(angle)
-        driver.setCruisingSpeed(speed)
+        #driver.simulationResetPhysics()
+        #driver.step()
+        #driver.getSelf().restartController()
+        #trans = driver.getField("translation")
+        #driver.setSteeringAngle(angle)
+        #driver.setCruisingSpeed(speed)
         #driver.simulationReset()
         #trans_field = driver.getTranslation()
-        #INITIAL = [21.8982, 0.225869, -51.6669]
         #trans_field.setSFVec3f(INITIAL)
         #robot_node.resetPhysics()
         #driver = Driver()

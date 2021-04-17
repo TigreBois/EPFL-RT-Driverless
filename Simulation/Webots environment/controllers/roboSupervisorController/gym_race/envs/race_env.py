@@ -31,7 +31,7 @@ from utilities import normalizeToRange, plotData
 
 sensors = ["robot_coord", "robot_speed", "yaw", "yaw_rate", "acceleration"]
 CONE_SCALING = 0.5 # How cones were scaled when created (Will be used to ease search of cones in Webots window)
-CONE_DISTANCE = 2
+CONE_DISTANCE = 8
 CONE_PERCEPTION_DISTANCE = 20 # in meters
 DO_PERCEPTION = False
 BASE_SPEED = 2.0
@@ -193,11 +193,24 @@ class RaceEnv(gym.Env):
 
     def reset(self):
         print("************ Resetting ****************")
-        self.driver.simulationReset()
+        self.resetPosition()
         self.sensors = self.init_sensors()
         self.stopped = True
+        self.is_finished = False
         self.driver.step()
         return self.get_observations()
+
+    def resetPosition(self):
+        robot_node = self.driver.getSelf()
+        trans_field = robot_node.getField("translation")
+        INITIAL = [21.8982, 0.225869, -51.6669]
+        trans_field.setSFVec3f(INITIAL)
+        rotation_field = robot_node.getField("rotation")
+        INITIAL_ROT = [0.0,1.0,0.0, 0.0]
+        rotation_field.setSFRotation(INITIAL_ROT)
+        self.driver.setSteeringAngle(0)
+        self.driver.setCruisingSpeed(0)
+        self.driver.simulationResetPhysics()
 
     def get_reward(self, observations):
         robot_speed = observations[0]
@@ -219,7 +232,8 @@ class RaceEnv(gym.Env):
         return 1
 
     def is_done(self):
-        return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
+        #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
+        return self.is_finished
         #return False
 
     def convert_radius_to_steering_angle(self, radius, wheelbase):
