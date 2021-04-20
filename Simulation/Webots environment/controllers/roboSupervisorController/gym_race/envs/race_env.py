@@ -100,7 +100,7 @@ class RaceEnv(gym.Env):
         self.apply_action(action)
         driver_done = self.driver.step()
         observations = self.get_observations()
-        reward = self.get_reward(observations)
+        reward = self.get_reward(observations, action)
         print(f"reward: {reward}")
         print(f"observations: {observations}")
         return observations, reward, driver_done == -1 or self.is_done(), self.get_info()
@@ -217,7 +217,7 @@ class RaceEnv(gym.Env):
         self.driver.setCruisingSpeed(0)
         self.driver.simulationResetPhysics()
 
-    def get_reward(self, observations):
+    def get_reward(self, observations, actions):
         robot_speed = observations[0]
         if robot_speed < 0.1:
             return -1
@@ -236,7 +236,7 @@ class RaceEnv(gym.Env):
             print("IS DONE")
             return -100
 
-        return min(observations[2:]) ##TODO: penalise high steering angle and low speeds (check article)
+        return min(sum(observations[2:5]), sum(observations[5:]))/3 - abs(actions[0])*20+actions[1]/(1+actions[0])##TODO: penalise high steering angle and low speeds (check article)
 
     def is_done(self):
         #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
