@@ -33,6 +33,7 @@ nb_actions = env.action_space.shape[0]
 nb_actions = env.action_space.shape[0]
 
 #NN for actor
+"""
 actor = Sequential()
 actor.add(Flatten(input_shape=(1,)+env.observation_space.shape))
 actor.add(Dense(32))
@@ -44,8 +45,20 @@ actor.add(Activation('relu'))
 actor.add(Dense(nb_actions))
 actor.add(Activation('linear'))
 print(actor.summary())
+"""
+
+HIDDEN1_UNITS = 300
+HIDDEN2_UNITS = 600
+S = Input(shape=env.observation_space.shape)  
+h0 = Dense(HIDDEN1_UNITS, activation='relu')(S)
+h1 = Dense(HIDDEN2_UNITS, activation='relu')(h0)
+Steering = Dense(1,activation='tanh',init=lambda shape, name: normal(shape, scale=1e-4, name=name))(h1)   
+Acceleration = Dense(1,activation='sigmoid',init=lambda shape, name: normal(shape, scale=1e-4, name=name))(h1)     
+V = merge([Steering,Acceleration],mode='concat')          
+actor = Model(input=S,output=V)
 
 # NN for critic
+"""
 action_input = Input(shape=env.action_space.shape,name='action_input')
 observation_input = Input(shape=(1,)+env.observation_space.shape, name = 'observation_input')
 flattened_observation = Flatten()(observation_input)
@@ -60,6 +73,19 @@ x = Dense(1)(x)
 x = Activation('linear')(x)
 critic = Model(inputs=[action_input, observation_input], outputs=x)
 print(critic.summary())
+"""
+
+S = Input(shape=env.observation_space.shape)
+A = Input(shape=env.action_space.shape,name='action2')    
+w1 = Dense(HIDDEN1_UNITS, activation='relu')(S)
+a1 = Dense(HIDDEN2_UNITS, activation='linear')(A)
+h1 = Dense(HIDDEN2_UNITS, activation='linear')(w1)
+h2 = merge([h1,a1],mode='sum')    
+h3 = Dense(HIDDEN2_UNITS, activation='relu')(h2)
+V = Dense(action_dim,activation='linear')(h3)  
+critic = Model(input=[S,A],output=V)
+adam = Adam(lr=self.LEARNING_RATE)
+critic.compile(loss='mse', optimizer=adam)
 
 memory = SequentialMemory(limit=100000, window_length=1)
 
