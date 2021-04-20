@@ -31,7 +31,7 @@ from utilities import normalizeToRange, plotData
 
 sensors = ["robot_coord", "robot_speed", "yaw", "yaw_rate", "acceleration"]
 CONE_SCALING = 0.5 # How cones were scaled when created (Will be used to ease search of cones in Webots window)
-CONE_DISTANCE = 11
+CONE_DISTANCE = 7
 CONE_PERCEPTION_DISTANCE = 20 # in meters
 DO_PERCEPTION = False
 BASE_SPEED = 2.0
@@ -151,7 +151,7 @@ class RaceEnv(gym.Env):
             # print(cone)
             
         cones_within_dist = [cone for cone in cones_car_ISO
-            if 0 < cone[1] < CONE_PERCEPTION_DISTANCE and -CONE_PERCEPTION_DISTANCE < cone[2] < CONE_PERCEPTION_DISTANCE]
+            if -CONE_PERCEPTION_DISTANCE < cone[1] < CONE_PERCEPTION_DISTANCE and -CONE_PERCEPTION_DISTANCE < cone[2] < CONE_PERCEPTION_DISTANCE]
         
         # print("Visible cones in car ISO coordinates")
 
@@ -225,11 +225,13 @@ class RaceEnv(gym.Env):
                 self.is_done = True
                 return -1
         """
+
         if observations[2]+observations[3] <= CONE_DISTANCE or observations[5]+observations[6] <= CONE_DISTANCE:
             self.is_finished = True
             print("IS DONE")
             return -100
-        return 1
+
+        return observations[2]+observations[3]+observations[4]+observations[5]+observations[6]+observations[7]
 
     def is_done(self):
         #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
