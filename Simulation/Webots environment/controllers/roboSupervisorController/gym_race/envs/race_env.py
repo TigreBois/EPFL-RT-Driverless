@@ -36,6 +36,8 @@ CONE_PERCEPTION_DISTANCE = 20 # in meters
 DO_PERCEPTION = False
 BASE_SPEED = 2.0
 START_THRESHOLD = 20
+MAX_SPEED = 8
+MAX_ANGLE = 0.3179
 
 class RaceEnv(gym.Env):
     def __init__(self):
@@ -98,27 +100,30 @@ class RaceEnv(gym.Env):
         self.apply_action(action)
         driver_done = self.driver.step()
         observations = self.get_observations()
-        return observations, self.get_reward(observations), driver_done == -1 or self.is_done(), self.get_info()
+        reward = self.get_reward(observations)
+        print(f"reward: {reward}")
+        print(f"observations: {observations}")
+        return observations, reward, driver_done == -1 or self.is_done(), self.get_info()
 
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
-        print("Robot coordinates:", gps_values)
+        #print("Robot coordinates:", gps_values)
         
         speed = sensors["gps"].getSpeed()
-        print("Robot speed", speed)
+        #print("Robot speed", speed)
         
         roll_pitch_yaw = sensors["imu"].getRollPitchYaw() # Need [2] - index of yaw
         yaw = roll_pitch_yaw[2]
-        print("Yaw angle is", roll_pitch_yaw, "=>", yaw)
+        #print("Yaw angle is", roll_pitch_yaw, "=>", yaw)
         
         acceleration_values = sensors["accelerometer"].getValues()
         # Need to check calculations:
         acceleration = acceleration_values[0] * cos(yaw) + acceleration_values[2] * cos(yaw + pi/2)
-        print("Acceleration is", acceleration_values, "=>", acceleration)
+        #print("Acceleration is", acceleration_values, "=>", acceleration)
         
         angle_velocity = sensors["gyro"].getValues() # Need [1] - index of yaw
         yaw_rate = angle_velocity[1]
-        print("Yaw rate is", angle_velocity, "=>", yaw_rate)
+        #print("Yaw rate is", angle_velocity, "=>", yaw_rate)
         
         sensor_data = {"robot_coord": gps_values, "robot_speed": speed, "yaw": yaw,
                         "acceleration": acceleration, "yaw_rate": yaw_rate}
@@ -137,10 +142,10 @@ class RaceEnv(gym.Env):
         yaw_rate = sensor_data["yaw_rate"]
         
         robot_coord_ISO = webots2ISO(robot_coord)
-        print("Robot coords ISO:", robot_coord_ISO)
+        #print("Robot coords ISO:", robot_coord_ISO)
         # yaw_ISO = yaw + pi/2 # For previous version of car (New version is rotated)
         yaw_ISO = yaw + pi/2
-        print("yaw ISO:", yaw_ISO)
+        #print("yaw ISO:", yaw_ISO)
         robot_orientation_ISO = (0, 0, yaw_ISO)
         cones_car_ISO = self.cones.get_cones_car_ISO_coords(robot_coord_ISO, robot_orientation_ISO)
         
@@ -168,7 +173,7 @@ class RaceEnv(gym.Env):
                             yellow_cones_dist[0],yellow_cones_dist[1], yellow_cones_dist[2],
                             blue_cones_dist[0], blue_cones_dist[1], blue_cones_dist[2]]
 
-        print(f"Observation: {sensors_data_new}")
+        #print(f"Observation: {sensors_data_new}")
         return sensors_data_new
     
     def get_cones_dist(self, cones_within_dist, robot_coord_ISO):
@@ -215,9 +220,9 @@ class RaceEnv(gym.Env):
     def get_reward(self, observations):
         robot_speed = observations[0]
         if robot_speed < 0.1:
-            return -1/10000
+            return -1
         if len(self.cones_within_dist)==0 or len(self.robot_coord_ISO)== 0:
-            return 1/10000
+            return 1
 
         """
         for cone in self.cones_within_dist:
@@ -231,7 +236,7 @@ class RaceEnv(gym.Env):
             print("IS DONE")
             return -100
 
-        return observations[2]+observations[3]+observations[4]+observations[5]+observations[6]+observations[7]
+        return min(observations[2:]) ##TODO: penalise high steering angle and low speeds (check article)
 
     def is_done(self):
         #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
@@ -248,10 +253,12 @@ class RaceEnv(gym.Env):
         speed = 5 # [m/s]
         angle = self.convert_radius_to_steering_angle(circle_radius, wheelbase)
         print(angle)
-        launch_speed = min(abs(float(action[0])),speed)
+        #launch_speed = min(abs(float(action[0])),speed)
+        launch_speed = MAX_SPEED*action[1]
         print("launching speed", launch_speed)
         self.driver.setCruisingSpeed(launch_speed)
-        launch_angle = max(min(float(action[1]), angle), -angle)
+        #launch_angle = max(min(float(action[1]), angle), -angle)
+        launch_angle = action[0]*MAX_ANGLE
         print(launch_angle, action)
         self.driver.setSteeringAngle(launch_angle)
 
