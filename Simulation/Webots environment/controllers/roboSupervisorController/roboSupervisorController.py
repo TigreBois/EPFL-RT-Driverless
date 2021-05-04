@@ -33,20 +33,6 @@ nb_actions = env.action_space.shape[0]
 nb_actions = env.action_space.shape[0]
 
 #NN for actor
-"""
-actor = Sequential()
-actor.add(Flatten(input_shape=(1,)+env.observation_space.shape))
-actor.add(Dense(32))
-actor.add(Activation('relu'))
-actor.add(Dense(32))
-actor.add(Activation('relu'))
-actor.add(Dense(32))
-actor.add(Activation('relu'))
-actor.add(Dense(nb_actions))
-actor.add(Activation('linear'))
-print(actor.summary())
-"""
-
 HIDDEN1_UNITS = 300
 HIDDEN2_UNITS = 600
 CRITIC_LEARNING_RATE = 0.001
@@ -73,30 +59,17 @@ h1 = Dense(HIDDEN2_UNITS, activation="linear")(w1)
 h2 = h1+a1
 h3 = Dense(HIDDEN2_UNITS, activation="relu")(h2)
 x = Activation('relu')(x)
-V = Dense(1, activation="linear")(h3) #TODO: we don't understand why it's not 2 (it doesn't work with 2) Answer: this is the critic
+V = Dense(1, activation="linear")(h3)
 x = Activation('linear')(x)
 critic = Model(inputs=[action_input, observation_input], outputs=V)
 print(critic.summary())
-
-"""
-
-S = Input(shape=(1,)+env.observation_space.shape, name = 'observation_input')
-A = Input(shape=env.action_space.shape,name='action_input')    
-w1 = Dense(HIDDEN1_UNITS, activation='relu')(S)
-a1 = Dense(HIDDEN2_UNITS, activation='linear')(A)
-h1 = Dense(HIDDEN2_UNITS, activation='linear')(w1)
-h2 = h1+a1    
-h3 = Dense(HIDDEN2_UNITS, activation='relu')(h2)
-V = Dense(1,activation='linear')(h3)  
-critic = Model([S,A],V)
-"""
 
 adam = Adam(lr=CRITIC_LEARNING_RATE)
 critic.compile(loss='mse', optimizer=adam)
 
 memory = SequentialMemory(limit=100000, window_length=1)
 
-random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=np.array([.6,1]), mu=[0,.6], sigma=.3)
+random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=np.array([1,.6]), mu=[.6,0], sigma=.3)
 
 agent = DDPGAgent(nb_actions = nb_actions, actor = actor, critic=critic, critic_action_input = action_input,
                  memory = memory, nb_steps_warmup_critic=100, nb_steps_warmup_actor=100,
