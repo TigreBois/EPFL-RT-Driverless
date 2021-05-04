@@ -5,7 +5,7 @@ from gym.utils import seeding
 
 import numpy as np
 
-from math import inf, cos, pi, sqrt
+from math import inf, cos, pi, sqrt, sin
 import time, random
 
 from vehicle import Driver
@@ -37,21 +37,11 @@ DO_PERCEPTION = False
 BASE_SPEED = 2.0
 START_THRESHOLD = 20
 MAX_SPEED = 8
-MAX_ANGLE = 0.3179
+MAX_ANGLE = 0.29
 
 class RaceEnv(gym.Env):
     def __init__(self):
         super().__init__()
-        
-        """
-        spaces = {
-            "robot_speed": Box(low=-inf, high=inf,shape=(1,)),
-            "yaw": Box(low=-inf, high=inf,shape=(1,)),
-            "yaw_rate": Box(low=-inf, high=inf,shape=(1,)),
-            "accelearation" :Box(low=-inf, high=inf,shape=(1,)),
-            # "lidar": Box(low=-inf, high=inf,shape=(1,))
-        }
-        """
 
         wheelbase = 1.57 # [m]
         tire_radius = 0.4604 # [m]
@@ -71,7 +61,7 @@ class RaceEnv(gym.Env):
         self.robot_coord_ISO = []
         self.cones_within_dist = []
         self.is_finished = False
-        
+        self.cumulative_reward = 0
         self.cones = Cones("../../../cone_coordinates.csv")
 
     def init_sensors(self):
@@ -103,6 +93,9 @@ class RaceEnv(gym.Env):
         reward = self.get_reward(observations, action)
         print(f"reward: {reward}")
         print(f"observations: {observations}")
+        self.cumulative_reward += reward
+        print(f"cumulative reward: {self.cumulative_reward}")
+ 
         return observations, reward, driver_done == -1 or self.is_done(), self.get_info()
 
     def get_sensor_data(self, sensors):
@@ -203,6 +196,7 @@ class RaceEnv(gym.Env):
         self.stopped = True
         self.is_finished = False
         self.driver.step()
+        self.cumulative_reward = 0
         return self.get_observations()
 
     def resetPosition(self):
@@ -234,10 +228,17 @@ class RaceEnv(gym.Env):
         if observations[2]+observations[3] <= CONE_DISTANCE or observations[5]+observations[6] <= CONE_DISTANCE:
             self.is_finished = True
             print("IS DONE")
-            return -100
+            return -1
 
-        return min(sum(observations[2:5]), sum(observations[5:]))/3 - abs(actions[0])*20+actions[1]/(1+actions[0])##TODO: penalise high steering angle and low speeds (check article)
-
+        #return (min(sum(observations[2:5]), sum(observations[5:]))/3 + MAX_SPEED*actions[1]*(MAX_ANGLE-abs(actions[0]*MAX_ANGLE)))/1000##TODO: penalise high steering angle and low speeds (check article)
+        #return (MAX_SPEED*actions[1]*(MAX_ANGLE-abs(actions[0]*MAX_ANGLE)))/1000
+        speed = MAX_SPEED*actions[1]
+        angle = MAX_ANGLE*actions[0]
+        robot_speed = observations[0]
+        yaw_ISO = observations[1]
+        #return speed*cos(angle)-speed*sin(angle)
+        #return speed*cos(angle)
+        return robot_speed*cos(yaw_ISO)
     def is_done(self):
         #return (self.stopped and self.driver.getTime() > START_THRESHOLD) or self.is_finished
         return self.is_finished
