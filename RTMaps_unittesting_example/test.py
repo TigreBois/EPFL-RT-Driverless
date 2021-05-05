@@ -1,6 +1,7 @@
-import pytest
+from multiprocessing import Process
+import time
 import unittest
-import mock
+import unittest.mock as mock
 import pickle
 import sys
 import fakeBaseComponent
@@ -14,19 +15,21 @@ sys.modules["rtmaps.core"] = fakeCore
 sys.modules["rtmaps.reading_policy"] = fakeReading_policy
 sys.modules["rtmaps.base_component.BaseComponent"] = fakeBaseComponent
 
-#Import the module to be tested here
+#Import the module to be tested here, instead of source
 import source as s
 
 #Usage: if you want to test automatically the module with input/output pickle files, launch this script using unittest decorator: 'python -m unittest'
 #To test it manually, feeding input via the console, launch it like a normal python script: 'python test.py'
 #Note that the manual mode's input are strings directly taken from the console; you probably want to process it before feeding it to the module,
-#you can do that in the "feedManualInput" function, in the "MockInput" class. 
+#you can do that in the "feedManualInput" function, in the "MockInput" class.
 #To stop the program while testing manually, enter "stop", or cancel the script as usual(with ctrl+c for instance)
 
 inputFile = "input.pickle"
 outputFile = "output.pickle"
+timeout_in_seconds = 60
+
 manual_mode = False
-#inputLIst is the list of input that's going to be fed to the module; outputLIst is the list of output used to check the module's behaviour.
+#inputList is the list of input that's going to be fed to the module; outputList is the list of output used to check the module's behaviour.
 #If you need to do special handling of the pickle file, do it here.
 try:
     with open(inputFile, 'rb') as handle:
@@ -54,10 +57,10 @@ class MockInput():
         if y == "stop":
             sys.exit("Program stopped by stop input")
         return y
-    
 
 
-class MockOutput():        
+
+class MockOutput():
     def write(out):
         if not manual_mode:
             tc = unittest.TestCase()
@@ -71,43 +74,60 @@ class MockOutput():
 
 class Test(unittest.TestCase):
 
-    
+
 
     @classmethod
     def setUpClass(self):
         return
-    
-    
+
+
     def test_Module(self):
         bc = fakeBaseComponent.BaseComponent()
         rtmapspy = s.rtmaps_python()
         rtmapspy.Birth()
-        self.module_loop(rtmapspy)
-        
-    @pytest.mark.timeout(6)    
-    def module_loop(self,module):
-        with mock.patch.dict("source.rtmaps_python.outputs", {"out" : MockOutput}):
-            if not manual_mode:
-                if inputList == None or outputList == None:
-                    raise FileNotFoundError("Input or Output pickle file not found !")
-                print("Input list: " + str(inputList))
-                print("Output list: " + str(outputList))
-                while inputList:
-                    mi = MockInput()
-                    with mock.patch.dict("source.rtmaps_python.inputs", {"in": mi}):
-                        module.Core()
+        if not manual_mode:
+            p = Process(target=module_loop, args=(rtmapspy,))
+            p.start()
+            start = time.time()
+            while time.time() - start <= timeout_in_seconds:
+                if p.is_alive():
+                    time.sleep(.5)
+                else:
+                    p.join()
+                    break
             else:
-                while True:
-                    mi = MockInput()
-                    with mock.patch.dict("source.rtmaps_python.inputs", {"in": mi}):
-                        module.Core()
-        
-    
+                # We only enter this if we didn't 'break' above during the while loop!
+                print("timed out, killing all processes")
+                if p.is_alive():
+                    p.terminate()
+                p.join()
+                self.fail("Timed out")
+        else:
+            module_loop(rtmapspy)
 
-    
+
+def module_loop(module):
+    with mock.patch.dict("source.rtmaps_python.outputs", {"out" : MockOutput}):
+        if not manual_mode:
+            if inputList == None or outputList == None:
+                raise FileNotFoundError("Input or Output pickle file not found !")
+            print("Input list: " + str(inputList))
+            print("Output list: " + str(outputList))
+            while inputList:
+                mi = MockInput()
+                with mock.patch.dict("source.rtmaps_python.inputs", {"in": mi}):
+                    module.Core()
+        else:
+            while True:
+                mi = MockInput()
+                with mock.patch.dict("source.rtmaps_python.inputs", {"in": mi}):
+                    module.Core()
+
+
+
+
 
 if __name__ == '__main__':
     manual_mode = True
     unittest.main()
 
-        
