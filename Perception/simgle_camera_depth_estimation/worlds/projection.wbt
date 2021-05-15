@@ -1,0 +1,62 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.19423280961897016 0.9580937676455962 0.21054678355697382 4.560673364019608
+  position -4.589893479769538 3.477888643193545 -0.012816899971125882
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+Solid {
+  translation 3.51 0.3 0.57
+  children [
+    Shape {
+      geometry Box {
+        size 0.1 0.6 0.1
+      }
+    }
+  ]
+}
+Robot {
+  translation 0 0.75 0
+  children [
+    Camera {
+      translation 0.0506862 0.80517 3.20613e-06
+      rotation 0.1294290535120002 0.9831054064615734 0.1294290535120002 -1.5878253071795863
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.05 0.05 0.1
+          }
+        }
+      ]
+      fieldOfView 1
+      width 600
+      height 400
+      lens Lens {
+      }
+      focus Focus {
+        focalLength 0.01
+      }
+    }
+    Shape {
+      geometry Box {
+        size 0.2 1.5 0.2
+      }
+    }
+  ]
+  controller "camera_controller"
+}
+TrafficCone {
+  translation 4 0 0
+}

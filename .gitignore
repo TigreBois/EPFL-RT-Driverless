@@ -13,3 +13,7 @@ Perception/EfficientDet/yolo_cones/.DS_Store
 SLAM/.DS_Store
 
 SLAM/communication/.DS_Store
+
+Perception/simgle_camera_depth_estimation/controllers/camera_controller/images/
+
+Perception/simgle_camera_depth_estimation/.ipynb_checkpoints/
