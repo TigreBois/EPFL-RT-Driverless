@@ -38,6 +38,8 @@ BASE_SPEED = 2.0
 START_THRESHOLD = 20
 MAX_SPEED = 8
 MAX_ANGLE = 0.29
+MAX_SPEED_RATIO = 0.5
+MAX_ANGLE_RATIO = 0.001
 TRACK_WIDTH = 9
 
 class RaceEnv(gym.Env):
@@ -66,6 +68,8 @@ class RaceEnv(gym.Env):
         self.cones = Cones("../../../cone_coordinates.csv")
         self.current_step = 1
         self.current_distance = 0
+        self.current_speed = 0
+        self.current_angle = 0
 
     def init_sensors(self):
         lidar = self.driver.getDevice("lidar")
@@ -99,6 +103,8 @@ class RaceEnv(gym.Env):
         self.cumulative_reward += reward
         self.current_step+=1
         self.current_distance+=observations[0]*cos(observations[1])
+        print(observations[1])
+        print(f"current distance {self.current_distance/self.current_step}")
         #print(f"cumulative reward: {self.cumulative_reward}")
  
         return self.get_observations(), reward, driver_done == -1 or self.is_done(), self.get_info()
@@ -125,8 +131,8 @@ class RaceEnv(gym.Env):
 
         #return (min(sum(observations[2:5]), sum(observations[5:]))/3 + MAX_SPEED*actions[1]*(MAX_ANGLE-abs(actions[0]*MAX_ANGLE)))/1000##TODO: penalise high steering angle and low speeds (check article)
         #return (MAX_SPEED*actions[1]*(MAX_ANGLE-abs(actions[0]*MAX_ANGLE)))/1000
-        speed = MAX_SPEED*actions[1]
-        angle = MAX_ANGLE*actions[0]
+        speed = MAX_SPEED*actions[1] #TO CHANGE
+        angle = MAX_ANGLE*actions[0] # to change
         robot_speed = observations[0]
         yaw_ISO = observations[1]
         #return speed*cos(angle)-speed*sin(angle)
@@ -134,8 +140,9 @@ class RaceEnv(gym.Env):
         
         #return robot_speed*cos(angle)*self.current_step/100
         print(f"distance to side penalty {2*abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH}")
-        #return (self.current_distance/self.current_step - 5*abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH)
-        return min(self.get_observations())
+        
+        return (self.current_distance/self.current_step - 5*abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH)
+        #return min(self.get_observations())
         #return -max(self.get_observations())
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
@@ -223,8 +230,6 @@ class RaceEnv(gym.Env):
         else:
             yellow_distance = yellow_cones_dist[0]*sin(acos((yellow_cones_dist[1]**2-yellow_cones_dist[0]**2-CONE_DISTANCE**2)/(-2*yellow_cones_dist[0]*CONE_DISTANCE)))
         
-        print("distance", yellow_distance)
-        
         return yellow_distance
     
     
@@ -258,6 +263,8 @@ class RaceEnv(gym.Env):
         self.cumulative_reward = 0
         self.current_step = 1
         self.current_distance = 0
+        self.current_speed = 0
+        self.current_angle = 0
         return self.get_observations()
 
     def resetPosition(self):
@@ -280,21 +287,23 @@ class RaceEnv(gym.Env):
     def convert_radius_to_steering_angle(self, radius, wheelbase):
         return wheelbase / np.sqrt(radius ** 2 - wheelbase ** 2 / 4)
 
+    def clamp_speed(self, max_val, curr):
+        return max(min(max_val, curr),0)
+        
+    def clamp_angle(self, max_val, curr):
+        return max(min(max_val,curr), -max_val)
+        
     def apply_action(self, action):
-        wheelbase = 1.57 # [m]
-        tire_radius = 0.4604 # [m]
-        circle_radius = 5 # [m]
-        speed = 5 # [m/s]
-        angle = self.convert_radius_to_steering_angle(circle_radius, wheelbase)
-        print(angle)
-        #launch_speed = min(abs(float(action[0])),speed)
-        launch_speed = MAX_SPEED*action[1]
-        #print("launching speed", launch_speed)
-        self.driver.setCruisingSpeed(launch_speed)
-        #launch_angle = max(min(float(action[1]), angle), -angle)
-        launch_angle = action[0]*MAX_ANGLE/1.5
-        print(launch_angle, action)
-        self.driver.setSteeringAngle(launch_angle)
+        angle_action, speed_action = action
+        
+        speed_action += 0.7
+        print(f"angle action:{angle_action}  speed_action: {speed_action}")
+        
+        self.current_speed = self.clamp_speed(MAX_SPEED, self.current_speed + MAX_SPEED_RATIO*speed_action)
+        self.current_angle = self.clamp_angle(MAX_ANGLE, self.current_angle + MAX_ANGLE_RATIO*angle_action)
+        
+        self.driver.setCruisingSpeed(self.current_speed)
+        self.driver.setSteeringAngle(self.current_angle)
 
     def render(self, mode='human', close=False):
         print("render() is not used")

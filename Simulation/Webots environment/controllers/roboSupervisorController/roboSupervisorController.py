@@ -11,36 +11,32 @@ from rl.random import OrnsteinUhlenbeckProcess
 
 import numpy as np
 import gym
-
+import keras
 from keras.models import Sequential, Model
 from keras.layers import Dense, Activation, Flatten, Input, Concatenate, merge
 from keras.optimizers import Adam
 
+keras.backend.clear_session()
 
 env = gym.make("gym_race:race-v0")
 print(env)
 print(env.observation_space.shape)
 print(env.action_space)
 
-solved = False
-
-episodeCount = 0
-episodeLimit = 2
-episodeScore = 0
 
 nb_actions = env.action_space.shape[0]
 
 nb_actions = env.action_space.shape[0]
 
 #NN for actor
-HIDDEN1_UNITS = 3
-HIDDEN2_UNITS = 6
+HIDDEN1_UNITS = 6
+HIDDEN2_UNITS = 12
 CRITIC_LEARNING_RATE = 0.001
 S = Input(shape=(1,)+env.observation_space.shape)  
 h0 = Dense(HIDDEN1_UNITS, activation='relu')(S)
 h1 = Dense(HIDDEN2_UNITS, activation='relu')(h0)
 Steering = Dense(1,activation='tanh')(h1)   
-Acceleration = Dense(1,activation='sigmoid')(h1)     
+Acceleration = Dense(1,activation='tanh')(h1)     
 V = merge.Concatenate()([Steering,Acceleration])
 flattened_v = Flatten()(V)          
 actor = Model(S, flattened_v)
@@ -69,7 +65,7 @@ critic.compile(loss='mse', optimizer=adam)
 
 memory = SequentialMemory(limit=100000, window_length=1)
 
-random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=np.array([.0,.6]), mu=[-1,1], sigma=.1)
+random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=np.array([.1,.1]), mu=[0.01,0.01], sigma=.1)
 
 agent = DDPGAgent(nb_actions = nb_actions, actor = actor, critic=critic, critic_action_input = action_input,
                  memory = memory, nb_steps_warmup_critic=1000, nb_steps_warmup_actor=1000,
