@@ -5,5 +5,5 @@ sceneTreePerspectives: 000000ff0000000100000002000001be000000fa01000000020100000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 0 "controllers/roboSupervisorController/roboSupervisorController.py" "controllers/roboSupervisorController/gym_race/envs/race_env.py"
+textFiles: 1 "controllers/roboSupervisorController/roboSupervisorController.py" "controllers/roboSupervisorController/gym_race/envs/race_env.py"
 consoles: Console:All:All
