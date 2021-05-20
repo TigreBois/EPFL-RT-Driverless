@@ -29,9 +29,9 @@ nb_actions = env.action_space.shape[0]
 nb_actions = env.action_space.shape[0]
 
 #NN for actor
-HIDDEN1_UNITS = 6
-HIDDEN2_UNITS = 12
-CRITIC_LEARNING_RATE = 0.001
+HIDDEN1_UNITS = 5
+HIDDEN2_UNITS = 10
+CRITIC_LEARNING_RATE = 0.05
 S = Input(shape=(1,)+env.observation_space.shape)  
 h0 = Dense(HIDDEN1_UNITS, activation='relu')(S)
 h1 = Dense(HIDDEN2_UNITS, activation='relu')(h0)
@@ -55,8 +55,8 @@ h1 = Dense(HIDDEN2_UNITS, activation="linear")(w1)
 h2 = h1+a1
 h3 = Dense(HIDDEN2_UNITS, activation="relu")(h2)
 x = Activation('relu')(x)
-V = Dense(1, activation="linear")(h3)
-x = Activation('linear')(x)
+V = Dense(1, activation="sigmoid")(h3)
+x = Activation('sigmoid')(x)
 critic = Model(inputs=[action_input, observation_input], outputs=V)
 print(critic.summary())
 
@@ -65,12 +65,12 @@ critic.compile(loss='mse', optimizer=adam)
 
 memory = SequentialMemory(limit=100000, window_length=1)
 
-random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=np.array([.1,.1]), mu=[0.01,0.01], sigma=.1)
+random_process = OrnsteinUhlenbeckProcess(size=nb_actions, theta=.1, mu=[0,.2], sigma=.2)
 
 agent = DDPGAgent(nb_actions = nb_actions, actor = actor, critic=critic, critic_action_input = action_input,
                  memory = memory, nb_steps_warmup_critic=1000, nb_steps_warmup_actor=1000,
-                 random_process=random_process, gamma=.99, target_model_update=1e-3)
-agent.compile(Adam(lr=.001, clipnorm=1.), metrics=['mae'])
+                 random_process=random_process, gamma=1, target_model_update=1e-3)
+agent.compile(Adam(lr=.05, clipnorm=1.), metrics=['mae'])
 
 agent.fit(env, nb_steps=60000, visualize=False, verbose=0, nb_max_episode_steps=10000)
 
