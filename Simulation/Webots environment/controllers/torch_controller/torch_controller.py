@@ -100,21 +100,24 @@ def update_target(tau):
     soft_update(target_critic, critic_model, tau)
     soft_update(target_actor, actor_model, tau)
 
+LAYER_ONE = 5
+LAYER_TWO = 10
+
 # %%
 class Actor(nn.Module):
     def __init__(self):
         super().__init__()
 
         self.model = nn.Sequential(
-            nn.Linear(num_states, 512),
+            nn.Linear(num_states, LAYER_ONE),
             nn.ReLU(),
             # Layer Norm is used instead of Batch Norm,
             # as Batch Norm does not work in the same way as in Keras
-            nn.LayerNorm(512), 
-            nn.Linear(512, 512),
+            nn.LayerNorm(LAYER_ONE), 
+            nn.Linear(LAYER_ONE, LAYER_TWO),
             nn.ReLU(),
-            nn.LayerNorm(512),
-            nn.Linear(512, num_actions),
+            nn.LayerNorm(LAYER_TWO),
+            nn.Linear(LAYER_TWO, num_actions),
             nn.Tanh()
         )
 

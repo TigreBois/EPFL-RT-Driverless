@@ -66,6 +66,7 @@ class RaceEnv(gym.Env):
         self.cones = Cones("../../../cone_coordinates.csv")
         self.current_step = 1
         self.current_distance = 0
+        self.last_distance = 0
         self.current_speed = 0
         self.current_angle = 0
 
@@ -96,10 +97,10 @@ class RaceEnv(gym.Env):
         driver_done = self.driver.step()
         observations = self.get_own_observations()
         reward = self.get_reward(observations, action)
-        print(f"action: {action} reward: {reward}")
         #print(f"observations: {observations}")
         self.cumulative_reward += reward
         self.current_step+=1
+        self.last_distance = self.current_distance
         self.current_distance+=observations[0]*cos(observations[1])
         #print(f"cumulative reward: {self.cumulative_reward}")
  
@@ -137,7 +138,7 @@ class RaceEnv(gym.Env):
         #return robot_speed*cos(angle)*self.current_step/100
         # print(f"distance to side penalty {2*abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH}")
         
-        return (self.current_distance/self.current_step - 5*abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH)
+        return (self.current_distance - self.last_distance - abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH)
         # return min(self.get_observations())
         #return -max(self.get_observations())
     def get_sensor_data(self, sensors):
