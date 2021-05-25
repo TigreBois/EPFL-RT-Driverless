@@ -4,7 +4,6 @@ from numpy.linalg import norm
 from math import pi
 import matplotlib.pyplot as plt
 
-
 max_iter = 40  # Number of middle points to be selected
 point_step = 0.5  # Space between points in output in meters
 origin = np.array([0, 0])  # origin = car position
@@ -61,7 +60,21 @@ def recover_track(inverse, duplicates_index, points_index):
     return np.array(track).reshape(-1)
 
 
-def duplicate_mid_points(mid_points, mid_points_index):
+def filter_angles(filtered, duplicates_index):
+    angles = get_angles(filtered)
+    i = 0
+    while i < len(angles):
+        while (angles[i] < 30) & (i < len(angles) - 1) & (i < max_iter):
+            i = i + 1
+        filtered = np.delete(filtered, i + 1, 0)
+        duplicates_index = np.delete(duplicates_index, i)
+        angles = get_angles(filtered)
+    return duplicates_index
+
+
+# Find midPoints that are in 2 different triangles
+def duplicate_mid_points(mid_points):
+    mid_points_index = np.arange(0, len(mid_points), 1, int)
     # Find the closest mid point to the origin
     norms = np.linalg.norm(mid_points, axis=1)
     closest = mid_points[np.argmin(norms)]
@@ -70,19 +83,15 @@ def duplicate_mid_points(mid_points, mid_points_index):
     # Find midPoints that are in 2 different triangles
     u, indices, inverse = np.unique(mid_points, return_index=True, return_inverse=True, axis=0)
     inverse = indices[inverse].reshape(-1, 3)
-
-    e = np.delete(mid_points, indices, axis=0)
     duplicates_index = np.delete(mid_points_index, indices)
 
     # Sort the duplicates according to the norm
-    duplicates = e[sort_norm(e)]
-    duplicates_index = duplicates_index[sort_norm(e)]
+    duplicates_points = mid_points[duplicates_index]
+    duplicates_index = duplicates_index[sort_norm(duplicates_points)]
 
-    # Add origin and first point to which the car should go
-    duplicates = np.insert(duplicates, 0, closest, axis=0)
+    # Add first point to which the car should go
     duplicates_index = np.insert(duplicates_index, 0, closestIndex)
-    duplicates = np.insert(duplicates, 0, origin, axis=0)
-    return duplicates, duplicates_index, inverse
+    return duplicates_index, inverse
 
 
 # Compute the middle path between the cones
@@ -92,38 +101,27 @@ def middle_path(yellow_cones, blue_cones):
     points = np.concatenate((yellow_cones, blue_cones))
 
     # Compute the Delaunay Triangulation formed by the cones
-    tri = Delaunay(points)
-
     # Compute the middle of all the edges of the triangulation
+    tri = Delaunay(points)
     mid_points = (np.apply_along_axis(mid_triangle, 1, points[tri.simplices]) * 0.5).reshape(-1, 2)
 
+    # Prepare index arrays
     points_index = np.arange(0, np.size(points[tri.simplices]) / 2, 1, int).reshape(-1, 3)
-    mid_points_index = np.arange(0, np.size(mid_points), 1, int)
-
-    # Find midPoints that are in 2 different triangles
-    duplicates, duplicates_index, inverse = duplicate_mid_points(mid_points, mid_points_index)
+    duplicates_index, inverse = duplicate_mid_points(mid_points)
 
     # From the remaining points, filter points creating big angle turns
-    filtered = np.array(duplicates)
-    angles = get_angles(filtered)
-    i = 0
-    while i < len(angles):
-        while (angles[i] < 30) & (i < len(angles) - 1) & (i < max_iter):
-            i = i + 1
-        filtered = np.delete(filtered, i + 1, 0)
-        duplicates_index = np.delete(duplicates_index, i)
-        angles = get_angles(filtered)
+    filtered = np.insert(mid_points[duplicates_index], 0, origin, axis=0)  # add origin for computation
+    track_index = filter_angles(filtered, duplicates_index)
 
     # Recover track boundaries corresponding to the computed path
-    track = recover_track(inverse, duplicates_index, points_index)
+    track = recover_track(inverse, track_index, points_index)
     track = (tri.simplices).reshape(-1)[track]
     track = np.unique(track)
 
     track_yellow = track[track < first_blue_index]
     track_blue = track[track >= first_blue_index] - first_blue_index
-    path = mid_points[duplicates_index]
+    path = mid_points[track_index]
 
     return path, track_yellow, track_blue
-
 
 
