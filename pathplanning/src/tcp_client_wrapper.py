@@ -3,13 +3,15 @@ import sys
 import pickle
 import time
 import tcplib
-import path_planning
 import numpy as np
 from scipy.spatial import Delaunay
 from scipy.interpolate import interp1d
 from numpy import arccos
 from numpy.linalg import norm
 from math import pi
+from pathplanning.src.MainCode import middle_path
+import pathplanning.src.MainCode
+from pathplanning.src.MainCode import get_angles, mid_triangle, sort_norm
 
 # Beginning of my code
 
@@ -19,70 +21,18 @@ origin = np.array([0, 0])  # origin = car position
 rad_to_deg = 180 / pi
 
 
-# Sort list a of points according to their norm
-def sortNorm(a): return a[np.argsort(np.linalg.norm(a, axis=1))]
-
-
-# Compute the angle between vector v and w
-def theta(v, w): return arccos(v.dot(w) / (norm(v) * norm(w)))
-
-
-# Compute list of angles corresponding to the list of points ps
-def getAngles(ps):
-    v = np.subtract(ps[1:], ps[:-1])
-    allAngles = [np.arctan2(v[0][0], v[0][1])]
-    for i in range(1, np.ma.size(v, 0)):
-        allAngles.append(theta(v[i - 1], v[i]))
-    return np.array(allAngles) * rad_to_deg
-
-
-# Return the middle points of a triangle
-def midTriangle(a): return [a[0] + a[1], a[1] + a[2], a[2] + a[0]]
-
-
 # Compute the middle path between the cones
-def middle_path(points):
-    # Compute the Delaunay Triangulation formed by the cones
-    tri = Delaunay(points)
+def get_path(points):
+    # separate blue and yellow cones
+    mid = int(len(points) / 2)
+    return middle_path(points[mid:], points[:mid])
 
-    # Compute the middle of all the edges of the triangulation
-    midPoints = (np.apply_along_axis(midTriangle, 1, points[tri.simplices]) * 0.5).reshape(-1, 2)
-
-    norms = np.linalg.norm(midPoints, axis=1)
-    closest = midPoints[np.argmin(norms)]
-
-    # Find midPoints that are in 2 different triangles
-    u, indices = np.unique(midPoints, return_index=True, axis=0)
-    e = np.delete(midPoints, indices, axis=0)
-    d = sortNorm(e)
-
-    # Add origin and first point to which the car should go
-    d = np.insert(d, 0, closest, axis=0)
-    d = np.insert(d, 0, origin, axis=0)
-
-    # From the remaining points, filter points creating big angle turns
-    filtered = np.array(d)
-    angles = getAngles(filtered)
-    i = 0
-    while i < angles.size:
-        while (angles[i] < 30) & (i < angles.size - 1) & (i < max_iter):
-            i = i + 1
-        filtered = np.delete(filtered, i + 1, 0)
-        angles = getAngles(filtered)
-
-    # Make a path with sufficient number of points with interpolation
-    f = interp1d(filtered[:, 0], filtered[:, 1])
-    x_new = np.arange(0, filtered[-1][0], point_step)
-    y_new = f(x_new)
-    output = np.vstack((x_new, y_new)).T
-
-    return output
 
 
 # Beginning of Wrapper
 
-IP_PORT_IN = 10000
-IP_PORT_OUT = 10001
+IP_PORT_IN = 10040  # input form SLAM
+IP_PORT_OUT = 10041  # output to control
 IP_ADDR = 'localhost'
 BUFF_SIZE = 2 ** 5  # has to be a power of 2
 MY_MODULE_NAME = 'path_planning'  # Please enter here an arbitrary name for your code, which will help in logging
@@ -120,7 +70,7 @@ try:
         msg = tcplib.receiveData(sock_input)
         print('message:', msg)
 
-        path = middle_path(msg)
+        path, yellow, blue = get_path(msg)
 
         ######################################################
         # PERFORM SOME CALCULATIONS.
