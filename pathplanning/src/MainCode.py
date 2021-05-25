@@ -29,9 +29,6 @@ def filter_negative(yellow, blue):
 def theta(v, w): return np.arccos(v.dot(w) / (np.linalg.norm(v) * np.linalg.norm(w)))
 
 
-def theta2(v, w): return arccos(v.dot(w) / (norm(v) * norm(w)))
-
-
 # Compute list of angles corresponding to the list of points ps
 def get_angles(ps):
     v = np.subtract(ps[1:], ps[:-1])  # create vector list
