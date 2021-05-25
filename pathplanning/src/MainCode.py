@@ -1,12 +1,9 @@
 import numpy as np
 from scipy.spatial import Delaunay
-from scipy.interpolate import interp1d
-from numpy import arccos
 from numpy.linalg import norm
 from math import pi
 import matplotlib.pyplot as plt
-import time
-import math as mt
+
 
 max_iter = 40  # Number of middle points to be selected
 point_step = 0.5  # Space between points in output in meters
@@ -64,22 +61,7 @@ def recover_track(inverse, duplicates_index, points_index):
     return np.array(track).reshape(-1)
 
 
-# Compute the middle path between the cones
-def middle_path(yellow_cones, blue_cones):
-    yellow_cones, blue_cones = filter_negative(yellow_cones, blue_cones)
-    first_blue_index = len(yellow_cones)
-    points = np.concatenate((yellow_cones, blue_cones))
-
-    # Compute the Delaunay Triangulation formed by the cones
-    tri = Delaunay(points)
-
-    # Compute the middle of all the edges of the triangulation
-    mid_points_flat = (np.apply_along_axis(mid_triangle, 1, points[tri.simplices]) * 0.5)
-    mid_points = mid_points_flat.reshape(-1, 2)
-
-    points_index = np.arange(0, np.size(points[tri.simplices]) / 2, 1, int).reshape(-1, 3)
-    mid_points_index = np.arange(0, np.size(mid_points_flat) / 2, 1, int)
-
+def duplicate_mid_points(mid_points, mid_points_index):
     # Find the closest mid point to the origin
     norms = np.linalg.norm(mid_points, axis=1)
     closest = mid_points[np.argmin(norms)]
@@ -100,6 +82,26 @@ def middle_path(yellow_cones, blue_cones):
     duplicates = np.insert(duplicates, 0, closest, axis=0)
     duplicates_index = np.insert(duplicates_index, 0, closestIndex)
     duplicates = np.insert(duplicates, 0, origin, axis=0)
+    return duplicates, duplicates_index, inverse
+
+
+# Compute the middle path between the cones
+def middle_path(yellow_cones, blue_cones):
+    yellow_cones, blue_cones = filter_negative(yellow_cones, blue_cones)
+    first_blue_index = len(yellow_cones)
+    points = np.concatenate((yellow_cones, blue_cones))
+
+    # Compute the Delaunay Triangulation formed by the cones
+    tri = Delaunay(points)
+
+    # Compute the middle of all the edges of the triangulation
+    mid_points = (np.apply_along_axis(mid_triangle, 1, points[tri.simplices]) * 0.5).reshape(-1, 2)
+
+    points_index = np.arange(0, np.size(points[tri.simplices]) / 2, 1, int).reshape(-1, 3)
+    mid_points_index = np.arange(0, np.size(mid_points), 1, int)
+
+    # Find midPoints that are in 2 different triangles
+    duplicates, duplicates_index, inverse = duplicate_mid_points(mid_points, mid_points_index)
 
     # From the remaining points, filter points creating big angle turns
     filtered = np.array(duplicates)
