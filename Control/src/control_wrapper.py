@@ -3,7 +3,7 @@ import sys
 import pickle
 import time
 import tcplib
-import mpc_robot_model
+import mpc_car_model
 import math as mt
 
 PATH_PLANNING_PORT = 10050
@@ -19,8 +19,7 @@ print('INFO:', MY_MODULE_NAME, 'starting.')
 ######################################################
 #   MPC MODULE DECALRATION
 ######################################################
-#car either be declared as a mpc_robot_model or a mpc_car_model
-mpc_module = mpc_robot_model.MPC_robot()
+mpc_module = mpc_car_model.MPC_car_model()
 
 #Socket for path planning
 sock_path = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -52,15 +51,15 @@ try:
         # We assume that at each iteration we will update our current paramaters
         # That won't be the case at the end we should only update our aprameters if we get new ones 
         new_state = tcplib.receiveData(sock_motion)
-        new_path = mpc_robot_model.local_to_global(tcplib.receiveData(sock_path), new_state)
+        new_path = mpc_car_model.local_to_global(tcplib.receiveData(sock_path), new_state)
 
 
-        #Computation of the output given the new input 
-        new_state = (new_state[0], new_state[1], new_state[5])
-        previous_state = (new_state[3], new_state[5])
+        # Computation of the output given the new input (asked A. Deherse to be sure about argument order)
+        # new_state = (new_state[0], new_state[1], new_state[5])
+        # previous_state = (new_state[3], new_state[5])
+        # #mpc_module.previous_state = previous_state
         mpc_module.acquire_path(new_path)
         mpc_module.set_state(new_state)
-        mpc_module.previous_state = previous_state
         output = mpc_module.run_MPC()
 
         #Sending to new command to the car
