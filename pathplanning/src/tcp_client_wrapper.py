@@ -9,6 +9,7 @@ from scipy.interpolate import interp1d
 from numpy import arccos
 from numpy.linalg import norm
 from math import pi
+from pathplanning.src.MainCode import middle_path
 import pathplanning.src.MainCode
 from pathplanning.src.MainCode import get_angles, mid_triangle, sort_norm
 
@@ -21,42 +22,11 @@ rad_to_deg = 180 / pi
 
 
 # Compute the middle path between the cones
-def middle_path(points):
-    # Compute the Delaunay Triangulation formed by the cones
-    tri = Delaunay(points)
+def get_path(points):
+    # separate blue and yellow cones
+    mid = int(len(points) / 2)
+    return middle_path(points[mid:], points[:mid])
 
-    # Compute the middle of all the edges of the triangulation
-    midPoints = (np.apply_along_axis(mid_triangle, 1, points[tri.simplices]) * 0.5).reshape(-1, 2)
-
-    norms = np.linalg.norm(midPoints, axis=1)
-    closest = midPoints[np.argmin(norms)]
-
-    # Find midPoints that are in 2 different triangles
-    u, indices = np.unique(midPoints, return_index=True, axis=0)
-    e = np.delete(midPoints, indices, axis=0)
-    d = sort_norm(e)
-
-    # Add origin and first point to which the car should go
-    d = np.insert(d, 0, closest, axis=0)
-    d = np.insert(d, 0, origin, axis=0)
-
-    # From the remaining points, filter points creating big angle turns
-    filtered = np.array(d)
-    angles = get_angles(filtered)
-    i = 0
-    while i < angles.size:
-        while (angles[i] < 30) & (i < angles.size - 1) & (i < max_iter):
-            i = i + 1
-        filtered = np.delete(filtered, i + 1, 0)
-        angles = get_angles(filtered)
-
-    # Make a path with sufficient number of points with interpolation
-    f = interp1d(filtered[:, 0], filtered[:, 1])
-    x_new = np.arange(0, filtered[-1][0], point_step)
-    y_new = f(x_new)
-    output = np.vstack((x_new, y_new)).T
-
-    return output
 
 
 # Beginning of Wrapper
@@ -100,7 +70,7 @@ try:
         msg = tcplib.receiveData(sock_input)
         print('message:', msg)
 
-        path = middle_path(msg)
+        path, yellow, blue = get_path(msg)
 
         ######################################################
         # PERFORM SOME CALCULATIONS.
