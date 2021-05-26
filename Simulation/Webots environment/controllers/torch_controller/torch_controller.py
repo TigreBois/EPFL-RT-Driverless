@@ -185,7 +185,7 @@ def policy(state, noise_object):
 # %%
 # Hyperparameters
 std_dev = 0.5
-ou_noise = OUActionNoise(theta=0.5,mean=np.array([0, 1]), std_deviation=float(std_dev) * np.ones(num_actions))
+ou_noise = OUActionNoise(theta=0.5,mean=np.array([0, 0.5]), std_deviation=float(std_dev) * np.ones(num_actions))
 
 actor_model = get_actor()
 critic_model = get_critic()
@@ -207,7 +207,7 @@ actor_lr = 0.001
 critic_optimizer = optim.Adam(critic_model.parameters(), lr=critic_lr)
 actor_optimizer = optim.Adam(actor_model.parameters(), lr=actor_lr)
 
-total_episodes = 100
+total_episodes = 1000
 # Discount factor for future rewards
 gamma = 0.99
 # Used to update target networks
@@ -252,9 +252,10 @@ for ep in range(total_episodes):
         prev_state = state
 
     ep_reward_list.append(episodic_reward)
+    print(f'Episode reward: {episodic_reward}')
 
     # Mean of last 40 episodes
     avg_reward = np.mean(ep_reward_list[-40:])
-    print("Episode * {} * Avg Reward is ==> {}".format(ep, avg_reward))
+    # print("Episode * {} * Avg Reward is ==> {}".format(ep, avg_reward))
     avg_reward_list.append(avg_reward)
 

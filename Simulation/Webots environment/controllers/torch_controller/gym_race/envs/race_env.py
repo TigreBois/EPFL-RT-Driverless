@@ -37,7 +37,7 @@ START_THRESHOLD = 20
 MAX_SPEED = 8
 MAX_ANGLE = 0.29
 MAX_SPEED_RATIO = 0.5
-MAX_ANGLE_RATIO = 0.001
+MAX_ANGLE_RATIO = 0.1
 TRACK_WIDTH = 9
 
 class RaceEnv(gym.Env):
@@ -58,6 +58,10 @@ class RaceEnv(gym.Env):
  
         self.timestep = int(self.driver.getBasicTimeStep())
         self.sensors = self.init_sensors()
+
+        self.intial_position = np.array([21.9, .916, -51.7]) # FIXME
+        self.curr_position = np.zeros(3)
+
         self.stopped = True
         self.robot_coord_ISO = []
         self.cones_within_dist = []
@@ -65,8 +69,6 @@ class RaceEnv(gym.Env):
         self.cumulative_reward = 0
         self.cones = Cones("../../../cone_coordinates.csv")
         self.current_step = 1
-        self.current_distance = 0
-        self.last_distance = 0
         self.current_speed = 0
         self.current_angle = 0
 
@@ -93,6 +95,8 @@ class RaceEnv(gym.Env):
         return sensors
 
     def step(self, action):
+        if self.current_step == 1:
+            self.intial_position = np.array(self.sensors['gps'].getValues())
         self.apply_action(action)
         driver_done = self.driver.step()
         observations = self.get_own_observations()
@@ -100,8 +104,6 @@ class RaceEnv(gym.Env):
         #print(f"observations: {observations}")
         self.cumulative_reward += reward
         self.current_step+=1
-        self.last_distance = self.current_distance
-        self.current_distance+=observations[0]*cos(observations[1])
         #print(f"cumulative reward: {self.cumulative_reward}")
  
         return self.get_observations(), reward, driver_done == -1 or self.is_done(), self.get_info()
@@ -138,12 +140,16 @@ class RaceEnv(gym.Env):
         #return robot_speed*cos(angle)*self.current_step/100
         # print(f"distance to side penalty {2*abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH}")
         
-        return (self.current_distance - self.last_distance - abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH)
-        # return min(self.get_observations())
+        self.curr_position = np.array(self.sensors['gps'].getValues())
+        dist = np.linalg.norm(self.intial_position - self.curr_position)
+
+        return dist * self.current_speed * cos(angle)
+        # return dist - abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH
+        #return min(self.get_observations())
         #return -max(self.get_observations())
     def get_sensor_data(self, sensors):
         gps_values = sensors["gps"].getValues()
-        #print("Robot coordinates:", gps_values)
+        # print("Robot coordinates:", gps_values)
         
         speed = sensors["gps"].getSpeed()
         #print("Robot speed", speed)
@@ -253,13 +259,12 @@ class RaceEnv(gym.Env):
     def reset(self):
         print("************ Resetting ****************")
         self.resetPosition()
-        self.sensors = self.init_sensors()
+        # self.sensors = self.init_sensors()
         self.stopped = True
         self.is_finished = False
         self.driver.step()
         self.cumulative_reward = 0
         self.current_step = 1
-        self.current_distance = 0
         self.current_speed = 0
         self.current_angle = 0
         return self.get_observations()
