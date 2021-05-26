@@ -53,7 +53,7 @@ class RaceEnv(gym.Env):
         #self.observation_space = Box(low=-inf, high=inf, shape=(6,))
         self.observation_space = Box(low=0, high=CONE_PERCEPTION_DISTANCE, shape=(2,))
         self.action_space = Box(low=np.array([0, -angle]), high=np.array([speed, angle]),shape=(2,)) # Cruising speed, Steering Angle
-                
+
         self.driver = Driver()
  
         self.timestep = int(self.driver.getBasicTimeStep())
@@ -143,8 +143,8 @@ class RaceEnv(gym.Env):
         self.curr_position = np.array(self.sensors['gps'].getValues())
         dist = np.linalg.norm(self.intial_position - self.curr_position)
 
-        return dist * self.current_speed * cos(angle)
-        # return dist - abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH
+        # return dist * self.current_speed * cos(angle)
+        return dist - abs(self.get_distance_to_the_side(observations[2:5])-TRACK_WIDTH/2)/TRACK_WIDTH
         #return min(self.get_observations())
         #return -max(self.get_observations())
     def get_sensor_data(self, sensors):

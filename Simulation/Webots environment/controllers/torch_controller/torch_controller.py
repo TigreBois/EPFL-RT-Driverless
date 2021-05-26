@@ -5,10 +5,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import numpy as np
-import matplotlib.pyplot as plt
 from torch_utils import *
 from ou_action_noise import OUActionNoise
-
+import os
 
 # %%
 torch.set_default_dtype(torch.float64)
@@ -100,8 +99,8 @@ def update_target(tau):
     soft_update(target_critic, critic_model, tau)
     soft_update(target_actor, actor_model, tau)
 
-LAYER_ONE = 5
-LAYER_TWO = 10
+LAYER_ONE = 3
+LAYER_TWO = 6
 
 # %%
 class Actor(nn.Module):
@@ -151,13 +150,13 @@ class Critic(nn.Module):
         )
 
         self.out_model = nn.Sequential(
-            nn.Linear(64, 512),
+            nn.Linear(64, LAYER_ONE),
             nn.ReLU(),
-            nn.LayerNorm(512),
-            nn.Linear(512, 512),
+            nn.LayerNorm(LAYER_ONE),
+            nn.Linear(LAYER_ONE, LAYER_TWO),
             nn.ReLU(),
-            nn.LayerNorm(512),
-            nn.Linear(512, num_actions)
+            nn.LayerNorm(LAYER_TWO),
+            nn.Linear(LAYER_TWO, num_actions)
         )
 
     def forward(self, inputs):
@@ -183,15 +182,31 @@ def policy(state, noise_object):
 
 
 # %%
+def save_models(actor, critic, target_actor, target_critic):
+    torch.save(actor.state_dict(), 'actor.model')
+    torch.save(critic.state_dict(), 'critic.model')
+    torch.save(target_actor.state_dict(), 'target_actor.model')
+    torch.save(target_critic.state_dict(), 'target_critic.model')
+
+def load_models(actor, critic, target_actor, target_critic):
+    actor.load_state_dict(torch.load('actor.model'))
+    critic.load_state_dict(torch.load('critic.model'))
+    target_actor.load_state_dict(torch.load('target_actor.model'))
+    target_critic.load_state_dict(torch.load('target_critic.model'))
+
+# %%
 # Hyperparameters
 std_dev = 0.5
-ou_noise = OUActionNoise(theta=0.5,mean=np.array([0, 0.5]), std_deviation=float(std_dev) * np.ones(num_actions))
+ou_noise = OUActionNoise(theta=0.5,mean=np.array([-1, 1]), std_deviation=float(std_dev) * np.ones(num_actions))
 
 actor_model = get_actor()
 critic_model = get_critic()
 
 target_actor = get_actor()
 target_critic = get_critic()
+
+if os.path.exists('actor.model'):
+    load_models(actor_model, critic_model, target_actor, target_critic)
 
 target_actor.eval()
 target_critic.eval()
@@ -212,6 +227,8 @@ total_episodes = 1000
 gamma = 0.99
 # Used to update target networks
 tau = 0.005
+
+save_every = 50 # episodes
 
 buffer = Buffer(50000, 64)
 
@@ -258,4 +275,7 @@ for ep in range(total_episodes):
     avg_reward = np.mean(ep_reward_list[-40:])
     # print("Episode * {} * Avg Reward is ==> {}".format(ep, avg_reward))
     avg_reward_list.append(avg_reward)
+
+    if ep % save_every:
+        save_models(actor_model, critic_model, target_actor, target_critic)
 
