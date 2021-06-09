@@ -2,6 +2,7 @@ import numpy as np
 from scipy.spatial import Delaunay
 from numpy.linalg import norm
 from math import pi
+import math as mt
 import matplotlib.pyplot as plt
 
 max_iter = 40  # Number of middle points to be selected
@@ -123,5 +124,17 @@ def middle_path(yellow_cones, blue_cones):
     path = mid_points[track_index]
 
     return path, track_yellow, track_blue
+
+
+def local_to_global(path, car):
+    angle = mt.atan2(car[0], car[1])
+    new_path = [None for i in range(len(path))]
+    for i in range(len(path)):
+        current = path[i]
+        x_glob = current[0] * mt.cos(angle) - current[1] * mt.sin(angle) + car[0]
+        y_glob = current[0] * mt.sin(angle) + current[1] * mt.cos(angle) + car[1]
+        new_path[i] = [x_glob, y_glob]
+
+    return np.array(new_path)
 
 
