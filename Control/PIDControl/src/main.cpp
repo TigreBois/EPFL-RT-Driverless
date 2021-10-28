@@ -18,7 +18,7 @@ int main() {
 	std::vector<double> T(steps), Xpoints(steps), Ypoints(steps, 0.0);
 	std::iota(T.begin(), T.end(), 0);
 	std::iota(Xpoints.begin(), Xpoints.end(), 0);
-	StanleyPID controller(State(0.0, 0.0, 0.0, 0.0), {tk::spline(T, Xpoints), tk::spline(T, Ypoints)});
+	StanleyPID controller(State(0.0, 0.0, 0.0, 0.0), {tk::spline(T, Xpoints), tk::spline(T, Ypoints)}, std::function<double(double)>());
 
 	std::function<Eigen::Vector4d(Eigen::Vector4d)> f;
 
