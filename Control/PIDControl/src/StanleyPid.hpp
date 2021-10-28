@@ -35,27 +35,29 @@ private:
 	static constexpr double K_P = 0.0;
 
 	static constexpr double timeStep = 0.05;
-	std::vector<std::pair<double, double>> pathPoints;
+
 	std::pair<tk::spline, tk::spline> m_path;
 
-	std::function<double(double)> v_ref;
+	std::function<double(double)> m_v_ref;
 
 	std::vector<State> m_states;
 	std::vector<Input> m_inputs;
 	std::vector<ComputationHelpers> m_helpers;
 
 public:
-	StanleyPID(State const& initialState, Path path) : m_states(1, initialState), m_path(std::move(path)) {
-		//computeInput();
-	}
+	StanleyPID(State const& initialState, Path path, std::function<double(double)> v_ref)
+			: m_states(1, initialState),
+			  m_path(std::move(path)),
+			  m_v_ref(std::move(v_ref)) {}
+
 
 	void computeInput();
 
 	void addState(State const& newState);
 
-	std::vector<State> const& states() const;
+	[[nodiscard]] std::vector<State> const& states() const;
 
-	std::vector<Input> const& inputs() const;
+	[[nodiscard]] std::vector<Input> const& inputs() const;
 
 };
 

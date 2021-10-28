@@ -15,11 +15,11 @@ void StanleyPID::computeInput() {
 	double theta_proj_k = projection(m_path, m_states.back().pos(), m_helpers.back().theta);
 
 	// compute the new speed control input u
-	double error_k = v_ref(theta_proj_k) - m_states.back().v;
+	double error_k = m_v_ref(theta_proj_k) - m_states.back().v;
 	double u_k = (K_P * m_states.back().v + 5) * error_k;
 	if (m_states.size() >= 2) {
 		// not the first computation so we can compute the integral and derivative terms
-		double error_prev = v_ref(m_helpers.back().theta) - m_states[m_states.size() - 2].v;
+		double error_prev = m_v_ref(m_helpers.back().theta) - m_states[m_states.size() - 2].v;
 		u_k += K_I * m_states.back().v * 0.5 * (error_k + error_prev) * timeStep + K_D * m_states.back().v * (error_k - error_prev) / timeStep;
 	}
 
