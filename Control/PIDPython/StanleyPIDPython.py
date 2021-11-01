@@ -14,9 +14,9 @@ class StanleyPIDController:
      """
     # misc
     referencePath: CubicSpline
-    v_ref = 20.0  # m/s
+    v_ref = 15.0  # m/s
     samplingTime = 0.05
-    delta_max = np.deg2rad(30.0)
+    delta_max = np.deg2rad(45.0)
 
     states: np.ndarray # shape (4,n)
     inputs: np.ndarray # shape (2,n)
@@ -64,27 +64,42 @@ class StanleyPIDController:
         # self.currentState = np.c_[self.currentState, newState]
         self.currentState = np.column_stack((self.currentState, newState))
 
-    def step(self) -> np.ndarray:
+    def step(self, k: int) -> np.ndarray:
         """
             Computes and returns the new control inputs
          """
         # find new acceleration input
         # self.longitudinalErrors = np.c_[self.longitudinalErrors, self.v_ref - self.states[3,-1]]
-        actual_v_ref = self.v_ref if self.states[0,-1] <= 80 else 0
+        actual_v_ref = self.v_ref #if self.states[0,-1] <= 80 else 0
         self.longitudinalErrors = np.column_stack((self.longitudinalErrors, actual_v_ref - self.states[3,-1]))
-        self.longitudinalErrorsFile.write('{},{}\n'.format(self.longitudinalErrors.size, self.longitudinalErrors[0,-1]))
+        self.longitudinalErrorsFile.write('{},{}\n'.format(k, self.longitudinalErrors[0,-1]))
         new_a_x = self.K_P * self.longitudinalErrors[0,-1] + 0.5 * self.K_I * (self.longitudinalErrors[0,-1] + self.longitudinalErrors[0,-2]) * self.samplingTime
-        self.pidTermsFile.write('{},{}\n'.format(self.K_P * self.longitudinalErrors[0,-1],0.5 * self.K_I * (self.longitudinalErrors[0,-1] + self.longitudinalErrors[0,-2]) * self.samplingTime))
+        self.pidTermsFile.write('{},{},{}\n'.format(k, self.K_P * self.longitudinalErrors[0,-1],0.5 * self.K_I * (self.longitudinalErrors[0,-1] + self.longitudinalErrors[0,-2]) * self.samplingTime))
         # find new steering input
         projection = minimize_scalar(lambda theta: (self.referencePath(theta)[0]-self.states[0,-1])**2+(self.referencePath(theta)[1]-self.states[1,-1])**2, bounds=(0.0,1.0), method='Bounded')
         if projection.success:
+            # heading error
             tangentVector = np.array(self.referencePath(projection.x, 1))
-            e_phi = np.arccos((tangentVector @ np.array([np.cos(self.states[2,-1]), np.sin(self.states[2,-1])])) / np.sqrt(tangentVector @ tangentVector))
-            e_second = np.arctan(self.k_Delta*projection.fun/(self.k_s+self.k_d*self.states[3,-1]))
-            new_delta = e_phi + e_second
+            headingVector = np.array([np.cos(self.states[2,-1]), np.sin(self.states[2,-1])])
+            e_phi = np.arccos((tangentVector @ headingVector) / np.sqrt(tangentVector @ tangentVector))
+            e_phi = np.sign(headingVector[0]*tangentVector[1] - headingVector[1]*tangentVector[0]) * np.abs(e_phi)
+            
+            # if tangentVector[0]*np.sin(self.states[2,-1]) - tangentVector[1]*np.cos(self.states[2,-1]) > 0: 
+            #     e_phi*=-1
+            
+            # cross track error
+            # e_delta = self.referencePath(projection.x) - self.states[0:1,-1]
+            e_delta = np.array([self.referencePath(projection.x)[0] - self.states[0,-1], self.referencePath(projection.x)[1] - self.states[1,-1]])
+            crossTrackError = np.arctan(self.k_Delta*projection.fun/(self.k_s+self.k_d*self.states[3,-1]))
+            crossTrackError = np.sign(tangentVector[0]*e_delta[1] - tangentVector[1]*e_delta[0]) * np.abs(crossTrackError)
+
+            new_delta = e_phi + crossTrackError
+            
+            print('{}, heading error : {}, cross track error : {}, new_delta : {}'.format(k,e_phi, crossTrackError, new_delta))
+
             # if the car is pointing on the left of the track, ie tangentVector ^ headingVector is vertical
-            if tangentVector[0]*np.sin(self.states[2,-1]) - tangentVector[1]*np.cos(self.states[2,-1]) > 0: 
-                new_delta *= -1.0
+            # if tangentVector[0]*np.sin(self.states[2,-1]) - tangentVector[1]*np.cos(self.states[2,-1]) > 0: 
+            #     new_delta *= -1.0
         else:
             sys.stderr.write('failure of projection\n')
             new_delta = self.inputs[0,-1]
@@ -103,16 +118,22 @@ class StanleyPIDController:
         assert x.size == 6 and (x.shape == (6,1) or x.shape == (6,))
         assert u.size == 2 and (u.shape == (2,1) or u.shape == (2,))
         assert w.size == 2 and (w.shape == (2,1) or w.shape == (2,))
-        m = 230.0
+        m = 223.0
         I_z = 200.0
-        l_R = 1.0
-        l_F = 1.0
+        l_R = 0.895
+        l_F = 0.675
         B_R = 10.0
         C_R = 1.9
         D_R = 1.0
         B_F = 10.0
         C_F = 1.9
         D_F = 1.0
+        # B_R = 0.0
+        # C_R = 0.0
+        # D_R = 0.0
+        # B_F = 0.0
+        # C_F = 0.0
+        # D_F = 0.0
         # C_m = 200.0
         # C_r0 = 0.0
         # C_r2 = 0.0
@@ -154,12 +175,13 @@ class StanleyPIDController:
 
 
 if __name__ == '__main__':
-    # pathPoints = np.c_[np.linspace(0,250,100), np.zeros(100)].T
-    pathPoints = np.genfromtxt('/Users/tudoroancea/Developer/racing-team/simulation/Track Racelines/Budapest.csv', delimiter=',', skip_header=1, unpack=True)
-    pathPoints = pathPoints[:,:200]
-    # print("pathPoints=", pathPoints)
-    # assert pathPoints.shape == (2,100)
-    currentState = np.array([-6.075903,-4.259295,np.deg2rad(135),0,0,0])
+    pathPoints = np.c_[np.linspace(0,250,100), np.zeros(100)].T
+    currentState = np.array([0.0,-0.5, 0.0, 0.0, 0.0, 0.0])
+
+    # pathPoints = np.genfromtxt('/Users/tudoroancea/Developer/racing-team/simulation/Track Racelines/Budapest.csv', delimiter=',', skip_header=1, unpack=True)
+    # pathPoints = pathPoints[:,:200]
+    # currentState = np.array([-6.075903,-4.259295,np.deg2rad(135),0,0,0])
+
     C = StanleyPIDController(pathPoints=pathPoints, initialState=currentState[:4])
 
     statesFile = open('/Users/tudoroancea/Developer/racing-team/EPFL-RT-Driverless/Control/PIDPython/states.csv', 'w')
@@ -169,7 +191,7 @@ if __name__ == '__main__':
 
     simulationLength = 400
     for k in range(simulationLength):
-        newInputs = C.step()
+        newInputs = C.step(k)
         if C.inputs.size > 2:
             w=C.samplingTime*(C.inputs[:,-1]-C.inputs[:,-2])
         else:
