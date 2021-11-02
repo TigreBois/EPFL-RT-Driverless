@@ -14,7 +14,7 @@ class StanleyPIDController:
      """
     # misc
     referencePath: CubicSpline
-    v_ref = 15.0  # m/s
+    v_ref = 10.0  # m/s
     samplingTime = 0.05
     delta_max = np.deg2rad(45.0)
 
@@ -61,7 +61,6 @@ class StanleyPIDController:
 
     def setState(self, newState: np.ndarray):
         assert newState.shape == (4,1) or newState.shape == (4,)
-        # self.currentState = np.c_[self.currentState, newState]
         self.currentState = np.column_stack((self.currentState, newState))
 
     def step(self, k: int) -> np.ndarray:
@@ -69,43 +68,52 @@ class StanleyPIDController:
             Computes and returns the new control inputs
          """
         # find new acceleration input
-        # self.longitudinalErrors = np.c_[self.longitudinalErrors, self.v_ref - self.states[3,-1]]
         actual_v_ref = self.v_ref #if self.states[0,-1] <= 80 else 0
         self.longitudinalErrors = np.column_stack((self.longitudinalErrors, actual_v_ref - self.states[3,-1]))
         self.longitudinalErrorsFile.write('{},{}\n'.format(k, self.longitudinalErrors[0,-1]))
         new_a_x = self.K_P * self.longitudinalErrors[0,-1] + 0.5 * self.K_I * (self.longitudinalErrors[0,-1] + self.longitudinalErrors[0,-2]) * self.samplingTime
         self.pidTermsFile.write('{},{},{}\n'.format(k, self.K_P * self.longitudinalErrors[0,-1],0.5 * self.K_I * (self.longitudinalErrors[0,-1] + self.longitudinalErrors[0,-2]) * self.samplingTime))
+
         # find new steering input
         projection = minimize_scalar(lambda theta: (self.referencePath(theta)[0]-self.states[0,-1])**2+(self.referencePath(theta)[1]-self.states[1,-1])**2, bounds=(0.0,1.0), method='Bounded')
         if projection.success:
             # heading error
             tangentVector = np.array(self.referencePath(projection.x, 1))
             headingVector = np.array([np.cos(self.states[2,-1]), np.sin(self.states[2,-1])])
-            e_phi = np.arccos((tangentVector @ headingVector) / np.sqrt(tangentVector @ tangentVector))
-            e_phi = np.sign(headingVector[0]*tangentVector[1] - headingVector[1]*tangentVector[0]) * np.abs(e_phi)
-            
-            # if tangentVector[0]*np.sin(self.states[2,-1]) - tangentVector[1]*np.cos(self.states[2,-1]) > 0: 
-            #     e_phi*=-1
+            tangentVectorAngle = np.arctan2(tangentVector[1], tangentVector[0])
+            headingVectorAngle = self.states[2,-1]
+            # headingError = e_phi in the stanley report
+            if tangentVectorAngle - headingVectorAngle > np.pi:
+                headingError = tangentVectorAngle - headingVectorAngle-2*np.pi
+            elif tangentVectorAngle - headingVectorAngle < -np.pi:
+                headingError = tangentVectorAngle - headingVectorAngle+2*np.pi
+            else:
+                headingError = tangentVectorAngle - headingVectorAngle
             
             # cross track error
-            # e_delta = self.referencePath(projection.x) - self.states[0:1,-1]
             e_delta = np.array([self.referencePath(projection.x)[0] - self.states[0,-1], self.referencePath(projection.x)[1] - self.states[1,-1]])
             crossTrackError = np.arctan(self.k_Delta*projection.fun/(self.k_s+self.k_d*self.states[3,-1]))
-            crossTrackError = np.sign(tangentVector[0]*e_delta[1] - tangentVector[1]*e_delta[0]) * np.abs(crossTrackError)
-
-            new_delta = e_phi + crossTrackError
+            e_deltaAngle = np.arctan2(e_delta[1], e_delta[0])
+            difference2 = e_deltaAngle - headingVectorAngle
+            if np.abs(difference2) > np.pi:
+                sign2 = -np.sign(difference2)
+            else:
+                sign2 = np.sign(difference2)
             
-            print('{}, heading error : {}, cross track error : {}, new_delta : {}'.format(k,e_phi, crossTrackError, new_delta))
+            if sign2 > 0:
+                crossTrackError = np.abs(crossTrackError)
+            else:
+                crossTrackError = -np.abs(crossTrackError)
 
-            # if the car is pointing on the left of the track, ie tangentVector ^ headingVector is vertical
-            # if tangentVector[0]*np.sin(self.states[2,-1]) - tangentVector[1]*np.cos(self.states[2,-1]) > 0: 
-            #     new_delta *= -1.0
+            new_delta = headingError + crossTrackError
+            
+            print('{}, heading error : {}, cross track error : {}, new_delta : {}'.format(k,headingError, crossTrackError, new_delta))
+
         else:
             sys.stderr.write('failure of projection\n')
             new_delta = self.inputs[0,-1]
         
         new_delta = np.clip(new_delta, -self.delta_max, self.delta_max)
-        # self.inputs = np.c_[self.inputs, np.array([new_delta, new_a_x])]
         self.inputs = np.column_stack((self.inputs, np.array([new_delta, new_a_x])))
         return self.inputs[:,-1]
 
@@ -119,25 +127,18 @@ class StanleyPIDController:
         assert u.size == 2 and (u.shape == (2,1) or u.shape == (2,))
         assert w.size == 2 and (w.shape == (2,1) or w.shape == (2,))
         m = 223.0
-        I_z = 200.0
         l_R = 0.895
         l_F = 0.675
+        I_z = 2000.0
         B_R = 10.0
         C_R = 1.9
         D_R = 1.0
         B_F = 10.0
         C_F = 1.9
         D_F = 1.0
-        # B_R = 0.0
-        # C_R = 0.0
-        # D_R = 0.0
-        # B_F = 0.0
-        # C_F = 0.0
-        # D_F = 0.0
         # C_m = 200.0
         # C_r0 = 0.0
         # C_r2 = 0.0
-        P_TV = 0.0
         v_blend_min = 3.0
         v_blend_max = 5.0
         
@@ -145,13 +146,12 @@ class StanleyPIDController:
         F_F_y = D_F * np.sin(C_F*np.arctan(B_F * np.arctan((x[4] + l_F*x[5]) / x[3])-u[0])) if x[3] != 0 else 0.0
         F_R_y = D_R * np.sin(C_R*np.arctan(B_R * np.arctan((x[4] - l_R*x[5]) / x[3]))) if x[3] != 0 else 0.0
         blendCoef = min(max((x[3]-v_blend_min) / (v_blend_max-v_blend_min), 0), 1)
-        r_dot = np.sign(u[0])*blendCoef*(F_F_y*l_F*np.cos(u[0])-F_R_y*l_R+P_TV*(u[0]*x[3]/(l_F+l_R) - x[5]))/I_z + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])/(l_R+l_F)
+        r_dot = blendCoef*(F_F_y*l_F*np.cos(u[0])-F_R_y*l_R)/I_z + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])/(l_R+l_F)
         return np.array([x[3]*np.cos(x[2]) - x[4]*np.sin(x[2]),
                         x[3]*np.sin(x[2]) + x[4]*np.cos(x[2]),
                         x[5],
                         u[1] - blendCoef*F_F_y * np.sin(u[0]) / m + x[4] * x[5] * blendCoef,
                         blendCoef*(F_R_y+F_F_y*np.cos(u[0])-m*x[3]*x[5])/m + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])*l_R/(l_R+l_F),
-                        # blendCoef*(F_F_y*l_F*np.cos(u[0])-F_R_y*l_R+P_TV*(u[0]*x[3]/(l_F+l_R) - x[5]))/I_z + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])/(l_R+l_F),
                         r_dot
                         ])
  
@@ -161,9 +161,6 @@ class StanleyPIDController:
         k3 = self.carDynamics(x + self.samplingTime*0.5*k2, u, w)
         k4 = self.carDynamics(x + self.samplingTime*k3, u, w)
         return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
-
-        # return x+self.samplingTime*self.carDynamics(x,u,w)
-
 
     def evolve(self):
         if self.inputs.size > 2:
@@ -175,12 +172,12 @@ class StanleyPIDController:
 
 
 if __name__ == '__main__':
-    pathPoints = np.c_[np.linspace(0,250,100), np.zeros(100)].T
-    currentState = np.array([0.0,-0.5, 0.0, 0.0, 0.0, 0.0])
+    # pathPoints = np.c_[np.linspace(0,250,100), np.zeros(100)].T
+    # currentState = np.array([0.0,0.0, 0.0, 0.0, 0.0, 0.0])
 
-    # pathPoints = np.genfromtxt('/Users/tudoroancea/Developer/racing-team/simulation/Track Racelines/Budapest.csv', delimiter=',', skip_header=1, unpack=True)
-    # pathPoints = pathPoints[:,:200]
-    # currentState = np.array([-6.075903,-4.259295,np.deg2rad(135),0,0,0])
+    pathPoints = np.genfromtxt('/Users/tudoroancea/Developer/racing-team/simulation/Track Racelines/Budapest.csv', delimiter=',', skip_header=1, unpack=True)
+    pathPoints = pathPoints[:,:200]
+    currentState = np.array([-6.075903,-4.259295,np.deg2rad(135),0,0,0])
 
     C = StanleyPIDController(pathPoints=pathPoints, initialState=currentState[:4])
 
@@ -202,10 +199,6 @@ if __name__ == '__main__':
         statesFile.write('{},{},{},{},{},{},{}\n'.format(k+1, currentState[0], currentState[1], currentState[2], currentState[3], currentState[4], currentState[5]))
         inputsFile.write('{},{},{}\n'.format(k, newInputs[0], newInputs[1]))
 
-    # for i in range(simulationLength+1):
-    #     statesFile.write('{},{},{},{},{}\n'.format(i, C.states[0,i], C.states[1,i], C.states[2,i], C.states[3,i]))
-    # for i in range(simulationLength):
-    #     inputsFile.write('{},{},{}\n'.format(i, C.inputs[0,i], C.inputs[1,i]))
     statesFile.close()
     inputsFile.close()
     plt.plot(C.states[0,:], C.states[1,:], 'b-')
