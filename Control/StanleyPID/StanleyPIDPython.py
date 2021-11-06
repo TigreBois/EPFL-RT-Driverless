@@ -123,7 +123,7 @@ class CarModel:
         # Pure Euler scheme integration of the dynamics ============================================================
         # return x+self.samplingTime*self.mixedCarDynamics(x,u,w)
         return x+self.samplingTime*self.kinematicCarDynamics(x,u,w)
-        # return x+self.samplingTime*self.dynamicCarDynamics(x,u,w)
+        # return x+self.samplingTime*self.dynamicCarDynamics(x,u)
 
 
         # kinematic using upgraded values when we can ============================================================
@@ -131,8 +131,10 @@ class CarModel:
         # new_v_y = x[4] + self.samplingTime * (w[0]*new_v_x+u[0]*u[1])*self.kinCoef1
         # new_r = x[5] + self.samplingTime * (w[0]*new_v_x+u[0]*u[1])*self.kinCoef2
         # new_phi = x[2] + self.samplingTime * new_r
-        # new_X = new_v_x*np.cos(new_phi) - new_v_y*np.sin(new_phi)
-        # new_Y = new_v_x*np.sin(new_phi) + new_v_y*np.cos(new_phi)
+        # new_X = x[0] + self.samplingTime*(new_v_x*np.cos(new_phi) - new_v_y*np.sin(new_phi))
+        # new_Y = x[1] + self.samplingTime*(new_v_x*np.sin(new_phi) + new_v_y*np.cos(new_phi))
+        # new_X = x[0] + self.samplingTime*(x[3]*np.cos(x[2]) - x[4]*np.sin(x[2]))
+        # new_Y = x[1] + self.samplingTime*(x[3]*np.sin(x[2]) + x[4]*np.cos(x[2]))
         # return np.array([new_X, new_Y, new_phi, new_v_x, new_v_y, new_r])
 
         # dynamic using upgraded values when we can ============================================================
@@ -169,11 +171,11 @@ class StanleyPIDController:
     K_P = 3  # [s^-1]
     K_I = 1   # [s^-2]
     # Stanley parameters
-    k_Delta = 3.0e2
-    k_s = 1.0e2
-    k_d = 5.0e2
+    k_Delta = 6.0e1
+    k_s = 1.0
+    k_d = 1.0e2
 
-    def __init__(self, pathPoints: np.ndarray, initialState: np.ndarray, sampligTime = 0.05):
+    def __init__(self, pathPoints: np.ndarray, initialState: np.ndarray, sampligTime = 0.05, outputFile = ''):
         """
             pathPoints : numpy array with 2 rows (one for x coord and one for y coord) and n columns (n points on the path)
             initialState : numpy array of shape (4,1)
@@ -186,6 +188,13 @@ class StanleyPIDController:
         for i in range(0,nbrOfPoints-1):
             self.referencePath[2, i] = np.arctan2(pathPoints[1, i+1]-pathPoints[1, i], pathPoints[0, i+1]-pathPoints[0, i])
         self.referencePath[2,-1] = self.referencePath[2,-2]
+
+        if outputFile != '':
+            referencePathFile = open(outputPath+'referencePath.csv', 'w')
+            referencePathFile.write('rank,x,y,tangentAngle\n')
+            for i in range(0,nbrOfPoints):
+                referencePathFile.write('{},{},{},{}\n'.format(i,self.referencePath[0,i], self.referencePath[1,i], self.referencePath[2,i]))
+            referencePathFile.close()        
 
         # initialize the state
         assert initialState.shape == (4, 1) or initialState.shape == (4,), "initialState must be a numpy vector (1D or 2D array) with 4 variables: X, Y, phi, v_x"
@@ -212,8 +221,10 @@ class StanleyPIDController:
 
         # find new steering input ============================================================
         # find the closest point on the path
-        consideredPoints = self.referencePath[0:2,self.lastProjectionID:min(self.lastProjectionID+10, self.referencePath.shape[1])]
-        closestPointID = np.argmin(np.sum(np.square(consideredPoints - self.lastState[:2].reshape(2,1)), axis=0))
+        consideredPoints = self.referencePath[0:2,self.lastProjectionID:self.lastProjectionID+10]
+        # consideredPoints = self.referencePath[0:2,self.lastProjectionID:min(self.lastProjectionID+10, self.referencePath.shape[1])]
+        # consideredPoints = self.referencePath[0:2,:]
+        closestPointID = self.lastProjectionID + np.argmin(np.sum(np.square(consideredPoints - self.lastState[:2].reshape(2,1)), axis=0))
         closestPoint = self.referencePath[0:2, closestPointID]
         closestPointDistance = dist.euclidean(self.lastState[:2], closestPoint)
         self.lastProjectionID = closestPointID
@@ -222,16 +233,12 @@ class StanleyPIDController:
         tangentVectorAngle = self.referencePath[2, closestPointID]
         headingVectorAngle = self.lastState[2]
         diff1 = float(tangentVectorAngle - headingVectorAngle)
-        headingError = diff1
-        if diff1 > np.pi:
-            headingError -= 2*np.pi  # e_psi in the report on stanley
-        elif diff1 < -np.pi:
-            headingError += 2*np.pi
+        headingError = (diff1 + np.pi) % (2*np.pi) - np.pi
 
         # find the cross track error
         crossTrackError = np.arctan(self.k_Delta*closestPointDistance/(self.k_s+self.k_d*self.lastState[3]))
         crossTrackAngle = np.arctan2(closestPoint[1] - self.lastState[1], closestPoint[0] - self.lastState[0]) # angle between e_∆ and the horizontal line in the report on stanley
-        diff2 = crossTrackAngle - headingVectorAngle
+        diff2 = crossTrackAngle - self.referencePath[2, closestPointID]
         if np.abs(diff2) > np.pi:
             sign2 = -np.sign(diff2)
         else:
@@ -252,7 +259,7 @@ class StanleyPIDController:
 if __name__ == '__main__':
     # General simulation parameters
     samplingTime = 0.05 # [s]
-    simulationLength = 100 # iterations
+    simulationLength = 850 # iterations
 
     # CHOOSE THE PATH =====================================================================================
 
@@ -268,16 +275,8 @@ if __name__ == '__main__':
     # currentState = np.array([-6.075903, -4.259295, np.deg2rad(135), 0, 0, 0])
     # MEXICO CITY ================================================================
     # pathPoints = np.genfromtxt('/Users/tudoroancea/Developer/racing-team/simulation/Track Racelines/MexicoCity.csv', delimiter=',', skip_header=1, unpack=True)
-    # pathPoints = pathPoints[:,:50]
+    # pathPoints = pathPoints[:,:5000]
     # currentState = np.array([-1.058253,8.811078,np.deg2rad(-15),0,0,0])
-
-    # DECKARE THE CONTROLLER INSTANCE =====================================================================================
-    stanleyController = StanleyPIDController(pathPoints=pathPoints, initialState=currentState[:4])
-    states = np.zeros((6,1))
-    states[:,0] = currentState[:]
-    inputs = np.zeros((2,0))
-    # DECLARE THE PHYSICAL MODEL INSTANCE =====================================================================================
-    carModel = CarModel(samplingTime=samplingTime)
     
     import os
 
@@ -287,11 +286,21 @@ if __name__ == '__main__':
 
     statesFile = open(outputPath+'states.csv', 'w')
     inputsFile = open(outputPath+'inputs.csv', 'w')
+    steeringFile = open(outputPath+'steering.csv', 'w')
     statesFile.write('{},{},{},{},{},{},{}\n'.format(0, currentState[0], currentState[1], currentState[2], currentState[3], currentState[4], currentState[5]))
+    steeringFile.write('rank, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance\n')
+
+    # DECKARE THE CONTROLLER INSTANCE =====================================================================================
+    stanleyController = StanleyPIDController(pathPoints=pathPoints, initialState=currentState[:4], outputFile=outputPath)
+    states = np.zeros((6,1))
+    states[:,0] = currentState[:]
+    inputs = np.zeros((2,0))
+    # DECLARE THE PHYSICAL MODEL INSTANCE =====================================================================================
+    carModel = CarModel(samplingTime=samplingTime)
 
     # SIMULATION TIME =====================================================================================
     for k in range(0, simulationLength):
-        newInputs, _, _, _, _, _ = stanleyController.computeNextInput()
+        newInputs, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance = stanleyController.computeNextInput()
         inputs = np.column_stack((inputs, newInputs))
 
         w = (inputs[:, -1]-inputs[:, -2])/samplingTime if inputs.shape[1] > 1 else np.zeros(2)
@@ -301,6 +310,7 @@ if __name__ == '__main__':
 
         inputsFile.write('{},{},{}\n'.format(k, newInputs[0], newInputs[1]))
         statesFile.write('{},{},{},{},{},{},{}\n'.format(k+1, currentState[0], currentState[1], currentState[2], currentState[3], currentState[4], currentState[5]))
+        steeringFile.write('{},{},{},{},{},{}\n'.format(k, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance))
 
         # # display
         # plt.clf()
@@ -333,6 +343,7 @@ if __name__ == '__main__':
 
     statesFile.close()
     inputsFile.close()
+    steeringFile.close()
     plt.figure(num=1)
     plt.plot(states[0, :], states[1, :], 'b+')
     plt.plot(pathPoints[0, :], pathPoints[1, :], 'g-')
