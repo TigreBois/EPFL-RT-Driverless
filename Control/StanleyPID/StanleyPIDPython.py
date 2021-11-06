@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.spatial.distance as dist
 import matplotlib.pyplot as plt
-from skidpadGeneration import skidpad
+from skidpadGeneration import skidpad, skidpadEnd
 
 class CarModel:
     # misc
@@ -108,21 +108,21 @@ class CarModel:
         # k3 = self.mixedCarDynamics(x + self.samplingTime*0.5*k2, u, w)
         # k4 = self.mixedCarDynamics(x + self.samplingTime*k3, u, w)
         
-        # k1 = self.kinematicCarDynamics(x, u, w)
-        # k2 = self.kinematicCarDynamics(x + self.samplingTime*0.5*k1, u, w)
-        # k3 = self.kinematicCarDynamics(x + self.samplingTime*0.5*k2, u, w)
-        # k4 = self.kinematicCarDynamics(x + self.samplingTime*k3, u, w)
+        k1 = self.kinematicCarDynamics(x, u, w)
+        k2 = self.kinematicCarDynamics(x + self.samplingTime*0.5*k1, u, w)
+        k3 = self.kinematicCarDynamics(x + self.samplingTime*0.5*k2, u, w)
+        k4 = self.kinematicCarDynamics(x + self.samplingTime*k3, u, w)
 
         # k1 = self.dynamicCarDynamics(x, u, w)
         # k2 = self.dynamicCarDynamics(x + self.samplingTime*0.5*k1, u, w)
         # k3 = self.dynamicCarDynamics(x + self.samplingTime*0.5*k2, u, w)
         # k4 = self.dynamicCarDynamics(x + self.samplingTime*k3, u, w)
 
-        # return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
+        return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
 
         # Pure Euler scheme integration of the dynamics ============================================================
         # return x+self.samplingTime*self.mixedCarDynamics(x,u,w)
-        return x+self.samplingTime*self.kinematicCarDynamics(x,u,w)
+        # return x+self.samplingTime*self.kinematicCarDynamics(x,u,w)
         # return x+self.samplingTime*self.dynamicCarDynamics(x,u)
 
 
@@ -145,9 +145,10 @@ class CarModel:
 
 from enum import Enum
 class DrivingMode(Enum):
-    DRIVING = 0
-    STOPPED = 1
-    MISSION_FINISHED = 2
+    STAGED = 0
+    DRIVING = 1
+    STOPPING = 2
+    MISSION_FINISHED = 3
 
 class StanleyPIDController:
     """
@@ -171,9 +172,9 @@ class StanleyPIDController:
     K_P = 3  # [s^-1]
     K_I = 1   # [s^-2]
     # Stanley parameters
-    k_Delta = 6.0e1
+    k_Delta = 1.5e2
     k_s = 1.0
-    k_d = 1.0e2
+    k_d = 0.4e2
 
     def __init__(self, pathPoints: np.ndarray, initialState: np.ndarray, sampligTime = 0.05, outputFile = ''):
         """
@@ -204,7 +205,7 @@ class StanleyPIDController:
 
 
     def v_ref(self):
-        return 7.0 if self.drivingMode == DrivingMode.DRIVING else 0.0
+        return 20.0 if self.drivingMode == DrivingMode.DRIVING else 0.0
         
     def setState(self, newState: np.ndarray):
         assert newState.shape == (4, 1) or newState.shape == (4,), "newState must be a numpy vector (1D or 2D array) with 4 variables: X, Y, phi, v_x"
@@ -222,8 +223,6 @@ class StanleyPIDController:
         # find new steering input ============================================================
         # find the closest point on the path
         consideredPoints = self.referencePath[0:2,self.lastProjectionID:self.lastProjectionID+10]
-        # consideredPoints = self.referencePath[0:2,self.lastProjectionID:min(self.lastProjectionID+10, self.referencePath.shape[1])]
-        # consideredPoints = self.referencePath[0:2,:]
         closestPointID = self.lastProjectionID + np.argmin(np.sum(np.square(consideredPoints - self.lastState[:2].reshape(2,1)), axis=0))
         closestPoint = self.referencePath[0:2, closestPointID]
         closestPointDistance = dist.euclidean(self.lastState[:2], closestPoint)
@@ -255,11 +254,10 @@ class StanleyPIDController:
         return self.lastInput, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance
 
 
-
 if __name__ == '__main__':
     # General simulation parameters
     samplingTime = 0.05 # [s]
-    simulationLength = 850 # iterations
+    simulationLength = 370 # iterations
 
     # CHOOSE THE PATH =====================================================================================
 
@@ -267,7 +265,7 @@ if __name__ == '__main__':
     # pathPoints = np.c_[np.linspace(0,250,100), np.zeros(100)].T
     # currentState = np.array([0.0,0.0, 0.0, 0.0, 0.0, 0.0])
     # SKIDPAD ================================================================
-    pathPoints = skidpad[:,:]
+    pathPoints = skidpad
     currentState = np.array([0.0,-15.0,np.pi/2,0.0,0.0,0.0])
     # BUDAPEST ================================================================
     # pathPoints = np.genfromtxt('/Users/tudoroancea/Developer/racing-team/simulation/Track Racelines/Budapest.csv', delimiter=',', skip_header=1, unpack=True)
@@ -312,34 +310,15 @@ if __name__ == '__main__':
         statesFile.write('{},{},{},{},{},{},{}\n'.format(k+1, currentState[0], currentState[1], currentState[2], currentState[3], currentState[4], currentState[5]))
         steeringFile.write('{},{},{},{},{},{}\n'.format(k, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance))
 
-        # # display
-        # plt.clf()
-        # # Display track, start and end
-        # plt.plot(currentState[0], currentState[1], zorder=31, label="Pos")
+        # FOR SKIDPAD  ===================================================================================== 
+        if closestPointID >= skidpadEnd:
+            # we have passed the finish line
+            stanleyController.drivingMode = DrivingMode.STOPPING
+        if stanleyController.drivingMode == DrivingMode.STOPPING and currentState[3] < 0.1:
+            # the car has stopped
+            stanleyController.drivingMode = DrivingMode.MISSION_FINISHED
+            break
 
-
-        # #Display path as points
-        # #plt.scatter(x_y[0], x_y[1], zorder=1, label="Track")
-        # #Display path as line
-        # plt.plot(x_y[0], x_y[1], zorder=1, label="Track")
-        
-        # plt.scatter(points[0][0], points[0][1],color='red', zorder=2, label="Start/finish point")
-        # plt.scatter(points[len(points)-1][0], points[len(points)-1][1], color='red', zorder=2)
-
-        # # Display the position
-        # plt.scatter(position[0], position[1], c=10, s=20, zorder=2, label="Current position")
-
-        # # Display the predicted position
-        # x_y = list(zip(*predicted_pos))
-        # plt.plot(x_y[0], x_y[1], '--r', zorder=2, label="Predicted trajectory")
-
-
-        # # Add legend under the plot
-        # plt.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0.) 
-        # plt.figure(1).subplots_adjust(bottom=0.3)
-
-        # # Must pause the dispay otherwise the update are too fast for it to be generated
-        # plt.pause(samplingTime)
 
     statesFile.close()
     inputsFile.close()
