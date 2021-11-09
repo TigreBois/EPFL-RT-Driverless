@@ -20,7 +20,7 @@ skidpad = np.concatenate((startLine[:,:15], rightCircle, rightCircle, leftCircle
 skidpadEnd = 79
 shortSkidpad = np.concatenate((startLine[:,:15], rightCircle, leftCircle, endLine[:,1:]), axis=1)
 shortSkidpadEnd = 15 + rightCircle.shape[1] + leftCircle.shape[1]
-print(shortSkidpadEnd)
+# print(shortSkidpadEnd)
 
 if __name__ == "__main__":
     print(startLine[1,:])

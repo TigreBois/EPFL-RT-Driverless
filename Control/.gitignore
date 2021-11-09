@@ -3,3 +3,4 @@ NewMPC
 StanleyPID/*
 !StanleyPIDPython.py
 !skidpadGeneration.py
+!skidpadAnimation.py
