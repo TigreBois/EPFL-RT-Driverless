@@ -22,6 +22,26 @@ shortSkidpad = np.concatenate((startLine[:,:15], rightCircle, leftCircle, endLin
 shortSkidpadEnd = 15 + rightCircle.shape[1] + leftCircle.shape[1]
 # print(shortSkidpadEnd)
 
+innerCircle = np.array([7.625*np.cos(thetaRight), 7.625*np.sin(thetaRight)])
+innerRightCircle = np.array([[9.125], [0.0]]) + innerCircle
+innerLeftCircle = np.array([[-9.125], [0.0]]) + innerCircle
+outerCircle = np.array([10.625*np.cos(thetaRight), 10.625*np.sin(thetaRight)])
+outerRightCircle = np.array([[9.125], [0.0]]) + outerCircle
+outerRightCircle = np.delete(outerRightCircle, np.where(outerRightCircle[0,:] < 0), axis=1)
+outerLeftCircle = np.array([[-9.125], [0.0]]) + outerCircle
+outerLeftCircle = np.delete(outerLeftCircle, np.where(outerLeftCircle[0,:] > 0), axis=1)
+start = np.zeros((2,6))
+start[1,:3] = np.linspace(-10, -15, 3)
+start[1,3:] = np.linspace(-10, -15, 3)
+start[0,:3] = -1.5
+start[0,3:] = 1.5
+end = np.zeros((2,6))
+end[1,:3] = np.linspace(10, 15, 3)
+end[1,3:] = np.linspace(10, 15, 3)
+end[0,:3] = -1.5
+end[0,3:] = 1.5
+skidpadBoundaries = np.concatenate((innerRightCircle, innerLeftCircle, outerRightCircle, outerLeftCircle, start, end), axis=1)
+
 if __name__ == "__main__":
     print(startLine[1,:])
     # plt.plot(straightLine[0,:], straightLine[1,:], '+', color="orange")
