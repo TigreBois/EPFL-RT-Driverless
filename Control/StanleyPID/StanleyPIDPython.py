@@ -2,10 +2,23 @@ import numpy as np
 import scipy.spatial.distance as dist
 import matplotlib.pyplot as plt
 from skidpadGeneration import skidpad, skidpadEnd
+from enum import Enum
+
 
 class CarModel:
+    class Integrator(Enum):
+        EULER = 1
+        RK4 = 4
+
+    class PhysicalModel(Enum):
+        KINEMATIC = 1
+        DYNAMIC = 2
+        MIXED = 3
+
     # misc
     samplingTime = 0.05
+    integrator = Integrator.RK4
+    physicalModel = PhysicalModel.KINEMATIC
 
     # physical parameters of the car model
     m = 223.0
@@ -23,8 +36,10 @@ class CarModel:
     kinCoef1 = l_R/(l_R+l_F)
     kinCoef2 = 1/(l_R+l_F)
 
-    def __init__(self, samplingTime = 0.05):
+    def __init__(self, samplingTime = 0.05, physicalModel = PhysicalModel.KINEMATIC, integrator = Integrator.RK4):
         self.samplingTime = samplingTime
+        self.physicalModel = physicalModel
+        self.integrator = integrator
 
     def kinematicCarDynamics(self, x: np.ndarray, u: np.ndarray, w: np.ndarray) -> np.ndarray:
         """ 
@@ -46,10 +61,11 @@ class CarModel:
             (w[0]*x[3]+u[0]*u[1])*self.kinCoef2
         ])
 
-    def dynamicCarDynamics(self, x: np.ndarray, u: np.ndarray) -> np.ndarray:
+    def dynamicCarDynamics(self, x: np.ndarray, u: np.ndarray, w: np.ndarray) -> np.ndarray:
         """ 
             x : car state = [X, Y, phi, v_x, v_y, r] 
             u : control input state = [delta, D]
+            w : useless in this method but here for consistency with the other dynamics
             returns xdot
          """
         assert x.size == 6 and (x.shape == (6, 1) or x.shape == (6,))
@@ -102,29 +118,21 @@ class CarModel:
         assert u.size == 2 and (u.shape == (2, 1) or u.shape == (2,))
         assert w.size == 2 and (w.shape == (2, 1) or w.shape == (2,))
 
-        # Pure RK4 scheme integration of the dynamics ============================================================
-        # k1 = self.mixedCarDynamics(x, u, w)
-        # k2 = self.mixedCarDynamics(x + self.samplingTime*0.5*k1, u, w)
-        # k3 = self.mixedCarDynamics(x + self.samplingTime*0.5*k2, u, w)
-        # k4 = self.mixedCarDynamics(x + self.samplingTime*k3, u, w)
-        
-        k1 = self.kinematicCarDynamics(x, u, w)
-        k2 = self.kinematicCarDynamics(x + self.samplingTime*0.5*k1, u, w)
-        k3 = self.kinematicCarDynamics(x + self.samplingTime*0.5*k2, u, w)
-        k4 = self.kinematicCarDynamics(x + self.samplingTime*k3, u, w)
+        if self.physicalModel == self.PhysicalModel.KINEMATIC:
+            dynamics = self.kinematicCarDynamics
+        elif self.physicalModel == self.PhysicalModel.DYNAMIC:
+            dynamics = self.dynamicCarDynamics
+        else :
+            dynamics = self.mixedCarDynamics
 
-        # k1 = self.dynamicCarDynamics(x, u, w)
-        # k2 = self.dynamicCarDynamics(x + self.samplingTime*0.5*k1, u, w)
-        # k3 = self.dynamicCarDynamics(x + self.samplingTime*0.5*k2, u, w)
-        # k4 = self.dynamicCarDynamics(x + self.samplingTime*k3, u, w)
-
-        return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
-
-        # Pure Euler scheme integration of the dynamics ============================================================
-        # return x+self.samplingTime*self.mixedCarDynamics(x,u,w)
-        # return x+self.samplingTime*self.kinematicCarDynamics(x,u,w)
-        # return x+self.samplingTime*self.dynamicCarDynamics(x,u)
-
+        if self.integrator == self.Integrator.RK4:
+            k1 = dynamics(x, u, w)
+            k2 = dynamics(x + self.samplingTime*0.5*k1, u, w)
+            k3 = dynamics(x + self.samplingTime*0.5*k2, u, w)
+            k4 = dynamics(x + self.samplingTime*k3, u, w)
+            return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
+        else :
+            return x+self.samplingTime*dynamics(x, u, w)
 
         # kinematic using upgraded values when we can ============================================================
         # new_v_x = x[3] + self.samplingTime * u[1]
@@ -143,12 +151,17 @@ class CarModel:
         # F_R_y = self.D_R * np.sin(self.C_R*np.arctan(self.B_R * np.arctan((x[4] - self.l_R*x[5]) / x[3]))) if x[3] != 0 else 0.0
 
 
-from enum import Enum
 class DrivingMode(Enum):
     STAGED = 0
     DRIVING = 1
     STOPPING = 2
     MISSION_FINISHED = 3
+
+class Mission(Enum):
+    STRAIGHT_LINE = 0
+    STRAIGHT_LINE_WITH_STOP = 1
+    SKIDPAD = 2
+    TRACK_DRIVE = 3
 
 class StanleyPIDController:
     """
@@ -159,8 +172,10 @@ class StanleyPIDController:
     # misc
     referencePath: np.ndarray
     samplingTime = 0.05 # s
-    delta_max = np.deg2rad(30.0)
+    delta_max = np.deg2rad(30.0) # rad
+    a_max = 15.0 # m/s^2
     drivingMode = DrivingMode.DRIVING
+    mission = Mission.SKIDPAD
 
     # last values
     lastState = np.zeros(4)
@@ -176,7 +191,7 @@ class StanleyPIDController:
     k_s = 1.0
     k_d = 0.4e2
 
-    def __init__(self, pathPoints: np.ndarray, initialState: np.ndarray, sampligTime = 0.05, outputFile = ''):
+    def __init__(self, pathPoints: np.ndarray, initialState: np.ndarray, sampligTime = 0.05, mission=Mission.SKIDPAD, outputFile = ''):
         """
             pathPoints : numpy array with 2 rows (one for x coord and one for y coord) and n columns (n points on the path)
             initialState : numpy array of shape (4,1)
@@ -202,10 +217,11 @@ class StanleyPIDController:
         self.lastState = initialState
 
         self.samplingTime = sampligTime
+        self.mission = mission
 
 
     def v_ref(self):
-        return 20.0 if self.drivingMode == DrivingMode.DRIVING else 0.0
+        return 12.0 if self.drivingMode == DrivingMode.DRIVING else 0.0
         
     def setState(self, newState: np.ndarray):
         assert newState.shape == (4, 1) or newState.shape == (4,), "newState must be a numpy vector (1D or 2D array) with 4 variables: X, Y, phi, v_x"
@@ -218,6 +234,7 @@ class StanleyPIDController:
         # find new acceleration input ============================================================
         newLongitudinalError = self.v_ref() - self.lastState[3]
         new_a_x = self.K_P * newLongitudinalError + 0.5 * self.K_I * (newLongitudinalError + self.lastLongitudinalError) * self.samplingTime
+        new_a_x = np.clip(new_a_x, -self.a_max, self.a_max)
         self.lastLongitudinalError = newLongitudinalError
 
         # find new steering input ============================================================
@@ -257,7 +274,7 @@ class StanleyPIDController:
 if __name__ == '__main__':
     # General simulation parameters
     samplingTime = 0.05 # [s]
-    simulationLength = 370 # iterations
+    simulationLength = 500 # iterations
 
     # CHOOSE THE PATH =====================================================================================
 
@@ -294,7 +311,7 @@ if __name__ == '__main__':
     states[:,0] = currentState[:]
     inputs = np.zeros((2,0))
     # DECLARE THE PHYSICAL MODEL INSTANCE =====================================================================================
-    carModel = CarModel(samplingTime=samplingTime)
+    carModel = CarModel(samplingTime=samplingTime, physicalModel=CarModel.PhysicalModel.KINEMATIC, integrator=CarModel.Integrator.RK4)
 
     # SIMULATION TIME =====================================================================================
     for k in range(0, simulationLength):
