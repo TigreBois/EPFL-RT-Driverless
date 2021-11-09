@@ -1,9 +1,11 @@
+from matplotlib.animation import FuncAnimation
 import numpy as np
 import scipy.spatial.distance as dist
 import matplotlib.pyplot as plt
 from skidpadGeneration import skidpad, skidpadEnd
 from enum import Enum
-
+from common import *
+import time
 
 class CarModel:
     class Integrator(Enum):
@@ -151,17 +153,7 @@ class CarModel:
         # F_R_y = self.D_R * np.sin(self.C_R*np.arctan(self.B_R * np.arctan((x[4] - self.l_R*x[5]) / x[3]))) if x[3] != 0 else 0.0
 
 
-class DrivingMode(Enum):
-    STAGED = 0
-    DRIVING = 1
-    STOPPING = 2
-    MISSION_FINISHED = 3
 
-class Mission(Enum):
-    STRAIGHT_LINE = 0
-    STRAIGHT_LINE_WITH_STOP = 1
-    SKIDPAD = 2
-    TRACK_DRIVE = 3
 
 class StanleyPIDController:
     """
@@ -189,7 +181,7 @@ class StanleyPIDController:
     # Stanley parameters
     k_Delta = 1.5e2
     k_s = 1.0
-    k_d = 0.4e2
+    k_d = 0.75e2
 
     def __init__(self, pathPoints: np.ndarray, initialState: np.ndarray, sampligTime = 0.05, mission=Mission.SKIDPAD, outputFile = ''):
         """
@@ -313,8 +305,10 @@ if __name__ == '__main__':
     # DECLARE THE PHYSICAL MODEL INSTANCE =====================================================================================
     carModel = CarModel(samplingTime=samplingTime, physicalModel=CarModel.PhysicalModel.KINEMATIC, integrator=CarModel.Integrator.RK4)
 
-    # SIMULATION TIME =====================================================================================
+    # IT'S SIMULATION TIME =====================================================================================
     for k in range(0, simulationLength):
+        start = time.time()
+
         newInputs, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance = stanleyController.computeNextInput()
         inputs = np.column_stack((inputs, newInputs))
 
@@ -322,26 +316,32 @@ if __name__ == '__main__':
         currentState = carModel.computeNextState(x=currentState, u=newInputs, w=w)
         stanleyController.setState(currentState[:4])
         states = np.column_stack((states, currentState))
+        
+        stop = time.time()
+        # print(1000*(stop-start), 'ms')
 
         inputsFile.write('{},{},{}\n'.format(k, newInputs[0], newInputs[1]))
         statesFile.write('{},{},{},{},{},{},{}\n'.format(k+1, currentState[0], currentState[1], currentState[2], currentState[3], currentState[4], currentState[5]))
         steeringFile.write('{},{},{},{},{},{}\n'.format(k, headingError, crossTrackError, closestPointID, closestPoint, closestPointDistance))
 
-        # FOR SKIDPAD  ===================================================================================== 
-        if closestPointID >= skidpadEnd:
-            # we have passed the finish line
-            stanleyController.drivingMode = DrivingMode.STOPPING
-        if stanleyController.drivingMode == DrivingMode.STOPPING and currentState[3] < 0.1:
-            # the car has stopped
-            stanleyController.drivingMode = DrivingMode.MISSION_FINISHED
-            break
+        if stanleyController.mission == Mission.SKIDPAD:
+            if closestPointID >= skidpadEnd:
+                # we have passed the finish line
+                stanleyController.drivingMode = DrivingMode.STOPPING
+            if stanleyController.drivingMode == DrivingMode.STOPPING and currentState[3] < 0.1:
+                # the car has stopped
+                stanleyController.drivingMode = DrivingMode.MISSION_FINISHED
+                break
 
 
     statesFile.close()
     inputsFile.close()
     steeringFile.close()
-    plt.figure(num=1)
-    plt.plot(states[0, :], states[1, :], 'b+')
-    plt.plot(pathPoints[0, :], pathPoints[1, :], 'g-')
+    plt.figure()
+    plt.plot(states[0, :], states[1, :], 'b-', zorder=2, label="Car Position", lw=1)
+    plt.plot(pathPoints[0, :], pathPoints[1, :], 'g-', zorder=1, label="Reference Track")
     plt.axis('equal')
+    plt.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0.)
+    plt.ylim(top=15, bottom=-15)
+    plt.xlim(left=-15, right=15)
     plt.show()

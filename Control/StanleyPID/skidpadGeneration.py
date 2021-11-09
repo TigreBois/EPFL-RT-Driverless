@@ -18,8 +18,9 @@ leftCircle = np.array([-9.125+9.125*np.cos(thetaLeft), 9.125*np.sin(thetaLeft)])
 skidpad = np.concatenate((startLine[:,:15], rightCircle, rightCircle, leftCircle, leftCircle, endLine[:,1:]), axis=1)
 # skidpadEnd = 15 + 2*rightCircle.shape[1] + 2*leftCircle.shape[1] 
 skidpadEnd = 79
-print(skidpadEnd, skidpad.shape[1])
-
+shortSkidpad = np.concatenate((startLine[:,:15], rightCircle, leftCircle, endLine[:,1:]), axis=1)
+shortSkidpadEnd = 15 + rightCircle.shape[1] + leftCircle.shape[1]
+print(shortSkidpadEnd)
 
 if __name__ == "__main__":
     print(startLine[1,:])
