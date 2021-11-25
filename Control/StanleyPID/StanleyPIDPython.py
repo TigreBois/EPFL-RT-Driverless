@@ -140,8 +140,8 @@ class CarModel:
 class StanleyPIDController:
     """
         General procedure : At time t_k we specify the state x_k. Then we compute the velocity error v_err_k at time t_k, and the control inputs u_k we want to apply. These will induce a new state x_(k+1) at the next sampling time.
-        States : x = [X,Y,phi,v_x]
-        Control inputs : u = [a_x, delta]
+        States of the form [X,Y,phi,v_x]
+        Control inputs of the form [a_x, delta]
      """
     # misc
     referencePath: np.ndarray
@@ -206,12 +206,15 @@ class StanleyPIDController:
             return 0.0
         
     def setState(self, newState: np.ndarray):
+        """
+            newState : numpy array of shape (4,1) corresponding to [X, Y, phi, v_x]
+         """
         assert newState.shape == (4, 1) or newState.shape == (4,), "newState must be a numpy vector (1D or 2D array) with 4 variables: X, Y, phi, v_x"
         self.lastState = newState
 
     def computeNextInput(self):
         """
-            Computes and returns the new control inputs
+            Computes and returns the new control inputs in the form [a_x, delta]
          """
         # find new acceleration input ============================================================
         newLongitudinalError = self.v_ref() - self.lastState[3]
@@ -256,7 +259,7 @@ class StanleyPIDController:
 def wrapperStanleyControl(referencePath: np.ndarray, currentState: np.ndarray, samplingTime = 0.05, mission=Mission.SKIDPAD) -> np.ndarray:
     """
         referencePath : numpy array with 2 rows (one for x coord and one for y coord) and n columns (n points on the path)
-        currentState : numpy array of shape (4,1) or (4,)
+        currentState : numpy array of shape (4,1) or (4,) => (X, Y, phi, v_x)
         samplingTime : sampling time of the controller, ie time between two calls of the controller
         mission : the mission to be performed by the controller (which type of track is followed : Straight line, Skidpad, ...)
         returns the new control inputs
