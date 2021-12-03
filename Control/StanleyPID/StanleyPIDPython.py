@@ -5,22 +5,12 @@ from matplotlib.animation import FuncAnimation
 from enum import Enum
 import time
 
-from common import * # definitions for all the controllers
+from enums import *
 from skidpadGeneration import *
 
 class CarModel:
-    class Integrator(Enum):
-        EULER = 1
-        RK4 = 4
-
-    class PhysicalModel(Enum):
-        KINEMATIC = 1
-        DYNAMIC = 2
-        MIXED = 3
-
     # misc
     samplingTime = 0.05
-    integrator = Integrator.RK4
     physicalModel = PhysicalModel.KINEMATIC
 
     # physical parameters of the car model
@@ -39,10 +29,9 @@ class CarModel:
     kinCoef1 = l_R/(l_R+l_F)
     kinCoef2 = 1/(l_R+l_F)
 
-    def __init__(self, samplingTime = 0.05, physicalModel = PhysicalModel.KINEMATIC, integrator = Integrator.RK4):
+    def __init__(self, samplingTime = 0.05, physicalModel = PhysicalModel.KINEMATIC):
         self.samplingTime = samplingTime
         self.physicalModel = physicalModel
-        self.integrator = integrator
 
     def kinematicCarDynamics(self, x: np.ndarray, u: np.ndarray, w: np.ndarray) -> np.ndarray:
         """ 
@@ -86,30 +75,6 @@ class CarModel:
             (F_F_y*self.l_F*np.cos(u[0]) - F_R_y*self.l_R)/self.I_z
         ])
 
-
-    def mixedCarDynamics(self, x: np.ndarray, u: np.ndarray, w: np.ndarray) -> np.ndarray:
-        """ 
-            x : car state = [X, Y, phi, v_x, v_y, r] 
-            u : control input state = [delta, D]
-            w : MPC input = [ddelta, dD]
-            returns : xdot
-        """
-        assert x.size == 6 and (x.shape == (6, 1) or x.shape == (6,))
-        assert u.size == 2 and (u.shape == (2, 1) or u.shape == (2,))
-        assert w.size == 2 and (w.shape == (2, 1) or w.shape == (2,))
-
-        F_F_y = self.D_F * np.sin(self.C_F*np.arctan(self.B_F * np.arctan((x[4] + self.l_F*x[5]) / x[3])-u[0])) if x[3] != 0 else 0.0
-        F_R_y = self.D_R * np.sin(self.C_R*np.arctan(self.B_R * np.arctan((x[4] - self.l_R*x[5]) / x[3]))) if x[3] != 0 else 0.0
-        blendCoef = min(max((x[3]-self.v_blend_min) / (self.v_blend_max-self.v_blend_min), 0), 1)
-        return np.array([x[3]*np.cos(x[2]) - x[4]*np.sin(x[2]),
-                        x[3]*np.sin(x[2]) + x[4]*np.cos(x[2]),
-                        x[5],
-                        u[1] - blendCoef*F_F_y *np.sin(u[0]) / self.m + x[4] * x[5] * blendCoef,
-                        blendCoef*(F_R_y+F_F_y*np.cos(u[0])-self.m*x[3]*x[5])/self.m + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])*self.l_R/(self.l_R+self.l_F),
-                        # blendCoef*(np.sin(u[0])*self.l_F*np.cos(u[0])-F_R_y*self.l_R)/self.I_z + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])/(self.l_R+self.l_F)
-                        blendCoef*(F_F_y*self.l_F*np.cos(u[0])-F_R_y*self.l_R)/self.I_z + (1-blendCoef)*(w[0]*x[3]+u[0]*u[1])/(self.l_R+self.l_F)
-                        ])
-
     def computeNextState(self, x: np.ndarray, u: np.ndarray, w: np.ndarray) -> np.ndarray:
         """ 
             x : car state = [X, Y, phi, v_x, v_y, r] 
@@ -121,21 +86,16 @@ class CarModel:
         assert u.size == 2 and (u.shape == (2, 1) or u.shape == (2,))
         assert w.size == 2 and (w.shape == (2, 1) or w.shape == (2,))
 
-        if self.physicalModel == self.PhysicalModel.KINEMATIC:
+        if self.physicalModel == PhysicalModel.KINEMATIC:
             dynamics = self.kinematicCarDynamics
-        elif self.physicalModel == self.PhysicalModel.DYNAMIC:
-            dynamics = self.dynamicCarDynamics
-        else :
-            dynamics = self.mixedCarDynamics
-
-        if self.integrator == self.Integrator.RK4:
-            k1 = dynamics(x, u, w)
-            k2 = dynamics(x + self.samplingTime*0.5*k1, u, w)
-            k3 = dynamics(x + self.samplingTime*0.5*k2, u, w)
-            k4 = dynamics(x + self.samplingTime*k3, u, w)
-            return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
         else:
-            return x+self.samplingTime*dynamics(x, u, w)
+            dynamics = self.dynamicCarDynamics
+
+        k1 = dynamics(x, u, w)
+        k2 = dynamics(x + self.samplingTime*0.5*k1, u, w)
+        k3 = dynamics(x + self.samplingTime*0.5*k2, u, w)
+        k4 = dynamics(x + self.samplingTime*k3, u, w)
+        return x+self.samplingTime/6*(k1+2*k2+2*k3+k4)
 
 class StanleyPIDController:
     """
@@ -307,7 +267,7 @@ if __name__ == '__main__':
     states[:,0] = currentState[:]
     inputs = np.zeros((2,0))
     # DECLARE THE PHYSICAL MODEL INSTANCE =====================================================================================
-    carModel = CarModel(samplingTime=samplingTime, physicalModel=CarModel.PhysicalModel.KINEMATIC, integrator=CarModel.Integrator.RK4)
+    carModel = CarModel(samplingTime=samplingTime, physicalModel=PhysicalModel.KINEMATIC)
 
     # IT'S SIMULATION TIME =====================================================================================
     for k in range(0, simulationLength):

@@ -2,7 +2,7 @@ from matplotlib import animation
 import matplotlib.pyplot as plt
 from skidpadGeneration import *
 from StanleyPIDPython import StanleyPIDController, CarModel
-from common import *
+from enums import *
 
 # General simulation parameters
 samplingTime = 0.05 # [s]
@@ -18,7 +18,7 @@ states = np.zeros((6,1))
 states[:,0] = currentState[:]
 inputs = np.zeros((2,0))
 # DECLARE THE PHYSICAL MODEL INSTANCE =====================================================================================
-carModel = CarModel(samplingTime=samplingTime, physicalModel=CarModel.PhysicalModel.KINEMATIC, integrator=CarModel.Integrator.RK4)
+carModel = CarModel(samplingTime=samplingTime, physicalModel=PhysicalModel.KINEMATIC)
 
 fig = plt.figure()
 trajectoryPlot = fig.add_subplot(autoscale_on=False, xlim=(-21, 21), ylim=(-16, 13))
