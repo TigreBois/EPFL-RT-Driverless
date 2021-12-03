@@ -2,16 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
+# skidpad reference path ======================================================
 n_straightLine = 41*1
 straightLine = np.zeros((2,n_straightLine))
 straightLine[1,:] = np.linspace(-15,25,n_straightLine)
 startLine = straightLine[:,:16]
 endLine = straightLine[:,16:]
 
-
 thetaRight = np.linspace(np.pi, -np.pi, 16, endpoint=False)
 rightCircle = np.array([9.125+9.125*np.cos(thetaRight), 9.125*np.sin(thetaRight)])
-
 thetaLeft = np.linspace(0, 2*np.pi, 16, endpoint=False)
 leftCircle = np.array([-9.125+9.125*np.cos(thetaLeft), 9.125*np.sin(thetaLeft)])
 
@@ -22,6 +21,7 @@ shortSkidpad = np.concatenate((startLine[:,:15], rightCircle, leftCircle, endLin
 shortSkidpadEnd = 15 + rightCircle.shape[1] + leftCircle.shape[1]
 # print(shortSkidpadEnd)
 
+# skidpad boundaries ==========================================================
 innerCircle = np.array([7.625*np.cos(thetaRight), 7.625*np.sin(thetaRight)])
 innerRightCircle = np.array([[9.125], [0.0]]) + innerCircle
 innerLeftCircle = np.array([[-9.125], [0.0]]) + innerCircle
